@@ -3,6 +3,7 @@ package collections.implementation;
 
 
 import collections.exceptions.EmptyCollectionException;
+import collections.exceptions.NonComparableElementException;
 import collections.exceptions.NullException;
 import collections.interfaces.GraphADT;
 import java.util.Iterator;

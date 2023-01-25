@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PriorityQueueNode.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">collections.implementation</a> &gt; <span class="el_source">PriorityQueueNode.java</span></div><h1>PriorityQueueNode.java</h1><pre class="source lang-java linenums">
+package collections.implementation;
+
+public class PriorityQueueNode&lt;T&gt; implements Comparable&lt;PriorityQueueNode&gt; {
+
+<span class="nc" id="L6">    private static int nextorder = 0;</span>
+    private int priority;
+    private int order;
+    private T element;
+
+    /**
+     * Creates a new PriorityQueueNode with the specified data.
+     *
+     * @param obj the element of the new priority queue node
+     * @param prio the integer priority of the new queue node
+     */
+<span class="nc" id="L17">    public PriorityQueueNode(T obj, int prio) {</span>
+<span class="nc" id="L18">        this.element = obj;</span>
+<span class="nc" id="L19">        this.priority = prio;</span>
+<span class="nc" id="L20">        this.order = nextorder;</span>
+<span class="nc" id="L21">        this.nextorder++;</span>
+<span class="nc" id="L22">    }</span>
+
+    /**
+     * Returns the element in this node.
+     *
+     * @return the element contained within this node
+     */
+    public T getElement() {
+<span class="nc" id="L30">        return this.element;</span>
+    }
+
+    /**
+     * Returns the priority value for this node.
+     *
+     * @return the integer priority for this node
+     */
+    public int getPriority() {
+<span class="nc" id="L39">        return this.priority;</span>
+    }
+
+   /**
+    * Returns the order for this node.
+    *
+    * @return the integer order for this node
+    */
+   public int getOrder() {
+<span class="nc" id="L48">        return this.order;</span>
+    }
+
+    /**
+     * Returns a string representation for this node.
+     *
+     */
+    public String toString() {
+<span class="nc" id="L56">        String temp = (element.toString() + priority + order);</span>
+<span class="nc" id="L57">        return temp;</span>
+    }
+
+    /**
+     * Returns the 1 if the current node has higher priority than the given node
+     * and -1 otherwise.
+     *
+     * @param obj the node to compare to this node
+     * @return the integer result of the comparison of the obj node and this one
+     */
+    public int compareTo(PriorityQueueNode obj) {
+        int result;
+<span class="nc" id="L69">        PriorityQueueNode&lt;T&gt; temp = obj;</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (priority &gt; temp.getPriority()) {</span>
+<span class="nc" id="L71">            result = 1;</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        } else if (priority &lt; temp.getPriority()) {</span>
+<span class="nc" id="L73">            result = -1;</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        } else if (order &gt; temp.getOrder()) {</span>
+<span class="nc" id="L75">            result = 1;</span>
+        } else {
+<span class="nc" id="L77">            result = -1;</span>
+        }
+<span class="nc" id="L79">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

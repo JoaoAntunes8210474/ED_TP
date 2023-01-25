@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderedBinarySearchTree.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">collections.implementation</a> &gt; <span class="el_source">OrderedBinarySearchTree.java</span></div><h1>OrderedBinarySearchTree.java</h1><pre class="source lang-java linenums">
+package collections.implementation;
+
+import collections.exceptions.EmptyCollectionException;
+import collections.exceptions.NonComparableElementException;
+import java.util.Iterator;
+import collections.interfaces.OrderedListADT;
+/**
+ *
+ * @param &lt;T&gt;
+ */
+public class OrderedBinarySearchTree&lt;T&gt; extends LinkedBinarySearchTree&lt;T&gt; implements OrderedListADT&lt;T&gt; {
+
+    public OrderedBinarySearchTree() {
+<span class="nc" id="L15">        super();</span>
+<span class="nc" id="L16">    }</span>
+
+    public OrderedBinarySearchTree(T element) {
+<span class="nc" id="L19">        super(element);</span>
+<span class="nc" id="L20">    }</span>
+    
+    @Override
+    public void add(T element) throws NonComparableElementException {
+<span class="nc" id="L24">        addElement(element);</span>
+<span class="nc" id="L25">        iteratorInOrder();</span>
+<span class="nc" id="L26">    }</span>
+
+    @Override
+    public T removeFirst() throws EmptyCollectionException {
+<span class="nc" id="L30">        T first = removeMin();</span>
+<span class="nc" id="L31">        return first;</span>
+    }
+
+    @Override
+    public T removeLast() throws EmptyCollectionException {
+<span class="nc" id="L36">        T last = removeMax();</span>
+<span class="nc" id="L37">        return last;</span>
+    }
+
+    @Override
+    public T remove(T element) throws EmptyCollectionException {
+<span class="nc" id="L42">        T target = removeElement(element);</span>
+<span class="nc" id="L43">        return target;</span>
+    }
+
+    @Override
+    public T first() throws EmptyCollectionException {
+<span class="nc" id="L48">        T min = findMin();</span>
+<span class="nc" id="L49">        return min;</span>
+    }
+
+    @Override
+    public T last() throws EmptyCollectionException {
+<span class="nc" id="L54">        T max = findMax();</span>
+<span class="nc" id="L55">        return max;</span>
+    }
+
+    @Override
+    public Iterator&lt;T&gt; iterator() {
+<span class="nc" id="L60">        return iteratorInOrder();</span>
+    }    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

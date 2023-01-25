@@ -41,7 +41,7 @@ public interface IPlayer {
      * Gettime since last interaction with a Connector.
      * @return Time since last interaction with a connector.
      */
-    public int getTimeConnector();
+    public int getConnectorTimer();
 
     /**
      * Get amount of portals conquered by the player
@@ -81,9 +81,9 @@ public interface IPlayer {
 
     /**
      * Defines and changes the time interval that the player has since the last interaction with a connector.
-     * @param timeConnector Time since last interaction with a connector.
+     * @param connectorTimer Time since last interaction with a connector.
      */
-    public void setTimeConnector(int timeConnector);
+    public void setConnectorTimer(int connectorTimer);
 
     /**
      * Set and changes the number of portals conquered by a player.

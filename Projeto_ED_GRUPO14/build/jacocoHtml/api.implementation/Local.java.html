@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Local.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">api.implementation</a> &gt; <span class="el_source">Local.java</span></div><h1>Local.java</h1><pre class="source lang-java linenums">
+package api.implementation;
+
+import api.interfaces.ILocal;
+
+/**
+ * Class that represents a location
+ * Class that implements the contract of a ILocal.
+ */
+public class Local implements ILocal {
+    
+    //Integer representing the unique identifier of each location
+    private int id;
+    
+    // Location name, the name will be the name of points of interest like statues, churches ...
+    private String name;
+    
+    //Location type, can be portal or connector type.
+    private String localType;
+    
+    //Amount of energy the site contains.
+    private int amountEnergyItHas;
+    
+    //Location coordinates
+    private Coordinates coordinates;
+
+    
+    
+    /**
+     * Constructor: instantiates objects of type local.
+     * @param id Integer representing the unique identifier of each location
+     * @param name Location name, the name will be the name of points of interest like statues, churches ...
+     * @param localType Location type, can be portal or connector type.
+     * @param amountEnergyItHas Amount of energy the site contains.
+     * @param coordinates Location coordinates
+     */
+<span class="nc" id="L37">    public Local(int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {</span>
+<span class="nc" id="L38">        this.id = id;</span>
+<span class="nc" id="L39">        this.name = name;</span>
+<span class="nc" id="L40">        this.localType = localType;</span>
+<span class="nc" id="L41">        this.amountEnergyItHas = amountEnergyItHas;</span>
+<span class="nc" id="L42">        this.coordinates = coordinates;</span>
+<span class="nc" id="L43">    }</span>
+
+    /**
+     * Get unique location identification number.
+     * @return The integer representing the unique identifier of each location
+     */
+    @Override
+    public int getId() {
+<span class="nc" id="L51">        return id;</span>
+    }
+
+    /**
+     * Get place name.
+     * @return The location name, the name will be the name of points of interest like statues, churches ...
+     */
+    @Override
+    public String getName() {
+<span class="nc" id="L60">        return name;</span>
+    }
+
+    /**
+     * Get location type
+     * @return The location type, can be portal or connector type.
+     */
+    @Override
+    public String getLocalType() {
+<span class="nc" id="L69">        return localType;</span>
+    }
+
+    /**
+     * Get amount of energy the location has.
+     * @return The amount of energy the site contains.
+     */
+    @Override
+    public int getAmountEnergyItHas() {
+<span class="nc" id="L78">        return amountEnergyItHas;</span>
+    }
+
+    /**
+     * Get location coordinates.
+     * @return The location coordinates
+     */
+    @Override
+    public Coordinates getCoordinates() {
+<span class="nc" id="L87">        return coordinates;</span>
+    }
+
+    /**
+     * Set or change a location's unique ID number    
+     * @param id The integer representing the unique identifier of each location
+     */
+    @Override
+    public void setId(int id) {
+<span class="nc" id="L96">        this.id = id;</span>
+<span class="nc" id="L97">    }</span>
+
+    /**
+     * Set or change the location name.
+     * @param name Location name, the name will be the name of points of interest like statues, churches ...
+     */
+    @Override
+    public void setName(String name) {
+<span class="nc" id="L105">        this.name = name;</span>
+<span class="nc" id="L106">    }</span>
+
+    /**
+     * Set or change the location type.
+     * @param localType Location type, can be portal or connector type.
+     */
+    @Override
+    public void setLocalType(String localType) {
+<span class="nc" id="L114">        this.localType = localType;</span>
+<span class="nc" id="L115">    }</span>
+
+    /**
+     * Set or change the amount of energy the location has.
+     * @param amountEnergyItHas Amount of energy the site contains.
+     */
+    @Override
+    public void setAmountEnergyItHas(int amountEnergyItHas) {
+<span class="nc" id="L123">        this.amountEnergyItHas = amountEnergyItHas;</span>
+<span class="nc" id="L124">    }</span>
+
+    /**
+     * Set or change location coordinates.
+     * @param coordinates Location coordinates
+     */
+    @Override
+    public void setCoordinates(Coordinates coordinates) {
+<span class="nc" id="L132">        this.coordinates = coordinates;</span>
+<span class="nc" id="L133">    }</span>
+
+    /**
+     * Aims to return a string representative of the location.
+     * @return string representative of the location.
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L141">        return &quot;Local{&quot; + &quot;id=&quot; + id + &quot;, name=&quot; + name + &quot;, localType=&quot; + localType + &quot;, amountEnergyItHas=&quot; + amountEnergyItHas + &quot;, coordinates=&quot; + coordinates + '}';</span>
+    }
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

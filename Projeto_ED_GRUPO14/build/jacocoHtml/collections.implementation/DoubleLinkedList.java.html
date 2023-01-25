@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DoubleLinkedList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">collections.implementation</a> &gt; <span class="el_source">DoubleLinkedList.java</span></div><h1>DoubleLinkedList.java</h1><pre class="source lang-java linenums">
+package collections.implementation;
+
+
+import collections.exceptions.EmptyCollectionException;
+import java.util.Iterator;
+import collections.interfaces.ListADT;
+
+/**
+ *
+ * @param &lt;T&gt;
+ */
+public abstract class DoubleLinkedList&lt;T&gt; implements ListADT&lt;T&gt; {
+    protected DoubleNode&lt;T&gt; head, tail;
+    protected int count;
+
+<span class="nc" id="L17">    public DoubleLinkedList() {</span>
+<span class="nc" id="L18">        this.head = null;</span>
+<span class="nc" id="L19">        this.tail = null;</span>
+<span class="nc" id="L20">        this.count = 0;</span>
+<span class="nc" id="L21">    }</span>
+    
+    @Override
+    public T removeFirst() throws EmptyCollectionException {
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (isEmpty()) throw new EmptyCollectionException(&quot;List&quot;);</span>
+<span class="nc" id="L26">        DoubleNode&lt;T&gt; current = head;</span>
+        
+<span class="nc" id="L28">        head = head.getNext();</span>
+<span class="nc" id="L29">        head.setPrevious(null);</span>
+        
+<span class="nc" id="L31">        this.count--;</span>
+<span class="nc" id="L32">        return current.getElement();</span>
+    }
+
+    @Override
+    public T removeLast() throws EmptyCollectionException {
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (isEmpty()) throw new EmptyCollectionException(&quot;List&quot;);</span>
+<span class="nc" id="L38">        DoubleNode&lt;T&gt; current = tail;</span>
+        
+<span class="nc" id="L40">        tail = tail.getPrevious();</span>
+<span class="nc" id="L41">        tail.setNext(null);</span>
+        
+<span class="nc" id="L43">        this.count--;</span>
+<span class="nc" id="L44">        return current.getElement();</span>
+    }
+
+    @Override
+    public T remove(T element) throws EmptyCollectionException {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (isEmpty()) throw new EmptyCollectionException(&quot;List&quot;);</span>
+        
+<span class="nc" id="L51">        boolean found = false;</span>
+<span class="nc" id="L52">        DoubleNode&lt;T&gt; previous = null;</span>
+<span class="nc" id="L53">        DoubleNode&lt;T&gt; current = head;</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">        while (current != null &amp;&amp; !found) {</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (element.equals (current.getElement()))</span>
+<span class="nc" id="L56">                found = true;</span>
+            else {
+<span class="nc" id="L58">                previous = current;</span>
+<span class="nc" id="L59">                current = current.getNext();</span>
+            }
+        }
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (!found) throw new EmptyCollectionException(&quot;List&quot;);</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (size() == 1) {</span>
+<span class="nc" id="L64">            head = tail = null;</span>
+        }
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        else if (current.equals (head)) {</span>
+<span class="nc" id="L67">            head = current.getNext();</span>
+        }
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        else if (current.equals (tail)) {</span>
+<span class="nc" id="L70">            tail = previous;</span>
+<span class="nc" id="L71">            tail.setNext(null);</span>
+        }
+        else {
+<span class="nc" id="L74">            previous.setNext(current.getNext());</span>
+        }
+<span class="nc" id="L76">        count--;</span>
+<span class="nc" id="L77">        return current.getElement();</span>
+    }
+
+    @Override
+    public T first() throws EmptyCollectionException {
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if(isEmpty()) throw new EmptyCollectionException(&quot;A lista estÃ¡ vazia&quot;);</span>
+<span class="nc" id="L83">        T result = head.getElement();</span>
+<span class="nc" id="L84">        return result;</span>
+    }
+
+    @Override
+    public T last() throws EmptyCollectionException {
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if(isEmpty()) throw new EmptyCollectionException(&quot;A lista estÃ¡ vazia&quot;);</span>
+<span class="nc" id="L90">        T result = tail.getElement();</span>
+<span class="nc" id="L91">        return result;</span>
+    }
+
+    @Override
+    public boolean contains(T target) {
+<span class="nc" id="L96">        T data = head.getElement(); </span>
+<span class="nc" id="L97">        boolean found = false;</span>
+<span class="nc" id="L98">        int i = 0;</span>
+        
+<span class="nc bnc" id="L100" title="All 4 branches missed.">        while (i &lt; this.count &amp;&amp; !found) {</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (target.equals(data)) {</span>
+<span class="nc" id="L102">                found = true;</span>
+            }
+<span class="nc" id="L104">            i++;</span>
+        }
+<span class="nc" id="L106">        return found;</span>
+    }
+
+    @Override
+    public boolean isEmpty() {
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        return (count == 0);</span>
+    }
+
+    @Override
+    public int size() {
+<span class="nc" id="L116">        return this.count;</span>
+    }
+
+    @Override
+    public Iterator&lt;T&gt; iterator() {
+<span class="nc" id="L121">        return new BasicIterator&lt;&gt;(this);</span>
+    }
+    
+    public class BasicIterator&lt;T&gt; implements Iterator&lt;T&gt; {
+        private DoubleNode&lt;T&gt; current;
+    
+<span class="nc" id="L127">        public BasicIterator(DoubleLinkedList&lt;T&gt; list) {</span>
+<span class="nc" id="L128">            current = list.head; </span>
+<span class="nc" id="L129">        }</span>
+    
+        @Override
+        public boolean hasNext() {
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            return this.current != null;</span>
+        }
+    
+        @Override
+        public T next() {
+<span class="nc" id="L138">            T data = current.getElement(); </span>
+<span class="nc" id="L139">            current = current.getNext(); </span>
+<span class="nc" id="L140">            return data; </span>
+        }
+    }
+    
+    
+    
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L149">        DoubleNode&lt;T&gt; current = this.head;</span>
+<span class="nc" id="L150">        String s = &quot;DoubleLinkedList:\n&quot;;</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        while(current != null) {</span>
+<span class="nc" id="L152">            s += current.getElement().toString() + &quot;\n&quot;;</span>
+<span class="nc" id="L153">            current = current.getNext();</span>
+        }
+<span class="nc" id="L155">        return s;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

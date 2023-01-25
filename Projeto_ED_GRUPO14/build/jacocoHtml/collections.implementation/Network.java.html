@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Network.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">collections.implementation</a> &gt; <span class="el_source">Network.java</span></div><h1>Network.java</h1><pre class="source lang-java linenums">
+package collections.implementation;
+
+
+import collections.exceptions.EmptyCollectionException;
+import java.util.Iterator;
+
+import collections.exceptions.UnknownPathException;
+import collections.interfaces.NetWorkADT;
+import collections.interfaces.UnorderedListADT;
+
+public class Network&lt;T&gt; extends MatrixGraph&lt;T&gt; implements NetWorkADT&lt;T&gt; {
+<span class="nc" id="L13">    protected final int DEFAULT_CAPACITY = 10;</span>
+    private double[][] adjMatrix;
+
+    public Network() {
+<span class="nc" id="L17">        super();</span>
+<span class="nc" id="L18">        this.adjMatrix = new double[this.DEFAULT_CAPACITY][this.DEFAULT_CAPACITY];</span>
+<span class="nc" id="L19">    }</span>
+
+    @Override
+    public void addVertex(T vertex) {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (this.numVertices + 1 &gt;= this.adjMatrix.length) {</span>
+<span class="nc" id="L24">            this.expandMatrix();</span>
+        }
+
+<span class="nc" id="L27">        super.addVertex(vertex);</span>
+<span class="nc" id="L28">    }</span>
+
+    @Override
+    public void addEdge(T vertex1, T vertex2, double weight) {
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (weight &lt; 0.0D) {</span>
+<span class="nc" id="L33">            throw new IllegalArgumentException(&quot;The weight cannot be under the default.&quot;);</span>
+        } else {
+<span class="nc" id="L35">            super.addEdge(vertex1, vertex2);</span>
+<span class="nc" id="L36">            this.setEdgeWeight(vertex1, vertex2, weight);</span>
+        }
+<span class="nc" id="L38">    }</span>
+
+    protected int[] getEdgeWithWeightOf(double weight, boolean[] visited) {
+<span class="nc" id="L41">        int[] edge = new int[2];</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        for (int i = 0; i &lt; numVertices; i++)</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            for (int j = 0; j &lt; numVertices; j++)</span>
+<span class="nc bnc" id="L44" title="All 4 branches missed.">                if ((adjMatrix[i][j] == weight) &amp;&amp; (visited[i] ^ visited[j])) {</span>
+<span class="nc" id="L45">                    edge[0] = i;</span>
+<span class="nc" id="L46">                    edge[1] = j;</span>
+<span class="nc" id="L47">                    return edge;</span>
+                }
+
+        // Will only get to here if a valid edge is not found
+<span class="nc" id="L51">        edge[0] = -1;</span>
+<span class="nc" id="L52">        edge[1] = -1;</span>
+<span class="nc" id="L53">        return edge;</span>
+    }
+
+    public void setEdgeWeight(T firstVertex, T secondVertex, double weight) {
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (weight &lt; 0.0D) {</span>
+<span class="nc" id="L58">            throw new IllegalArgumentException(&quot;The weight cannot be under the default.&quot;);</span>
+        }
+
+<span class="nc" id="L61">        int first = this.getIndex(firstVertex);</span>
+<span class="nc" id="L62">        int second = this.getIndex(secondVertex);</span>
+
+<span class="nc bnc" id="L64" title="All 8 branches missed.">        if (secondVertex.equals(&quot;exterior&quot;) || firstVertex.equals(&quot;exterior&quot;) || secondVertex.equals(&quot;entrada&quot;) || firstVertex.equals(&quot;entrada&quot;)) {</span>
+<span class="nc" id="L65">            this.adjMatrix[first][second] = 0;</span>
+<span class="nc" id="L66">            this.adjMatrix[second][first] = 0;</span>
+        } else {
+<span class="nc" id="L68">            this.adjMatrix[first][second] = weight;</span>
+        }
+
+<span class="nc" id="L71">    }</span>
+
+    public double getEdgeWeight(T firstVertex, T secondVertex) {
+<span class="nc" id="L74">        int first = this.getIndex(firstVertex);</span>
+<span class="nc" id="L75">        int second = this.getIndex(secondVertex);</span>
+
+<span class="nc" id="L77">        return this.adjMatrix[first][second];</span>
+    }
+
+    private void expandMatrix() {
+<span class="nc" id="L81">        double[][] tempMatrix = new double[this.numVertices * 2][this.numVertices * 2];</span>
+
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        for (int i = 0; i &lt; this.numVertices; ++i) {</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            for (int j = 0; j &lt; this.numVertices; ++j) {</span>
+<span class="nc" id="L85">                tempMatrix[i][j] = this.adjMatrix[i][j];</span>
+            }
+        }
+
+<span class="nc" id="L89">        this.adjMatrix = tempMatrix;</span>
+<span class="nc" id="L90">    }</span>
+
+    public Iterator&lt;T&gt; iteratorShortestWeight(T startVertex, T targetVertex) throws UnknownPathException, EmptyCollectionException {
+<span class="nc" id="L93">        return shortestPathWeight(startVertex, targetVertex).iterator();</span>
+    }
+
+    @Override
+    public ArrayUnorderedList&lt;T&gt; shortestPathWeight(T vertex1, T vertex2) throws EmptyCollectionException, UnknownPathException {
+<span class="nc" id="L98">        PriorityQueue&lt;Pair&lt;T&gt;&gt; priorityQueue = new PriorityQueue&lt;&gt;();</span>
+<span class="nc" id="L99">        UnorderedListADT&lt;T&gt; verticesFromPossiblePath = new ArrayUnorderedList&lt;&gt;();</span>
+<span class="nc" id="L100">        ArrayUnorderedList&lt;T&gt; result = new ArrayUnorderedList&lt;&gt;();</span>
+<span class="nc" id="L101">        Pair&lt;T&gt; startPair = new Pair&lt;&gt;(null, vertex1, 0.0);</span>
+
+<span class="nc" id="L103">        priorityQueue.addElement(startPair, (int) startPair.cost);</span>
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        while (!priorityQueue.isEmpty()) {</span>
+<span class="nc" id="L106">            Pair&lt;T&gt; pair = priorityQueue.removeNext();</span>
+<span class="nc" id="L107">            T vertex = pair.vertex;</span>
+<span class="nc" id="L108">            double minCost = pair.cost;</span>
+
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (vertex.equals(vertex2)) {</span>
+<span class="nc" id="L111">                Pair&lt;T&gt; finalPair = pair;</span>
+
+<span class="nc bnc" id="L113" title="All 2 branches missed.">                while (finalPair != null) {</span>
+<span class="nc" id="L114">                    result.addToFront(finalPair.vertex);</span>
+<span class="nc" id="L115">                    finalPair = finalPair.previous;</span>
+                }
+
+<span class="nc" id="L118">                return result;</span>
+            }
+
+<span class="nc" id="L121">            verticesFromPossiblePath.addToRear(vertex);</span>
+
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            for (int i = 0; i &lt; numVertices; i++) {</span>
+<span class="nc bnc" id="L124" title="All 4 branches missed.">                if (super.adjMatrix[getIndex(vertex)][i] &amp;&amp; !verticesFromPossiblePath.contains(vertices[i])) {</span>
+<span class="nc" id="L125">                    double minCostToVertex = minCost + adjMatrix[getIndex(vertex)][i];</span>
+<span class="nc" id="L126">                    Pair&lt;T&gt; tmpPair = new Pair&lt;&gt;(pair, vertices[i], minCostToVertex);</span>
+<span class="nc" id="L127">                    priorityQueue.addElement(tmpPair, (int) tmpPair.cost);</span>
+                }
+            }
+<span class="nc" id="L130">        }</span>
+
+<span class="nc" id="L132">        throw new UnknownPathException(&quot;Path doesn't exist&quot;);</span>
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public Network&lt;T&gt; mstNetwork() {
+        int x, y;
+        int index;
+        double weight;
+<span class="nc" id="L140">        int[] edge = new int[2];</span>
+<span class="nc" id="L141">        LinkedHeap&lt;Double&gt; minHeap = new LinkedHeap&lt;&gt;();</span>
+<span class="nc" id="L142">        Network&lt;T&gt; resultGraph = new Network&lt;&gt;();</span>
+<span class="nc bnc" id="L143" title="All 4 branches missed.">        if (isEmpty() || !isConnected())</span>
+<span class="nc" id="L144">            return resultGraph;</span>
+<span class="nc" id="L145">        resultGraph.adjMatrix = new double[numVertices][numVertices];</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        for (int i = 0; i &lt; numVertices; i++)</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            for (int j = 0; j &lt; numVertices; j++)</span>
+<span class="nc" id="L148">                resultGraph.adjMatrix[i][j] = Double.POSITIVE_INFINITY;</span>
+<span class="nc" id="L149">        resultGraph.vertices = (T[]) (new Object[numVertices]);</span>
+<span class="nc" id="L150">        boolean[] visited = new boolean[numVertices];</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        for (int i = 0; i &lt; numVertices; i++)</span>
+<span class="nc" id="L152">            visited[i] = false;</span>
+
+<span class="nc" id="L154">        edge[0] = 0;</span>
+<span class="nc" id="L155">        resultGraph.vertices[0] = this.vertices[0];</span>
+<span class="nc" id="L156">        resultGraph.numVertices++;</span>
+<span class="nc" id="L157">        visited[0] = true;</span>
+
+        // Add all edges, which are adjacent to the starting vertex, to the heap
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        for (int i = 0; i &lt; numVertices; i++)</span>
+<span class="nc" id="L161">            minHeap.addElement(adjMatrix[0][i]);</span>
+<span class="nc bnc" id="L162" title="All 4 branches missed.">        while ((resultGraph.size() &lt; this.size()) &amp;&amp; !minHeap.isEmpty()) {</span>
+            // Get the edge with the smallest weight that has exactly one vertex already in the resultGraph
+            do {
+                try {
+<span class="nc" id="L166">                    weight = minHeap.removeMin();</span>
+<span class="nc" id="L167">                    edge = getEdgeWithWeightOf(weight, visited);</span>
+<span class="nc" id="L168">                } catch (EmptyCollectionException e) {</span>
+<span class="nc" id="L169">                    System.out.println(e.getMessage());</span>
+<span class="nc" id="L170">                }</span>
+<span class="nc bnc" id="L171" title="All 4 branches missed.">            } while (!indexIsValid(edge[0]) || !indexIsValid(edge[1]));</span>
+<span class="nc" id="L172">            x = edge[0];</span>
+<span class="nc" id="L173">            y = edge[1];</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">            if (!visited[x])</span>
+<span class="nc" id="L175">                index = x;</span>
+            else
+<span class="nc" id="L177">                index = y;</span>
+            // Add the new edge and vertex to the resultGraph
+<span class="nc" id="L179">            resultGraph.vertices[index] = this.vertices[index];</span>
+<span class="nc" id="L180">            visited[index] = true;</span>
+<span class="nc" id="L181">            resultGraph.numVertices++;</span>
+<span class="nc" id="L182">            resultGraph.adjMatrix[x][y] = this.adjMatrix[x][y];</span>
+<span class="nc" id="L183">            resultGraph.adjMatrix[y][x] = this.adjMatrix[y][x];</span>
+
+            // Add all edges, that are adjacent to the newly added vertex, to the heap
+<span class="nc bnc" id="L186" title="All 2 branches missed.">            for (int i = 0; i &lt; numVertices; i++) {</span>
+<span class="nc bnc" id="L187" title="All 4 branches missed.">                if (!visited[i] &amp;&amp; (this.adjMatrix[i][index] &lt; Double.POSITIVE_INFINITY)) {</span>
+<span class="nc" id="L188">                    edge[0] = index;</span>
+<span class="nc" id="L189">                    edge[1] = i;</span>
+<span class="nc" id="L190">                    minHeap.addElement(adjMatrix[index][i]);</span>
+                }
+            }
+        }
+<span class="nc" id="L194">        return resultGraph;</span>
+    }
+
+    public String toString() {
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        if (numVertices == 0)</span>
+<span class="nc" id="L199">            return &quot;Graph is empty&quot;;</span>
+
+<span class="nc" id="L201">        String result = super.toString();</span>
+
+        //Print the weights of the edges
+<span class="nc" id="L204">        result += &quot;\n\nWeights of Edges&quot;;</span>
+<span class="nc" id="L205">        result += &quot;\n----------------\n&quot;;</span>
+<span class="nc" id="L206">        result += &quot;index\tweight\n\n&quot;;</span>
+
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        for (int i = 0; i &lt; numVertices; i++) {</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            for (int j = numVertices - 1; j &gt; i; j--) {</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">                if (super.adjMatrix[i][j]) {</span>
+<span class="nc" id="L211">                    result += i + &quot; to &quot; + j + &quot;\t&quot;;</span>
+<span class="nc" id="L212">                    result += adjMatrix[i][j] + &quot;\n&quot;;</span>
+                }
+            }
+        }
+
+<span class="nc" id="L217">        result += &quot;\n&quot;;</span>
+<span class="nc" id="L218">        return result;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LinkedBinarySearchTree.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">collections.implementation</a> &gt; <span class="el_source">LinkedBinarySearchTree.java</span></div><h1>LinkedBinarySearchTree.java</h1><pre class="source lang-java linenums">
+package collections.implementation;
+import collections.exceptions.ElementNotFoundException;
+import collections.interfaces.BinarySearchTreeADT;
+/**
+ *
+ * @param &lt;T&gt;
+ */
+public class LinkedBinarySearchTree&lt;T&gt; extends LinkedBinaryTree&lt;T&gt; 
+        implements BinarySearchTreeADT&lt;T&gt; {
+
+   /**
+    * Creates an empty binary search tree.
+    */
+    public LinkedBinarySearchTree() {
+<span class="nc" id="L16">        super();</span>
+<span class="nc" id="L17">    }</span>
+   
+   /**
+    * Creates a binary search with the specified element as its root.
+    *
+    * @param element the element that will be the root of the new
+    * binary search tree
+    */
+    public LinkedBinarySearchTree (T element) {
+<span class="nc" id="L26">        super(element);</span>
+<span class="nc" id="L27">    }</span>
+    
+    @Override
+    public void addElement(T element) {
+<span class="nc" id="L31">        BinaryTreeNode&lt;T&gt; temp = new BinaryTreeNode&lt;T&gt; (element);</span>
+<span class="nc" id="L32">        Comparable&lt;T&gt; comparableElement = (Comparable&lt;T&gt;)element;</span>
+      
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (isEmpty()) {</span>
+<span class="nc" id="L35">            root = temp;</span>
+        }
+        else {
+<span class="nc" id="L38">            BinaryTreeNode&lt;T&gt; current = root;</span>
+<span class="nc" id="L39">            boolean added = false;</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            while (!added) {</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">                if (comparableElement.compareTo(current.getElement()) &lt; 0) {</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">                    if (current.getLeft() == null) {</span>
+<span class="nc" id="L43">                        current.setLeft(temp);</span>
+<span class="nc" id="L44">                        added = true;</span>
+                    }
+                    else {
+<span class="nc" id="L47">                        current = current.getLeft();</span>
+                    }
+                }
+                else {
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                    if (current.getRight() == null) {</span>
+<span class="nc" id="L52">                        current.setRight(temp);</span>
+<span class="nc" id="L53">                        added = true;</span>
+                    }
+                    else {
+<span class="nc" id="L56">                        current = current.getRight();</span>
+                    }
+                }
+            }
+        }
+<span class="nc" id="L61">      count++;</span>
+<span class="nc" id="L62">    }</span>
+
+    @Override
+    public T removeElement (T targetElement) throws ElementNotFoundException {
+<span class="nc" id="L66">        T result = null;</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (!isEmpty()) {</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (((Comparable)targetElement).equals(root.getElement())) {</span>
+<span class="nc" id="L69">                result = root.getElement();</span>
+<span class="nc" id="L70">                root = replacement(root);</span>
+<span class="nc" id="L71">                count--;</span>
+            }
+            else {
+<span class="nc" id="L74">                BinaryTreeNode&lt;T&gt; current, parent = root;</span>
+<span class="nc" id="L75">                boolean found = false;</span>
+                
+<span class="nc bnc" id="L77" title="All 2 branches missed.">                if (((Comparable)targetElement).compareTo(root.getElement()) &lt; 0)</span>
+<span class="nc" id="L78">                    current = root.getLeft();</span>
+                else
+<span class="nc" id="L80">                    current = root.getRight();</span>
+                
+<span class="nc bnc" id="L82" title="All 4 branches missed.">                while (current != null &amp;&amp; !found) {</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">                    if (targetElement.equals(current.getElement())) {</span>
+<span class="nc" id="L84">                        found = true;</span>
+<span class="nc" id="L85">                        count--;</span>
+<span class="nc" id="L86">                        result = current.getElement();</span>
+          
+<span class="nc bnc" id="L88" title="All 2 branches missed.">                        if (current == parent.getLeft()) {</span>
+<span class="nc" id="L89">                            parent.setLeft(replacement(current));</span>
+                        }
+                        else {
+<span class="nc" id="L92">                            parent.setRight(replacement(current));</span>
+                        }
+                    }
+                    else {
+<span class="nc" id="L96">                        parent = current;</span>
+         
+<span class="nc bnc" id="L98" title="All 2 branches missed.">                        if (((Comparable)targetElement).compareTo(current.getElement()) &lt; 0)</span>
+<span class="nc" id="L99">                            current = current.getLeft();</span>
+                        else
+<span class="nc" id="L101">                            current = current.getRight();</span>
+                    }
+                } //while
+                
+<span class="nc bnc" id="L105" title="All 2 branches missed.">                if (!found) throw new ElementNotFoundException(&quot;binary search tree&quot;);</span>
+            }
+        } // end outer if
+<span class="nc" id="L108">        return result;</span>
+    }
+    
+    protected BinaryTreeNode&lt;T&gt; replacement (BinaryTreeNode&lt;T&gt; node) {
+<span class="nc" id="L112">        BinaryTreeNode&lt;T&gt; result = null;</span>
+        
+<span class="nc bnc" id="L114" title="All 4 branches missed.">        if ((node.getLeft() == null) &amp;&amp; (node.getRight() == null)) {</span>
+<span class="nc" id="L115">            result = null;</span>
+        }
+<span class="nc bnc" id="L117" title="All 4 branches missed.">        else if ((node.getLeft() != null)&amp;&amp;(node.getRight() == null)) {</span>
+<span class="nc" id="L118">            result = node.getLeft();</span>
+        }
+<span class="nc bnc" id="L120" title="All 4 branches missed.">        else if ((node.getLeft() == null)&amp;&amp;(node.getRight() != null)) {</span>
+<span class="nc" id="L121">            result = node.getRight();</span>
+        }
+        else {
+<span class="nc" id="L124">            BinaryTreeNode&lt;T&gt; current = node.getRight();</span>
+<span class="nc" id="L125">            BinaryTreeNode&lt;T&gt; parent = node;</span>
+            
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            while (current.getLeft() != null) {</span>
+<span class="nc" id="L128">                parent = current;</span>
+<span class="nc" id="L129">                current = current.getLeft();</span>
+            }
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (node.getRight() == current)</span>
+<span class="nc" id="L132">                current.setLeft(node.getLeft());</span>
+            else {
+<span class="nc" id="L134">                parent.setLeft(current.getRight());</span>
+<span class="nc" id="L135">                current.setRight(node.getRight());</span>
+<span class="nc" id="L136">                current.setLeft(node.getLeft());</span>
+            }
+<span class="nc" id="L138">            result = current;</span>
+        }
+<span class="nc" id="L140">        return result;</span>
+    }
+
+    @Override
+    public void removeAllOccurrences(T targetElement) throws ElementNotFoundException {       
+        try {
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            while ( contains(targetElement) ) {</span>
+<span class="nc" id="L147">                removeElement(targetElement);</span>
+            }
+        }
+<span class="nc" id="L150">        catch(Exception ElementNotFoundException) {;}</span>
+<span class="nc" id="L151">    }</span>
+
+    @Override
+    public T removeMin() {
+<span class="nc" id="L155">        T result = null;</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">        if(findMin() != null) {</span>
+<span class="nc" id="L157">            result = removeElement(findMin());</span>
+        }
+<span class="nc" id="L159">        return result;</span>
+    }
+
+    @Override
+    public T removeMax() {
+<span class="nc" id="L164">        T result = null;</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">        if(findMax() != null) {</span>
+<span class="nc" id="L166">            result = removeElement(findMax());</span>
+        }
+<span class="nc" id="L168">        return result;</span>
+    }
+    
+    @Override
+    public T findMin() {
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (isEmpty()) throw new ElementNotFoundException(&quot;Ã¡rvore vazia&quot;);</span>
+        
+<span class="nc" id="L175">        BinaryTreeNode&lt;T&gt; current = root;</span>
+        
+        /**
+         * O ciclo sÃ³ testa a parte esquerda porque os elementos menores que 
+        o root sÃ£o inseridos na parte esquerda
+         */
+<span class="nc bnc" id="L181" title="All 2 branches missed.">        while(current.getLeft() != null) {</span>
+<span class="nc" id="L182">            current = current.getLeft();</span>
+        }
+      
+<span class="nc" id="L185">        return current.getElement();</span>
+    }
+
+    @Override
+    public T findMax() {
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        if (isEmpty()) throw new ElementNotFoundException(&quot;Ã¡rvore vazia&quot;);</span>
+        
+<span class="nc" id="L192">        BinaryTreeNode&lt;T&gt; current = root;</span>
+        
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        while(current.getRight() != null) {</span>
+<span class="nc" id="L195">            current = current.getRight();</span>
+        }
+      
+<span class="nc" id="L198">        return current.getElement();</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
