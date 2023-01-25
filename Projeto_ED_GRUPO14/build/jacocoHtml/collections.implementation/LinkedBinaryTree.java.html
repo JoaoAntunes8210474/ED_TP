@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LinkedBinaryTree.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">collections.implementation</a> &gt; <span class="el_source">LinkedBinaryTree.java</span></div><h1>LinkedBinaryTree.java</h1><pre class="source lang-java linenums">
+package collections.implementation;
+
+import collections.exceptions.ElementNotFoundException;
+import collections.exceptions.EmptyCollectionException;
+import java.util.Iterator;
+import collections.interfaces.BinaryTreeADT;
+
+/**
+ * LinkedBinaryTree implements the BinaryTreeADT interface
+ *
+ * @param &lt;T&gt;
+ */
+public class LinkedBinaryTree&lt;T&gt; implements BinaryTreeADT&lt;T&gt; {
+
+    protected int count;
+    protected BinaryTreeNode&lt;T&gt; root;
+
+    /**
+     * Creates an empty binary tree.
+     */
+<span class="nc" id="L22">    public LinkedBinaryTree() {</span>
+<span class="nc" id="L23">        count = 0;</span>
+<span class="nc" id="L24">        root = null;</span>
+<span class="nc" id="L25">    }</span>
+
+    /**
+     * Creates a binary tree with the specified element as its root.
+     *
+     * @param element the element that will become the root of the new binary
+     * tree
+     */
+<span class="nc" id="L33">    public LinkedBinaryTree(T element) {</span>
+<span class="nc" id="L34">        count = 1;</span>
+<span class="nc" id="L35">        root = new BinaryTreeNode&lt;T&gt;(element);</span>
+<span class="nc" id="L36">    }</span>
+
+    @Override
+    public T getRoot() throws EmptyCollectionException {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (isEmpty()) {</span>
+<span class="nc" id="L41">            throw new EmptyCollectionException(&quot;A lista estÃ¡ vazia&quot;);</span>
+        }
+<span class="nc" id="L43">        T result = root.getElement();</span>
+<span class="nc" id="L44">        return result;</span>
+    }
+
+    @Override
+    public boolean isEmpty() {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        return (count == 0);</span>
+    }
+
+    @Override
+    public int size() {
+<span class="nc" id="L54">        return count;</span>
+    }
+
+    @Override
+    public boolean contains(T targetElement) {
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        return (this.findAgain(targetElement, root) != null);</span>
+    }
+
+    @Override
+    public T find(T targetElement) throws ElementNotFoundException {
+<span class="nc" id="L64">        BinaryTreeNode&lt;T&gt; current = findAgain(targetElement, root);</span>
+
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (current == null) {</span>
+<span class="nc" id="L67">            throw new ElementNotFoundException(&quot;binary tree&quot;);</span>
+        }
+
+<span class="nc" id="L70">        return (current.element);</span>
+    }
+
+    /**
+     * Returns a reference to the specified target element if it is found in
+     * this binary tree.
+     *
+     * @param targetElement the element being sought in this tree
+     * @param next the element to begin searching from
+     */
+    private BinaryTreeNode&lt;T&gt; findAgain(T targetElement, BinaryTreeNode&lt;T&gt; next) {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (next == null) {</span>
+<span class="nc" id="L82">            return null;</span>
+        }
+
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (next.element.equals(targetElement)) {</span>
+<span class="nc" id="L86">            return next;</span>
+        }
+
+<span class="nc" id="L89">        BinaryTreeNode&lt;T&gt; temp = findAgain(targetElement, next.left);</span>
+
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (temp == null) {</span>
+<span class="nc" id="L92">            temp = findAgain(targetElement, next.right);</span>
+        }
+
+<span class="nc" id="L95">        return temp;</span>
+    }
+
+    @Override
+    public Iterator&lt;T&gt; iteratorInOrder() {
+<span class="nc" id="L100">        ArrayUnorderedList&lt;T&gt; tempList = new ArrayUnorderedList&lt;T&gt;();</span>
+<span class="nc" id="L101">        inorder(this.root, tempList);</span>
+
+<span class="nc" id="L103">        return tempList.iterator();</span>
+    }
+
+    /**
+     * Performs a recursive inorder traversal.
+     *
+     * @param node the node to be used as the root for this traversal
+     * @param tempList the temporary list for use in this traversal
+     */
+    protected void inorder(BinaryTreeNode&lt;T&gt; node,
+            ArrayUnorderedList&lt;T&gt; tempList) {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (node != null) {</span>
+<span class="nc" id="L115">            inorder(node.left, tempList);</span>
+<span class="nc" id="L116">            tempList.addToRear(node.element);</span>
+<span class="nc" id="L117">            inorder(node.right, tempList);</span>
+        }
+<span class="nc" id="L119">    }</span>
+
+    @Override
+    public Iterator&lt;T&gt; iteratorPreOrder() {
+<span class="nc" id="L123">        ArrayUnorderedList&lt;T&gt; tempList = new ArrayUnorderedList&lt;T&gt;();</span>
+<span class="nc" id="L124">        preorder(this.root, tempList);</span>
+
+<span class="nc" id="L126">        return tempList.iterator();</span>
+    }
+
+    protected void preorder(BinaryTreeNode&lt;T&gt; node,
+            ArrayUnorderedList&lt;T&gt; tempList) {
+<span class="nc bnc" id="L131" title="All 2 branches missed.">        if (node != null) {</span>
+<span class="nc" id="L132">            tempList.addToRear(node.element);</span>
+<span class="nc" id="L133">            preorder(node.left, tempList);</span>
+<span class="nc" id="L134">            preorder(node.right, tempList);</span>
+        }
+<span class="nc" id="L136">    }</span>
+
+    @Override
+    public Iterator&lt;T&gt; iteratorPostOrder() {
+<span class="nc" id="L140">        ArrayUnorderedList&lt;T&gt; tempList = new ArrayUnorderedList&lt;T&gt;();</span>
+<span class="nc" id="L141">        postorder(this.root, tempList);</span>
+
+<span class="nc" id="L143">        return tempList.iterator();</span>
+    }
+
+    protected void postorder(BinaryTreeNode&lt;T&gt; node,
+            ArrayUnorderedList&lt;T&gt; tempList) {
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (node != null) {</span>
+<span class="nc" id="L149">            postorder(node.left, tempList);</span>
+<span class="nc" id="L150">            postorder(node.right, tempList);</span>
+<span class="nc" id="L151">            tempList.addToRear(node.element);</span>
+        }
+<span class="nc" id="L153">    }</span>
+
+    @Override
+    public Iterator&lt;T&gt; iteratorLevelOrder() {
+<span class="nc" id="L157">        ArrayUnorderedList&lt;T&gt; tempList = new ArrayUnorderedList&lt;T&gt;();</span>
+<span class="nc" id="L158">        levelorder(this.root, tempList);</span>
+
+<span class="nc" id="L160">        return tempList.iterator();</span>
+    }
+
+    protected void levelorder(BinaryTreeNode&lt;T&gt; root, ArrayUnorderedList&lt;T&gt; results) {
+<span class="nc" id="L164">        LinkedQueue&lt;BinaryTreeNode&lt;T&gt;&gt; nodes = new LinkedQueue&lt;&gt;();</span>
+<span class="nc" id="L165">        BinaryTreeNode&lt;T&gt; node = null;</span>
+<span class="nc" id="L166">        nodes.enqueue(root);</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        while (!nodes.isEmpty()) {</span>
+            try {
+<span class="nc" id="L169">                node = nodes.dequeue();</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">                if (node.element != null) {</span>
+<span class="nc" id="L171">                    results.addToRear(node.element);</span>
+
+                } else {
+<span class="nc" id="L174">                    results.addToRear(null);</span>
+                }
+
+<span class="nc bnc" id="L177" title="All 2 branches missed.">                if (node.getLeft() != null) {</span>
+<span class="nc" id="L178">                    nodes.enqueue(node.getLeft());</span>
+                }
+<span class="nc bnc" id="L180" title="All 2 branches missed.">                if (node.getRight() != null) {</span>
+<span class="nc" id="L181">                    nodes.enqueue(node.getRight());</span>
+                }
+<span class="nc" id="L183">            } catch (EmptyCollectionException ex) {</span>
+<span class="nc" id="L184">                System.out.println(ex.getMessage());</span>
+<span class="nc" id="L185">            };</span>
+
+        }
+<span class="nc" id="L188">    }</span>
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L192">        String s = &quot;Iterator LevelOrder:&quot;;</span>
+<span class="nc" id="L193">        Iterator&lt;T&gt; itr = iteratorLevelOrder();</span>
+<span class="nc" id="L194">        s += &quot; | &quot;;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        while (itr.hasNext()) {</span>
+<span class="nc" id="L196">            s += itr.next() + &quot; | &quot;;</span>
+        }
+<span class="nc" id="L198">        return s;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

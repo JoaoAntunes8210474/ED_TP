@@ -7,7 +7,7 @@ import api.interfaces.IPlayer;
  * Class representing a player.
  * Class that implements the IPlayer interface contract.
  */
-public class Player implements IPlayer{
+public class Player implements IPlayer, Comparable<Player>{
     
     //Player's name
     private String name;
@@ -25,7 +25,7 @@ public class Player implements IPlayer{
     private int currentEnergy;
     
     //Time since last interaction with a connector.
-    private int timeConnector;
+    private int connectorTimer;
     
     //Number of portals conquered by the player
     private int numPortals;
@@ -38,16 +38,16 @@ public class Player implements IPlayer{
      * @param level Level the player is in the game.
      * @param experiencePoints Points obtained by the player during interaction with the game.
      * @param currentEnergy Amount of energy the player has.
-     * @param timeConnector Time since last interaction with a connector.
+     * @param connectorTimer Time since last interaction with a connector.
      * @param numPortals Number of portals conquered by the player
      */
-    public Player(String name, String team, int level, long experiencePoints, int currentEnergy, int timeConnector, int numPortals) {
+    public Player(String name, String team, int level, long experiencePoints, int currentEnergy, int connectorTimer, int numPortals) {
         this.name = name;
         this.team = team;
         this.level = level;
         this.experiencePoints = experiencePoints;
         this.currentEnergy = currentEnergy;
-        this.timeConnector = timeConnector;
+        this.connectorTimer = connectorTimer;
         this.numPortals = numPortals;
     }
 
@@ -101,8 +101,8 @@ public class Player implements IPlayer{
      * @return Time since last interaction with a connector.
      */
     @Override
-    public int getTimeConnector() {
-        return timeConnector;
+    public int getConnectorTimer() {
+        return connectorTimer;
     }
 
     /**
@@ -161,11 +161,11 @@ public class Player implements IPlayer{
 
     /**
      * Defines and changes the time interval that the player has since the last interaction with a connector.
-     * @param timeConnector Time since last interaction with a connector.
+     * @param connectorTimer Time since last interaction with a connector.
      */
     @Override
-    public void setTimeConnector(int timeConnector) {
-        this.timeConnector = timeConnector;
+    public void setConnectorTimer(int connectorTimer) {
+        this.connectorTimer = connectorTimer;
     }
 
     /**
@@ -183,10 +183,25 @@ public class Player implements IPlayer{
      */
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", team=" + team + ", level=" + level + ", experiencePoints=" + experiencePoints + ", currentEnergy=" + currentEnergy + ", timeConnector=" + timeConnector + ", numPortals=" + numPortals + '}';
+        return "Player{" + "name=" + name + ", team=" + team + ", level=" + level + ", experiencePoints=" + experiencePoints + ", currentEnergy=" + currentEnergy + ", timeConnector=" + connectorTimer + ", numPortals=" + numPortals + '}';
     }
-    
-    
+
+    /**
+     *
+     * @param index1
+     * @param index2
+     * @return
+     */
+    @Override
+    public int compareTo(Player player) {
+        if (this.getLevel() > player.getLevel()) {
+            return 1;
+        } else if (this.getLevel() == player.getLevel()) {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
  
     
 }

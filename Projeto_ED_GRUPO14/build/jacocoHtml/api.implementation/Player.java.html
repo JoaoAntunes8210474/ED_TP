@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Player.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">api.implementation</a> &gt; <span class="el_source">Player.java</span></div><h1>Player.java</h1><pre class="source lang-java linenums">
+package api.implementation;
+
+import api.interfaces.IPlayer;
+
+/**
+ * Class representing a player.
+ * Class that implements the IPlayer interface contract.
+ */
+public class Player implements IPlayer, Comparable&lt;Player&gt;{
+    
+    //Player's name
+    private String name;
+    
+    //Team the player belongs to.
+    private String team;
+    
+    //Level the player is in the game.
+    private int level;
+    
+    //Points obtained by the player during interaction with the game.
+    private long experiencePoints;
+    
+    //Amount of energy the player has.
+    private int currentEnergy;
+    
+    //Time since last interaction with a connector.
+    private int connectorTimer;
+    
+    //Number of portals conquered by the player
+    private int numPortals;
+
+    
+    /**
+     * Constructor method is used to instantiate objects of type player.
+     * @param name Player's name
+     * @param team Team the player belongs to.
+     * @param level Level the player is in the game.
+     * @param experiencePoints Points obtained by the player during interaction with the game.
+     * @param currentEnergy Amount of energy the player has.
+     * @param connectorTimer Time since last interaction with a connector.
+     * @param numPortals Number of portals conquered by the player
+     */
+<span class="nc" id="L44">    public Player(String name, String team, int level, long experiencePoints, int currentEnergy, int connectorTimer, int numPortals) {</span>
+<span class="nc" id="L45">        this.name = name;</span>
+<span class="nc" id="L46">        this.team = team;</span>
+<span class="nc" id="L47">        this.level = level;</span>
+<span class="nc" id="L48">        this.experiencePoints = experiencePoints;</span>
+<span class="nc" id="L49">        this.currentEnergy = currentEnergy;</span>
+<span class="nc" id="L50">        this.connectorTimer = connectorTimer;</span>
+<span class="nc" id="L51">        this.numPortals = numPortals;</span>
+<span class="nc" id="L52">    }</span>
+
+    /**
+     * Get player name.
+     * @return Player's name.
+     */
+    @Override
+    public String getName() {
+<span class="nc" id="L60">        return name;</span>
+    }
+
+    /**
+     * Get team the player belongs to.
+     * @return Team the player belongs to.
+     */
+    @Override
+    public String getTeam() {
+<span class="nc" id="L69">        return team;</span>
+    }
+
+    /**
+     * Get level of the game the player is in.
+     * @return Level the player is in the game.
+     */
+    @Override
+    public int getLevel() {
+<span class="nc" id="L78">        return level;</span>
+    }
+
+    /**
+     * Get the amount of points the player has in the game.
+     * @return Points obtained by the player during interaction with the game.
+     */
+    @Override
+    public long getExperiencePoints() {
+<span class="nc" id="L87">        return experiencePoints;</span>
+    }
+
+    /**
+     * Get amount of energy the player has.
+     * @return Amount of energy the player has.
+     */
+    @Override
+    public int getCurrentEnergy() {
+<span class="nc" id="L96">        return currentEnergy;</span>
+    }
+
+    /**
+     * Gettime since last interaction with a Connector.
+     * @return Time since last interaction with a connector.
+     */
+    @Override
+    public int getConnectorTimer() {
+<span class="nc" id="L105">        return connectorTimer;</span>
+    }
+
+    /**
+     * Get amount of portals conquered by the player
+     * @return Number of portals conquered by the player
+     */
+    @Override
+    public int getNumPortals() {
+<span class="nc" id="L114">        return numPortals;</span>
+    }
+
+    /**
+     * 
+     * @param name Player's name.
+     */
+    @Override
+    public void setName(String name) {
+<span class="nc" id="L123">        this.name = name;</span>
+<span class="nc" id="L124">    }</span>
+
+    /**
+     * Set and change a player's name.
+     * @param team Team the player belongs to.
+     */
+    @Override
+    public void setTeam(String team) {
+<span class="nc" id="L132">        this.team = team;</span>
+<span class="nc" id="L133">    }</span>
+
+    /**
+     * Set and change the level in which the player is in the game
+     * @param level Level the player is in the game.
+     */
+    @Override
+    public void setLevel(int level) {
+<span class="nc" id="L141">        this.level = level;</span>
+<span class="nc" id="L142">    }</span>
+
+    /**
+     * Sets and changes the amount of points the player has earned through in-game interaction.
+     * @param experiencePoints Points obtained by the player during interaction with the game.
+     */
+    @Override
+    public void setExperiencePoints(long experiencePoints) {
+<span class="nc" id="L150">        this.experiencePoints = experiencePoints;</span>
+<span class="nc" id="L151">    }</span>
+
+    /**
+     * Sets and changes the amount of energy the player has.
+     * @param currentEnergy Amount of energy the player has.
+     */
+    @Override
+    public void setCurrentEnergy(int currentEnergy) {
+<span class="nc" id="L159">        this.currentEnergy = currentEnergy;</span>
+<span class="nc" id="L160">    }</span>
+
+    /**
+     * Defines and changes the time interval that the player has since the last interaction with a connector.
+     * @param connectorTimer Time since last interaction with a connector.
+     */
+    @Override
+    public void setConnectorTimer(int connectorTimer) {
+<span class="nc" id="L168">        this.connectorTimer = connectorTimer;</span>
+<span class="nc" id="L169">    }</span>
+
+    /**
+     * Set and changes the number of portals conquered by a player.
+     * @param numPortals Number of portals conquered by the player
+     */
+    @Override
+    public void setNumPortals(int numPortals) {
+<span class="nc" id="L177">        this.numPortals = numPortals;</span>
+<span class="nc" id="L178">    }</span>
+
+    /**
+     * Aims to return a string that represents a player, with information about him.
+     * @return string that represents a player, with information about him.
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L186">        return &quot;Player{&quot; + &quot;name=&quot; + name + &quot;, team=&quot; + team + &quot;, level=&quot; + level + &quot;, experiencePoints=&quot; + experiencePoints + &quot;, currentEnergy=&quot; + currentEnergy + &quot;, timeConnector=&quot; + connectorTimer + &quot;, numPortals=&quot; + numPortals + '}';</span>
+    }
+
+    /**
+     *
+     * @param index1
+     * @param index2
+     * @return
+     */
+    @Override
+    public int compareTo(Player player) {
+<span class="nc bnc" id="L197" title="All 2 branches missed.">        if (this.getLevel() &gt; player.getLevel()) {</span>
+<span class="nc" id="L198">            return 1;</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">        } else if (this.getLevel() == player.getLevel()) {</span>
+<span class="nc" id="L200">            return 0;</span>
+        } else {
+<span class="nc" id="L202">            return -1;</span>
+        }
+    }
+ 
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

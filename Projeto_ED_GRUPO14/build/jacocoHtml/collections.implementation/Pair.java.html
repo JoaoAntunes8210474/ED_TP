@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Pair.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">collections.implementation</a> &gt; <span class="el_source">Pair.java</span></div><h1>Pair.java</h1><pre class="source lang-java linenums">
+package collections.implementation;
+
+public class Pair&lt;T&gt; {
+    protected Pair&lt;T&gt; previous;
+    protected T vertex;
+    protected double cost;
+
+<span class="nc" id="L9">    public Pair(Pair&lt;T&gt; previous, T vertex, double cost) {</span>
+<span class="nc" id="L10">        this.previous = previous;</span>
+<span class="nc" id="L11">        this.vertex = vertex;</span>
+<span class="nc" id="L12">        this.cost = cost;</span>
+<span class="nc" id="L13">    }</span>
+
+    public Pair&lt;T&gt; getPrevious() {
+<span class="nc" id="L16">        return previous;</span>
+    }
+
+    public void setPrevious(Pair&lt;T&gt; previous) {
+<span class="nc" id="L20">        this.previous = previous;</span>
+<span class="nc" id="L21">    }</span>
+
+    public T getVertex() {
+<span class="nc" id="L24">        return vertex;</span>
+    }
+
+    public void setVertex(T vertex) {
+<span class="nc" id="L28">        this.vertex = vertex;</span>
+<span class="nc" id="L29">    }</span>
+
+    public double getCost() {
+<span class="nc" id="L32">        return cost;</span>
+    }
+
+    public void setCost(double cost) {
+<span class="nc" id="L36">        this.cost = cost;</span>
+<span class="nc" id="L37">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayerManagement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">api.implementation</a> &gt; <span class="el_source">PlayerManagement.java</span></div><h1>PlayerManagement.java</h1><pre class="source lang-java linenums">
+package api.implementation;
+
+import api.interfaces.IPlayerManagement;
+import collections.exceptions.EmptyCollectionException;
+import collections.exceptions.NonComparableElementException;
+import collections.implementation.ArrayOrderedList;
+import collections.implementation.ArrayUnorderedList;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
+/**
+ *
+ * @author reginaneto
+ */
+public class PlayerManagement implements IPlayerManagement {
+    private ArrayUnorderedList&lt;Player&gt; playerList;
+
+<span class="nc" id="L22">    public PlayerManagement() {</span>
+<span class="nc" id="L23">        this.playerList = new ArrayUnorderedList&lt;&gt;();</span>
+<span class="nc" id="L24">    }</span>
+
+    /**
+     * Adds a player to the list of players
+     * @param player the player to be added into the list of players
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
+    @Override
+    public String addPlayer(Player player) {
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (player == null) {</span>
+<span class="nc" id="L34">            throw new NullPointerException(&quot;Foi enviado uma referÃªncia nula&quot;);</span>
+        }
+
+<span class="nc" id="L37">        this.playerList.addToFront(player);</span>
+
+<span class="nc" id="L39">        return &quot;O jogador foi adicionado a lista de jogadores!&quot;;</span>
+    }
+
+    /**
+     * Updates a player from the list of players
+     * @param player the player to be updated
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
+    @Override
+    public String updatePlayer(Player player) {
+        int option;
+<span class="nc" id="L50">        Scanner scanner = new Scanner(System.in);</span>
+
+<span class="nc" id="L52">        System.out.println(&quot;[Selecione um dos campos para alterar]&quot;);</span>
+<span class="nc" id="L53">        System.out.println(&quot;[1 - Nome]&quot;);</span>
+<span class="nc" id="L54">        System.out.println(&quot;[2 - Equipa]&quot;);</span>
+
+        do {
+<span class="nc" id="L57">            option = scanner.nextInt();</span>
+
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            if (option &lt; 1 || option &gt; 2) {</span>
+<span class="nc" id="L60">                System.out.println(&quot;[Possiveis valores de selecao] \n [- 1] \n [- 2]&quot;);</span>
+            }
+<span class="nc bnc" id="L62" title="All 4 branches missed.">        } while (option &lt; 1 || option &gt; 2);</span>
+
+<span class="nc" id="L64">        scanner.reset();</span>
+
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (option == 1) {</span>
+<span class="nc" id="L67">            String oldName = player.getName();</span>
+            String newName;
+
+<span class="nc" id="L70">            System.out.println(&quot;Escreva o novo nome do jogador&quot;);</span>
+<span class="nc" id="L71">            newName = scanner.nextLine();</span>
+<span class="nc" id="L72">            scanner.close();</span>
+
+<span class="nc" id="L74">            player.setName(newName);</span>
+
+<span class="nc" id="L76">            return (&quot;O nome do jogador &quot; + oldName + &quot; foi mudado para &quot; + newName);</span>
+        } else {
+<span class="nc" id="L78">            String oldTeam = player.getTeam();</span>
+            String newTeam;
+<span class="nc" id="L80">            System.out.println(&quot;Insira o nome da equipa que quer colocar o jogador&quot;);</span>
+            do {
+<span class="nc" id="L82">                newTeam = scanner.nextLine();</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">                if (newTeam.equals(&quot;Giants&quot;) || newTeam.equals(&quot;Sparks&quot;)) {</span>
+<span class="nc" id="L84">                    System.out.println(&quot;[Possiveis Equipas] \n [- Giants] \n [- Sparks]&quot;);</span>
+                }
+<span class="nc bnc" id="L86" title="All 4 branches missed.">            } while (newTeam.equals(&quot;Giants&quot;) || newTeam.equals(&quot;Sparks&quot;));</span>
+
+<span class="nc" id="L88">            scanner.close();</span>
+
+<span class="nc" id="L90">            return (&quot;A equipa do jogador &quot; + player.getName() + &quot; foi mudada da &quot; + oldTeam + &quot; para a &quot; + newTeam);</span>
+        }
+    }
+
+    /**
+     * Removes and returns a player from the list of players
+     * @param player the player to be removed
+     * @return the removed player
+     */
+    @Override
+    public Player removePlayer(Player player) {
+<span class="nc" id="L101">        Player result = null;</span>
+
+        try {
+<span class="nc" id="L104">            result = this.playerList.remove(player);</span>
+<span class="nc" id="L105">        } catch (EmptyCollectionException e) {</span>
+<span class="nc" id="L106">            return null;</span>
+<span class="nc" id="L107">        }</span>
+
+<span class="nc" id="L109">        return result;</span>
+    }
+
+    @Override
+    public String associatePlayerToTeam(Player player, String team) {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (!(this.playerList.contains(player))) {</span>
+<span class="nc" id="L115">            return &quot;O jogador nao esta na lista de jogadores&quot;;</span>
+        }
+
+<span class="nc" id="L118">        player.setTeam(team);</span>
+
+<span class="nc" id="L120">        return (&quot;O jogador foi adicionado a equipa &quot; + team);</span>
+    }
+
+    @Override
+    public String disassociatePlayerFromTeam(Player player) {
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (!(this.playerList.contains(player))) {</span>
+<span class="nc" id="L126">            return &quot;O jogador nao esta na lista de jogadores&quot;;</span>
+        }
+
+<span class="nc" id="L129">        String team = player.getTeam();</span>
+<span class="nc" id="L130">        player.setTeam(&quot;&quot;);</span>
+
+<span class="nc" id="L132">        return (&quot;O jogador foi removido da equipa &quot; + team);</span>
+    }
+
+    @Override
+    public String listPlayersByTeam() {
+<span class="nc" id="L137">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L138">        ArrayUnorderedList&lt;Player&gt; tempListPlayersTeam1 = new ArrayUnorderedList&lt;&gt;();</span>
+<span class="nc" id="L139">        ArrayUnorderedList&lt;Player&gt;  tempListPlayersTeam2 = new ArrayUnorderedList&lt;&gt;();</span>
+<span class="nc" id="L140">        String team = this.playerList.get(0).getTeam();</span>
+
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        for (int i = 0; i &lt; this.playerList.size(); i++) {</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (team.equals(this.playerList.get(i).getTeam())) {</span>
+<span class="nc" id="L144">                tempListPlayersTeam1.addToRear(this.playerList.get(i));</span>
+            } else {
+<span class="nc" id="L146">                tempListPlayersTeam2.addToRear(this.playerList.get(i));</span>
+            }
+        }
+
+<span class="nc" id="L150">        sb.append(tempListPlayersTeam1.toString()).append(tempListPlayersTeam2.toString());</span>
+
+<span class="nc" id="L152">        return sb.toString();</span>
+    }
+
+    @Override
+    public String listPlayersByLevel() {
+<span class="nc" id="L157">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L158">        ArrayOrderedList&lt;Player&gt; tempPlayersList = new ArrayOrderedList&lt;&gt;();</span>
+<span class="nc" id="L159">        int tempLevel = 0;</span>
+
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        for (int i = 0; i &lt; this.playerList.size(); i++) {</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.playerList.get(i).getLevel() &lt;= tempLevel) {</span>
+                try {
+<span class="nc" id="L164">                    tempPlayersList.add(this.playerList.get(i));</span>
+<span class="nc" id="L165">                } catch (NonComparableElementException e) {</span>
+<span class="nc" id="L166">                    throw new RuntimeException(e);</span>
+<span class="nc" id="L167">                }</span>
+            }
+        }
+
+<span class="nc" id="L171">        return sb.toString();</span>
+    }
+
+    @Override
+    public String listPlayersByPortalsConquered() {
+<span class="nc" id="L176">        return null;</span>
+    }
+
+    @Override
+    public String importJSON(String fileName) {
+<span class="nc" id="L181">        return null;</span>
+    }
+
+    @Override
+    public String exportJSON(String fileName) {
+<span class="nc" id="L186">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
