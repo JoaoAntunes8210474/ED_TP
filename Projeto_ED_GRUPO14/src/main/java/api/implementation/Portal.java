@@ -1,9 +1,11 @@
 
 package api.implementation;
 import api.interfaces.IPortal;
+
+
 /**
- *
- * @author reginaneto
+ *  Class that represents a portal in the game
+ * 
  */
 public class Portal extends Local implements IPortal{
     
