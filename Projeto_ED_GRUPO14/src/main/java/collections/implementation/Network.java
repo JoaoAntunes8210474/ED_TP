@@ -4,7 +4,10 @@ package collections.implementation;
 
 import collections.exceptions.EmptyCollectionException;
 import java.util.Iterator;
+
+import collections.exceptions.UnknownPathException;
 import collections.interfaces.NetWorkADT;
+import collections.interfaces.UnorderedListADT;
 
 public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
     protected final int DEFAULT_CAPACITY = 10;

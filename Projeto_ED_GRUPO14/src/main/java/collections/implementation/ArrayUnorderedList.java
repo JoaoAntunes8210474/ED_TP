@@ -22,7 +22,7 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
             unorderedList[i] = unorderedList[i-1];
         }        
         unorderedList[front] = element;
-	rear++;
+	    rear++;
         modCount++;
     }
     

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LinkedQueue.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">collections.implementation</a> &gt; <span class="el_source">LinkedQueue.java</span></div><h1>LinkedQueue.java</h1><pre class="source lang-java linenums">
+package collections.implementation;
+import collections.exceptions.EmptyCollectionException;
+import collections.interfaces.QueueADT;
+
+
+public class LinkedQueue&lt;T&gt; implements QueueADT&lt;T&gt; {
+    private int count;
+    private LinkedNode&lt;T&gt; front, rear;
+
+<span class="nc" id="L11">    public LinkedQueue() {</span>
+<span class="nc" id="L12">        this.count = 0;</span>
+<span class="nc" id="L13">        this.front = null;</span>
+<span class="nc" id="L14">        this.rear = null;</span>
+<span class="nc" id="L15">    }</span>
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void enqueue(T element) {
+        // Allocate the new node in the heap
+<span class="nc" id="L23">        LinkedNode&lt;T&gt; node = new LinkedNode&lt;T&gt;(element);</span>
+        //System.out.println(&quot;Inserting&quot; +  element + &quot;\n&quot;);
+
+        // special case: queue was empty
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (front == null) {</span>
+            // initialize both front and rear
+<span class="nc" id="L29">            front = node;</span>
+<span class="nc" id="L30">            rear = node;</span>
+        } else {
+            // update rear
+<span class="nc" id="L33">            rear.setNext(node);</span>
+<span class="nc" id="L34">            rear = node;</span>
+        }
+<span class="nc" id="L36">        this.count++;</span>
+<span class="nc" id="L37">    }</span>
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public T dequeue() throws EmptyCollectionException {
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (isEmpty()) throw new EmptyCollectionException(&quot;A lista estÃ¡ vazia&quot;);</span>
+
+<span class="nc" id="L46">        LinkedNode&lt;T&gt; temp = this.front;</span>
+        //System.out.println(&quot;Removing &quot; + temp.getElement() + &quot;\n&quot;);
+
+        // advance front to the next node
+<span class="nc" id="L50">        this.front = this.front.getNext();</span>
+
+        // if list becomes empty
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (front == null) {</span>
+<span class="nc" id="L54">            this.rear = null;</span>
+        }
+
+        // deallocate the memory of removed node and
+        // optionally return the removed item
+<span class="nc" id="L59">        T item = temp.getElement();</span>
+<span class="nc" id="L60">        this.count--;                  </span>
+<span class="nc" id="L61">        return item;</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public T first() throws EmptyCollectionException {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (isEmpty()) throw new EmptyCollectionException(&quot;A lista estÃ¡ vazia&quot;); </span>
+<span class="nc" id="L70">        T result = front.getElement();</span>
+<span class="nc" id="L71">        return result;</span>
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isEmpty() {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        return (count == 0);</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int size() {
+<span class="nc" id="L87">        return this.count;</span>
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L95">        LinkedNode&lt;T&gt; current = this.front;</span>
+<span class="nc" id="L96">        String s = &quot;LinkedQueue:\n&quot;;</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        while(current != null) {</span>
+<span class="nc" id="L98">            s += current.getElement().toString() + &quot;\n&quot;;</span>
+<span class="nc" id="L99">            current = current.getNext();</span>
+        }
+<span class="nc" id="L101">        return s;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

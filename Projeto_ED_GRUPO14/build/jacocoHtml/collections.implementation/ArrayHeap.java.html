@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArrayHeap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projeto_ED_GRUPO14</a> &gt; <a href="index.source.html" class="el_package">collections.implementation</a> &gt; <span class="el_source">ArrayHeap.java</span></div><h1>ArrayHeap.java</h1><pre class="source lang-java linenums">
+package collections.implementation;
+import collections.exceptions.EmptyCollectionException;
+import collections.interfaces.HeapADT;
+
+/**
+ *
+ * @param &lt;T&gt;
+ */
+public class ArrayHeap&lt;T&gt; extends ArrayBinaryTree&lt;T&gt; implements HeapADT&lt;T&gt; {
+
+    public ArrayHeap() {
+<span class="nc" id="L13">        super();</span>
+<span class="nc" id="L14">    }</span>
+
+    /**
+     * Adds the specified element to this heap in the appropriate position
+     * according to its key value. Note that equal elements are added to the
+     * right.
+     *
+     * @param obj the element to be added to this heap
+     */
+    @Override
+    public void addElement(T obj) {
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (count == size()) {</span>
+<span class="nc" id="L26">            expandCapacity();</span>
+        }
+
+<span class="nc" id="L29">        tree[count] = obj;</span>
+<span class="nc" id="L30">        count++;</span>
+
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (count &gt; 1) {</span>
+<span class="nc" id="L33">            heapifyAdd();</span>
+        }
+<span class="nc" id="L35">    }</span>
+
+    private void expandCapacity() {
+<span class="nc" id="L38">        T[] temp = (T[]) new Object[tree.length * 2];</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        for (int ct = 0; ct &lt; tree.length; ct++) {</span>
+<span class="nc" id="L40">            temp[ct] = tree[ct];</span>
+        }
+<span class="nc" id="L42">        tree = temp;</span>
+<span class="nc" id="L43">    }</span>
+
+    /**
+     * Reorders this heap to maintain the ordering property after adding a node.
+     */
+    private void heapifyAdd() {
+        T temp;
+<span class="nc" id="L50">        int next = count - 1;</span>
+
+<span class="nc bnc" id="L52" title="All 4 branches missed.">        while ((next != 0) &amp;&amp; (((Comparable&lt;T&gt;)tree[next]).compareTo(tree[(next - 1) / 2]) &lt; 0)) {</span>
+<span class="nc" id="L53">            temp = tree[next];</span>
+<span class="nc" id="L54">            tree[next] = tree[(next - 1) / 2];</span>
+<span class="nc" id="L55">            tree[(next - 1) / 2] = temp;</span>
+<span class="nc" id="L56">            next = (next - 1) / 2;</span>
+        }
+<span class="nc" id="L58">    }</span>
+
+    /**
+     * Remove the element with the lowest value in this heap and returns a
+     * reference to it. Throws an EmptyCollectionException if the heap is empty.
+     *
+     * @return a reference to the element with the lowest value in this head
+     * @throws EmptyCollectionException if an empty collection exception occurs
+     */
+    @Override
+    public T removeMin() throws EmptyCollectionException {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (isEmpty()) throw new EmptyCollectionException(&quot;Empty Heap&quot;);</span>
+<span class="nc" id="L70">        T minElement = tree[0];</span>
+<span class="nc" id="L71">        tree[0] = tree[count - 1];</span>
+<span class="nc" id="L72">        tree[count - 1] = null;</span>
+        
+<span class="nc" id="L74">        count--;</span>
+<span class="nc" id="L75">        heapifyRemove();</span>
+
+<span class="nc" id="L77">        return minElement;</span>
+    }
+
+    /**
+     * Reorders this heap to maintain the ordering property.
+     */
+    private void heapifyRemove() {
+        // declaraÃ§Ã£o de variÃ¡veis auxiliares
+        
+        // nÃ³ para fazer o swap dos Ã­ndices
+        T temp;
+        
+        // raiz da heap
+<span class="nc" id="L90">        int node = 0;</span>
+        // filho esquerdo da heap 
+<span class="nc" id="L92">        int left = 1;</span>
+        // filho direito da heap
+<span class="nc" id="L94">        int right = 2;</span>
+        // elemento prÃ³ximo da heap
+        int next;
+        
+        // Se a heap nÃ£o tiver filhos o prÃ³ximo elemento fica igual ao nÃºmero de nÃ³s 
+<span class="nc bnc" id="L99" title="All 4 branches missed.">        if ( (tree[left] == null) &amp;&amp; (tree[right] == null) ) {</span>
+<span class="nc" id="L100">            next = count;</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        } else if (tree[left] == null) {</span>
+<span class="nc" id="L102">            next = right;</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        } else if (tree[right] == null) {</span>
+<span class="nc" id="L104">            next = left;</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        } else if (((Comparable&lt;T&gt;)tree[left]).compareTo(tree[right]) &lt; 0) {</span>
+<span class="nc" id="L106">            next = left;</span>
+        } else {
+<span class="nc" id="L108">            next = right;</span>
+        }
+        //temp = tree[node]; // valor do Ãºltimo nÃ³
+        
+<span class="nc bnc" id="L112" title="All 4 branches missed.">        while ((next &lt; count) &amp;&amp; (((Comparable&lt;T&gt;)tree[next]).compareTo(tree[node]) &lt; 0)) {</span>
+<span class="nc" id="L113">            temp = tree[node];</span>
+            //Substitui-se o Ãºltimo nÃ³ pelo nÃ³ menor
+<span class="nc" id="L115">            tree[node] = tree[next];</span>
+<span class="nc" id="L116">            tree[next] = temp;</span>
+            //System.out.println(&quot;Troquei a &quot; + tree[node] + &quot; com &quot; + tree[next]);
+<span class="nc" id="L118">            node = next;</span>
+<span class="nc" id="L119">            left = 2 * node + 1;</span>
+<span class="nc" id="L120">            right = 2 * (node + 1);</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">            if ((tree[left] == null) &amp;&amp; (tree[right] == null)) {</span>
+<span class="nc" id="L122">                next = count;</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            } else if (tree[left] == null) {</span>
+<span class="nc" id="L124">                next = right;</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            } else if (tree[right] == null) {</span>
+<span class="nc" id="L126">                next = left;</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            } else if (((Comparable&lt;T&gt;)tree[left]).compareTo(tree[right]) &lt; 0) {</span>
+<span class="nc" id="L128">                next = left;</span>
+            } else {
+<span class="nc" id="L130">                next = right;</span>
+            }
+            //tree[node] = temp;
+        }
+<span class="nc" id="L134">    }</span>
+
+    @Override
+    public T findMin() throws EmptyCollectionException {
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        if(isEmpty()) throw new EmptyCollectionException(&quot;A lista estÃ¡ vazia&quot;);</span>
+<span class="nc" id="L139">        return tree[0];</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
