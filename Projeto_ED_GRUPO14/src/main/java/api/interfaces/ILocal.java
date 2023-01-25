@@ -39,16 +39,40 @@ public interface ILocal {
      */
     public Coordinates getCoordinates();
 
+    /**
+     * Set or change a location's unique ID number    
+     * @param id The integer representing the unique identifier of each location
+     */
     public void setId(int id);
 
+    /**
+     * Set or change the location name.
+     * @param name Location name, the name will be the name of points of interest like statues, churches ...
+     */
     public void setName(String name);
 
+    /**
+     * Set or change the location type.
+     * @param localType Location type, can be portal or connector type.
+     */
     public void setLocalType(String localType);
 
+    /**
+     * Set or change the amount of energy the location has.
+     * @param amountEnergyItHas Amount of energy the site contains.
+     */
     public void setAmountEnergyItHas(int amountEnergyItHas);
 
+    /**
+     * Set or change location coordinates.
+     * @param coordinates Location coordinates
+     */
     public void setCoordinates(Coordinates coordinates);
 
+    /**
+     * Aims to return a string representative of the location.
+     * @return string representative of the location.
+     */
     @Override
     public String toString();
     
