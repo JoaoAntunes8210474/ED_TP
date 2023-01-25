@@ -1,0 +1,61 @@
+plugins {
+    id 'application'
+    id 'java'
+    id 'jacoco'
+    id 'pmd'
+}
+
+group 'tp.ed'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation name: 'json-simple-1.1.1'
+    implementation name: 'dashboard'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+    finalizedBy pmdTest
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError" //Output log personalized
+    }
+    test.outputs.upToDateWhen { false } //This line guarantee that gradle tests runs even 'task test' is up-to-date
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        csv.required = true
+        xml.destination(file("${rootProject.projectDir}/build/reports/jacoco/report.xml"))
+        csv.destination(file("${rootProject.projectDir}/build/reports/jacoco/report.csv"))
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        additionalSourceDirs.from = files(subprojects.sourceSets.main.allSource.srcDirs)
+    }
+}
+
+pmd {
+    consoleOutput = false
+    ignoreFailures = true
+    toolVersion = "6.21.0"
+    rulesMinimumPriority = 2
+}
+
+application {
+    mainClass = 'demo.Demo'
+}
+
+run {
+    standardInput = System.in //Standard input from terminal
+}
