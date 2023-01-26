@@ -11,7 +11,7 @@ import collections.interfaces.ListADT;
  *
  * @param <T> type of locals in graph.
  */
-public interface IPathGameGraph<T> extends GraphADT<T> {
+public interface IPathGameGraphADT<T> extends GraphADT<T> {
     
     /**
      * Gets the number of {@link Local locals} in graph.
