@@ -82,23 +82,47 @@ public interface LocalsManagement {
      */
     public String getConnectorsOrderedByEnergyItHasListing();
 
+     /**
+     * Export all locals from a graph to a Json file
+     * @throws IOException if occurs an error trying to write the file.
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
+    public String exportAllLocalsToJson() throws IOException;
+
     /**
      * Export all portals from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
+     * @return A string indicating whether the operation was successful or something went wrong
      */
-    public void exportPortalsToJson() throws IOException;
+    public String exportPortalsToJson() throws IOException;
 
     /**
      * Export all Connectors from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
+     * @return A string indicating whether the operation was successful or something went wrong.
      */
-    public void exportConnectorsToJson() throws IOException;
+    public String  exportConnectorsToJson() throws IOException;
 
     /**
      * Export all paths from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
+     * @return A string indicating whether the operation was successful or something went wrong
      */
-    public void exportPathsToJson() throws IOException;
+    public String exportPathsToJson() throws IOException;
+
+    /**
+     * Import locations from Json file to graph
+     * @param fileName fileName to use for the import
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
+    public String importAllLocalsFromJSON(String fileName);
+
+    /**
+     * Import paths from a Json file into a graph
+     * @param fileName fileName fileName to use for the import
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
+    public String importPathsFromJSON(String fileName);
 
 }
 
