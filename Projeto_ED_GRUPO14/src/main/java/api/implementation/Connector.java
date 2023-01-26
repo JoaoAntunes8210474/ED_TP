@@ -1,8 +1,9 @@
 
 package api.implementation;
 
+import api.enumerations.LocalTypeEnum;
 import api.interfaces.IConnector;
-import collections.implementation.ArrayUnorderedList;
+import collections.implementation.LinkedQueue;
 
 
 /**
@@ -14,22 +15,22 @@ public class Connector extends Local implements IConnector{
     private int cooldown;
     
     //set of players that interacted with the connector
-    private ArrayUnorderedList<Player> players;
+    private LinkedQueue<ConnectorPlayerInteration> players;
 
     /**
      * Constructor: instantiate objects of type connector
      * @param cooldown specific time interval that the connector supplies power after interaction
-     * @param players
-     * @param id
-     * @param name
-     * @param localType
-     * @param amountEnergyItHas
-     * @param coordinates 
+     * @param players set of players that interacted with the connector
+     * @param id Integer representing the unique identifier of each location
+     * @param name Location name, the name will be the name of points of interest like statues, churches ...
+     * @param localType Location type, can be portal or connector type.
+     * @param amountEnergyItHas Amount of energy the site contains.
+     * @param coordinates Location coordinates
      */
-    public Connector(int cooldown, ArrayUnorderedList<Player> players, int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
+    public Connector(int cooldown, int id, String name, LocalTypeEnum localType, int amountEnergyItHas, Coordinates coordinates) {
         super(id, name, localType, amountEnergyItHas, coordinates);
         this.cooldown = cooldown;
-        this.players = players;
+        this.players = new LinkedQueue<>();  
     }
 
     /**
@@ -46,7 +47,7 @@ public class Connector extends Local implements IConnector{
      * @return players who have recently interacted with the connector
      */
     @Override
-    public ArrayUnorderedList<Player> getPlayers() {
+    public LinkedQueue<ConnectorPlayerInteration> getPlayers() {
         return this.players;
     }
 
@@ -55,7 +56,7 @@ public class Connector extends Local implements IConnector{
      * @param players set of players who have recently interacted with the connector
      */
     @Override
-    public void setPlayers(ArrayUnorderedList<Player> players) {
+    public void setPlayers(LinkedQueue<ConnectorPlayerInteration> players) {
         this.players = players;
     }
     
@@ -76,6 +77,5 @@ public class Connector extends Local implements IConnector{
     public String toString() {
         return "Connector{" + "cooldown=" + cooldown + ", players=" + players + '}';
     }
-
 
 }

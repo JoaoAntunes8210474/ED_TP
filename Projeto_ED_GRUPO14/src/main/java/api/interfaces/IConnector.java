@@ -1,8 +1,10 @@
 
 package api.interfaces;
 
+import api.implementation.ConnectorPlayerInteration;
 import api.implementation.Player;
 import collections.implementation.ArrayUnorderedList;
+import collections.implementation.LinkedQueue;
 
 /**
  *
@@ -20,7 +22,7 @@ public interface IConnector extends ILocal{
      * Get a set of players that have recently interacted with the connector
      * @return players who have recently interacted with the connector
      */
-    public ArrayUnorderedList<Player> getPlayers();
+    public LinkedQueue<ConnectorPlayerInteration> getPlayers();
 
     /**
      * Change the specific time interval that the connector supplies power after interaction
@@ -32,7 +34,7 @@ public interface IConnector extends ILocal{
      * Change the set of players that have recently interacted with the connector
      * @param players set of players who have recently interacted with the connector
      */
-    public void setPlayers(ArrayUnorderedList<Player> players);
+    public void setPlayers(LinkedQueue<ConnectorPlayerInteration> players);
 
     /**
      * String representing a connector

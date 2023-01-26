@@ -1,13 +1,14 @@
 
 package api.implementation;
 
+import api.enumerations.LocalTypeEnum;
 import api.interfaces.ILocal;
 
 /**
  * Class that represents a location
  * Class that implements the contract of a ILocal.
  */
-public class Local implements ILocal {
+public abstract class Local implements ILocal {
     
     //Integer representing the unique identifier of each location
     private int id;
@@ -16,7 +17,7 @@ public class Local implements ILocal {
     private String name;
     
     //Location type, can be portal or connector type.
-    private String localType;
+    private LocalTypeEnum localType;
     
     //Amount of energy the site contains.
     private int amountEnergyItHas;
@@ -34,7 +35,7 @@ public class Local implements ILocal {
      * @param amountEnergyItHas Amount of energy the site contains.
      * @param coordinates Location coordinates
      */
-    public Local(int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
+    public Local(int id, String name, LocalTypeEnum localType, int amountEnergyItHas, Coordinates coordinates) {
         this.id = id;
         this.name = name;
         this.localType = localType;
@@ -65,7 +66,7 @@ public class Local implements ILocal {
      * @return The location type, can be portal or connector type.
      */
     @Override
-    public String getLocalType() {
+    public LocalTypeEnum getLocalType() {
         return localType;
     }
 
@@ -110,7 +111,7 @@ public class Local implements ILocal {
      * @param localType Location type, can be portal or connector type.
      */
     @Override
-    public void setLocalType(String localType) {
+    public void setLocalType(LocalTypeEnum localType) {
         this.localType = localType;
     }
 
