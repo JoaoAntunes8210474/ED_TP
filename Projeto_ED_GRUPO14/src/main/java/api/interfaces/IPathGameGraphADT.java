@@ -32,6 +32,12 @@ public interface IPathGameGraphADT<T> extends GraphADT<T> {
     public int getNumberOfPortals();
 
     /**
+     * Gets the Locals on graph.
+     * @return iterator of locals.
+     */
+    Iterator<ILocal> getLocals();
+    
+    /**
      * Gets the connectores on graph.
      * @return iterator of connectores.
      */

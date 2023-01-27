@@ -3,6 +3,7 @@ package api.implementation;
 import java.util.Iterator;
 
 import api.exceptions.NotPlaceInstanceException;
+import api.interfaces.IConnector;
 import api.interfaces.ILocal;
 import api.interfaces.IPathGameGraphADT;
 import api.interfaces.IPortal;
@@ -38,12 +39,23 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
 
     }
 
+    
+    /**
+     * Gets the Locals on graph.
+     * @return iterator of locals.
+     */
+    @Override
+    public Iterator<ILocal> getLocals(){
+
+    }
+
+    
     /**
      * Gets the connectores on graph.
      * @return iterator of connectores.
      */
     @Override
-    Iterator<IConnector> getConnectores(){
+    public Iterator<IConnector> getConnectores(){
 
     }
 
@@ -52,7 +64,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
      * @return iterator of portals.
      */
     @Override
-    Iterator<IPortal> getPortals(){
+    public Iterator<IPortal> getPortals(){
 
     }
 
@@ -61,7 +73,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
      * @returnterator with those paths
      */
     @Override
-    Iterator<ILocal> getRoutes(){
+    public Iterator<ILocal> getRoutes(){
 
     }
 
@@ -73,7 +85,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
      * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
      */
     @Override
-    Iterator<ILocal> shortestPathBetweenTwoPoints(T source, T destiny) throws NotPlaceInstanceException{
+    public Iterator<ILocal> shortestPathBetweenTwoPoints(T source, T destiny) throws NotPlaceInstanceException{
 
     }
 
@@ -85,7 +97,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
      * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
      */
     @Override
-    Iterator<ILocal> shortestPathWithOnlyPortals(T source, ListADT<String> listOfPortals) throws NotPlaceInstanceException{
+    public Iterator<ILocal> shortestPathWithOnlyPortals(T source, ListADT<String> listOfPortals) throws NotPlaceInstanceException{
 
     }
 
@@ -97,7 +109,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
      * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
      */
     @Override
-    Iterator<ILocal> shortestPathWithOnlyConnectors(T source, ListADT<String> listOfConnectores)throws NotPlaceInstanceException{
+    public Iterator<ILocal> shortestPathWithOnlyConnectors(T source, ListADT<String> listOfConnectores)throws NotPlaceInstanceException{
 
     }
 

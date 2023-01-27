@@ -1,9 +1,11 @@
 package api.implementation;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
 
 import api.interfaces.IConnector;
@@ -13,6 +15,7 @@ import api.interfaces.IPathGameGraphADT;
 import api.interfaces.IPlayer;
 import api.interfaces.IPortal;
 import api.interfaces.IRoute;
+import collections.exceptions.EmptyCollectionException;
 
 public class LocalsManagement implements ILocalsManagement {
     
@@ -20,7 +23,16 @@ public class LocalsManagement implements ILocalsManagement {
     /**
      * Network graph that have information about the locals and path between them.
      */
-    public IPathGameGraphADT<ILocal> pathGraph = new PathGameGraph<>();
+    private IPathGameGraphADT<ILocal> pathGraph;
+    private
+
+    /**
+     *
+     */
+    public LocalsManagement() {
+        this.pathGraph = new PathGameGraph<>();
+
+    }
 
 
      /**
@@ -221,7 +233,7 @@ public class LocalsManagement implements ILocalsManagement {
     @SuppressWarnings("unchecked")
     private JSONArray getLocalsJSONArray() {
         JSONArray localsArray = new JSONArray();
-        Iterator<ILocal> iteratorLocals = this.pathGraph.getPortals();
+        Iterator<ILocal> iteratorLocals = this.pathGraph.getLocals();
         while (iteratorLocals.hasNext()) {
             localsArray.add(iteratorLocals.next().localToJSONObject());
         }
@@ -248,7 +260,7 @@ public class LocalsManagement implements ILocalsManagement {
      * @return the JSONArray with all the locals present on the graph
      */
     @SuppressWarnings("unchecked")
-    private JSONArray getConnectorsJSONArray() {
+    private JSONArray getConnectorsJSONArray() throws EmptyCollectionException {
         JSONArray connectorsArray = new JSONArray();
         Iterator<IConnector> iteratorConnectors = this.pathGraph.getConnectores();
         while (iteratorConnectors.hasNext()) {
@@ -278,8 +290,13 @@ public class LocalsManagement implements ILocalsManagement {
      * @return A string indicating whether the operation was successful or something went wrong
      */
     @Override
-    public void exportAllLocalsToJson() throws IOException {
-        ImportExportFiles.exportJSON(getLocalsJSONArray().toJSONString(), "Locals");
+    public void exportAllLocalsToJson(String fileName) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(this.getLocalsJSONArray());
+        FileWriter writer = new FileWriter(fileName);
+        writer.write(json);
+        writer.flush();
+        writer.close();
     }
 
     /**
@@ -288,8 +305,13 @@ public class LocalsManagement implements ILocalsManagement {
      * @return A string indicating whether the operation was successful or something went wrong
      */
     @Override
-    public void exportPortalsToJson() throws IOException {
-        ImportExportFiles.exportJSON(getPortalsJSONArray().toJSONString(), "Portals");
+    public void exportPortalsToJson(String fileName) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(this.getPortalsJSONArray());
+        FileWriter writer = new FileWriter(fileName);
+        writer.write(json);
+        writer.flush();
+        writer.close();
     }
     
 
@@ -299,8 +321,13 @@ public class LocalsManagement implements ILocalsManagement {
      * @return A string indicating whether the operation was successful or something went wrong.
      */
     @Override
-    public void  exportConnectorsToJson() throws IOException {
-        ImportExportFiles.exportJSON(getConnectorsJSONArray().toJSONString(), "Portals");
+    public void  exportConnectorsToJson(String fileName) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(this.getConnectorsJSONArray());
+        FileWriter writer = new FileWriter(fileName);
+        writer.write(json);
+        writer.flush();
+        writer.close();
     }
 
     /**
@@ -309,8 +336,13 @@ public class LocalsManagement implements ILocalsManagement {
      * @return A string indicating whether the operation was successful or something went wrong
      */
     @Override
-    public void exportPathsToJson() throws IOException{
-        ImportExportFiles.exportJSON(getRoutesJSONArray().toJSONString(), "Portals");
+    public void exportPathsToJson(String fileName) throws IOException{
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(this.getRoutesJSONArray());
+        FileWriter writer = new FileWriter(fileName);
+        writer.write(json);
+        writer.flush();
+        writer.close();
     }
 
     /**
@@ -332,5 +364,6 @@ public class LocalsManagement implements ILocalsManagement {
     public String importPathsFromJSON(String fileName){
         
     }
+
 
 }

@@ -2,7 +2,7 @@
 package api.implementation;
 import org.json.simple.JSONObject;
 
-import api.enumerations.LocalTypeEnum;
+
 import api.interfaces.IPortal;
 
 
@@ -31,7 +31,7 @@ public class Portal extends Local implements IPortal{
      * @param amountEnergyItHas Amount of energy the site contains.
      * @param coordinates Location coordinates
      */
-    public Portal(int maxEnergy, int id, String name, LocalTypeEnum localType, int amountEnergyItHas, Coordinates coordinates) {
+    public Portal(int maxEnergy, int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
         super(id, name, localType, amountEnergyItHas, coordinates);
         this.maxEnergy = maxEnergy;
         this.ownerPlayer = null;

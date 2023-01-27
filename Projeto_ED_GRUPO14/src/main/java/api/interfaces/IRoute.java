@@ -37,7 +37,7 @@ public interface IRoute <T>{
      * Transform a path (between two locals of the graph) sent by parameter into a JSONObject
      * @return the JSONObject of that path
      */
-    private JSONObject routeToJSONObject(IRoute<ILocal> route);
+    public JSONObject routeToJSONObject(IRoute<ILocal> route);
 
     /**
      * Route representative string.

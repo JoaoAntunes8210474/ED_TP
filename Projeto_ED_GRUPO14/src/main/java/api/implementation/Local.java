@@ -3,7 +3,7 @@ package api.implementation;
 
 import org.json.simple.JSONObject;
 
-import api.enumerations.LocalTypeEnum;
+
 import api.interfaces.ILocal;
 
 /**
@@ -19,7 +19,7 @@ public abstract class Local implements ILocal, Comparable<Local>{
     private String name;
     
     //Location type, can be portal or connector type.
-    private LocalTypeEnum localType;
+    private String localType;
     
     //Amount of energy the site contains.
     private int amountEnergyItHas;
@@ -37,7 +37,7 @@ public abstract class Local implements ILocal, Comparable<Local>{
      * @param amountEnergyItHas Amount of energy the site contains.
      * @param coordinates Location coordinates
      */
-    public Local(int id, String name, LocalTypeEnum localType, int amountEnergyItHas, Coordinates coordinates) {
+    public Local(int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
         this.id = id;
         this.name = name;
         this.localType = localType;
@@ -68,7 +68,7 @@ public abstract class Local implements ILocal, Comparable<Local>{
      * @return The location type, can be portal or connector type.
      */
     @Override
-    public LocalTypeEnum getLocalType() {
+    public String getLocalType() {
         return localType;
     }
 
@@ -113,7 +113,7 @@ public abstract class Local implements ILocal, Comparable<Local>{
      * @param localType Location type, can be portal or connector type.
      */
     @Override
-    public void setLocalType(LocalTypeEnum localType) {
+    public void setLocalType(String localType) {
         this.localType = localType;
     }
 
