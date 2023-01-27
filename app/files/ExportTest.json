@@ -1,0 +1,53 @@
+{
+  "players": [
+    {
+      "level": 0,
+      "name": "Joaquim",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Giants"
+    },
+    {
+      "level": 2,
+      "name": "Test1",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 4,
+      "name": "Test2",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 10,
+      "name": "Test3",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 5,
+      "name": "Test4",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 3,
+      "name": "Test5",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 1,
+      "name": "Test6",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    }
+  ]
+}
