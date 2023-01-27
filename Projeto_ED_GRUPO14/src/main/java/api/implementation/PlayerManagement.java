@@ -2,14 +2,22 @@
 package api.implementation;
 
 import api.interfaces.IPlayerManagement;
+import collections.exceptions.ElementNotFoundException;
 import collections.exceptions.EmptyCollectionException;
 import collections.exceptions.NonComparableElementException;
 import collections.implementation.ArrayOrderedList;
 import collections.implementation.ArrayUnorderedList;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -23,6 +31,10 @@ public class PlayerManagement implements IPlayerManagement {
         this.playerList = new ArrayUnorderedList<>();
     }
 
+    public ArrayUnorderedList<Player> getPlayerList() {
+        return this.playerList;
+    }
+
     /**
      * Adds a player to the list of players
      * @param player the player to be added into the list of players
@@ -32,6 +44,10 @@ public class PlayerManagement implements IPlayerManagement {
     public String addPlayer(Player player) {
         if (player == null) {
             throw new NullPointerException("Foi enviado uma referência nula");
+        }
+
+        if (player.getClass() != Player.class) {
+            throw new IllegalArgumentException("Nao foi enviado um jogador");
         }
 
         this.playerList.addToFront(player);
@@ -46,6 +62,18 @@ public class PlayerManagement implements IPlayerManagement {
      */
     @Override
     public String updatePlayer(Player player) {
+        if (player == null) {
+            throw new NullPointerException("Foi enviado uma referência nula");
+        }
+
+        if (player.getClass() != Player.class) {
+            throw new IllegalArgumentException("Nao foi enviado um jogador");
+        }
+
+        if (!(this.playerList.contains(player))) {
+            throw new ElementNotFoundException("O jogador nao esta na lista de jogadores");
+        }
+
         int option;
         Scanner scanner = new Scanner(System.in);
 
@@ -98,6 +126,18 @@ public class PlayerManagement implements IPlayerManagement {
      */
     @Override
     public Player removePlayer(Player player) {
+        if (player == null) {
+            throw new NullPointerException("Foi enviado uma referência nula");
+        }
+
+        if (player.getClass() != Player.class) {
+            throw new IllegalArgumentException("Nao foi enviado um jogador");
+        }
+
+        if (!(this.playerList.contains(player))) {
+            throw new ElementNotFoundException("O jogador nao esta na lista de jogadores");
+        }
+
         Player result = null;
 
         try {
@@ -109,6 +149,12 @@ public class PlayerManagement implements IPlayerManagement {
         return result;
     }
 
+    /**
+     * Associates a player to a team
+     * @param player to associate to a team
+     * @param team to associate the player into
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
     @Override
     public String associatePlayerToTeam(Player player, String team) {
         if (!(this.playerList.contains(player))) {
@@ -120,6 +166,11 @@ public class PlayerManagement implements IPlayerManagement {
         return ("O jogador foi adicionado a equipa " + team);
     }
 
+    /**
+     * Disassociates a player from a team
+     * @param player to disassociate from a team
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
     @Override
     public String disassociatePlayerFromTeam(Player player) {
         if (!(this.playerList.contains(player))) {
@@ -132,57 +183,143 @@ public class PlayerManagement implements IPlayerManagement {
         return ("O jogador foi removido da equipa " + team);
     }
 
+    /**
+     * List players by their team
+     * @return a String of the players organized by their team
+     */
     @Override
     public String listPlayersByTeam() {
         StringBuilder sb = new StringBuilder();
-        ArrayUnorderedList<Player> tempListPlayersTeam1 = new ArrayUnorderedList<>();
-        ArrayUnorderedList<Player>  tempListPlayersTeam2 = new ArrayUnorderedList<>();
+        ArrayUnorderedList<Player> tempListPlayersTeam = new ArrayUnorderedList<>();
         String team = this.playerList.get(0).getTeam();
 
         for (int i = 0; i < this.playerList.size(); i++) {
             if (team.equals(this.playerList.get(i).getTeam())) {
-                tempListPlayersTeam1.addToRear(this.playerList.get(i));
+                tempListPlayersTeam.addToFront(this.playerList.get(i));
             } else {
-                tempListPlayersTeam2.addToRear(this.playerList.get(i));
+                tempListPlayersTeam.addToRear(this.playerList.get(i));
             }
         }
 
-        sb.append(tempListPlayersTeam1.toString()).append(tempListPlayersTeam2.toString());
+        sb.append(tempListPlayersTeam.toString());
 
         return sb.toString();
     }
 
+    /**
+     * List players by their level
+     * @return a String of the players organized by their level
+     */
     @Override
     public String listPlayersByLevel() {
         StringBuilder sb = new StringBuilder();
         ArrayOrderedList<Player> tempPlayersList = new ArrayOrderedList<>();
+
         int tempLevel = 0;
 
         for (int i = 0; i < this.playerList.size(); i++) {
             if (this.playerList.get(i).getLevel() <= tempLevel) {
                 try {
                     tempPlayersList.add(this.playerList.get(i));
-                } catch (NonComparableElementException e) {
-                    throw new RuntimeException(e);
-                }
+                } catch (NonComparableElementException e) {}
             }
         }
+
+        sb.append(tempPlayersList.toString());
 
         return sb.toString();
     }
 
+    /**
+     * List players by the number of portals they've conquered
+     * @return a String of the players organized by the number of portals they've conquered
+     */
     @Override
     public String listPlayersByPortalsConquered() {
-        return null;
+        int[] countingArray = new int[6];
+
+        for (Player player : playerList) {
+            countingArray[player.getNumPortals()]++;
+        }
+
+        ArrayUnorderedList<Player> tempPlayersList = new ArrayUnorderedList<>();
+
+        for (int i = 0; i < countingArray.length; i++) {
+            for (int j = 0; j < countingArray[i]; j++) {
+                for (Player player : playerList) {
+                    if (player.getNumPortals() == i) {
+                        tempPlayersList.addToRear(player);
+                    }
+                }
+            }
+        }
+
+        return tempPlayersList.toString();
     }
 
+    /**
+     * Import the content of the JSON given through reference into an instance of this class
+     * @param fileName to use for the import
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
     @Override
-    public String importJSON(String fileName) {
-        return null;
+    public String importJSON(String fileName) throws IOException{
+        if (fileName.trim().equals("") || Files.notExists(Paths.get(fileName))) {
+            throw new IOException("O ficheiro em que estava a tentar escrever nao existe");
+        }
+
+        JSONParser parser = new JSONParser();
+
+        try {
+            Object obj = parser.parse(new FileReader(fileName));
+            JSONObject jsonObject = (JSONObject) obj;
+            JSONArray jsonArray = (JSONArray) jsonObject.get("players");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject playerToCreate = (JSONObject) jsonArray.get(i);
+                String name = (String) playerToCreate.get("name");
+                String team = (String) playerToCreate.get("team");
+                int level = (int) playerToCreate.get("level");
+                int experiencePoints = (int) playerToCreate.get("experiencePoints");
+                int currentEnergy = (int) playerToCreate.get("currentEnergy");
+                Player player = new Player (name, team, level, experiencePoints, currentEnergy, 0, 0);
+                this.playerList.addToRear(player);
+            }
+        } catch (ParseException e) {
+            return "Houve um problema a fazer o import dos jogadores";
+        }
+
+        return "O import foi feito com sucesso";
     }
 
+    /**
+     * Exports the content of this class into a specified JSON file with the name given through reference
+     * @param fileName to use for the export
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
     @Override
-    public String exportJSON(String fileName) {
-        return null;
+    public String exportJSON(String fileName) throws IOException{
+        if (fileName.trim().equals("") || Files.notExists(Paths.get(fileName))) {
+            throw new IOException("O ficheiro em que estava a tentar escrever nao existe");
+        }
+
+        JSONArray playersArray = new JSONArray();
+
+        for (Player player : this.playerList) {
+            JSONObject playerObject = new JSONObject();
+            playerObject.put("name", player.getName());
+            playerObject.put("team", player.getTeam());
+            playerObject.put("level", player.getLevel());
+            playerObject.put("experiencePoints", player.getExperiencePoints());
+            playerObject.put("currentEnergy", player.getCurrentEnergy());
+            playersArray.add(playerObject);
+        }
+
+        FileWriter writer = new FileWriter(fileName);
+        writer.write("players" + playersArray.toJSONString());
+        writer.flush();
+        writer.close();
+
+        return "O export foi feito com sucesso";
+
     }
 }
