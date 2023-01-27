@@ -9,7 +9,7 @@ import api.interfaces.IRoute;
  * Class representing a route between two locations
  * Class that complies with the IRoute interface contract.
  */
-public class Route<T> implements IRoute <T>{
+public class Route<T> implements IRoute<T>{
     
     //integer number that represents the id of the location where the player is at the moment.
     private T from;
@@ -46,6 +46,16 @@ public class Route<T> implements IRoute <T>{
     @Override
     public T getTo() {
         return to;
+    }
+
+    @Override
+    public void setFrom(int from) {
+
+    }
+
+    @Override
+    public void setTo(int to) {
+
     }
 
     /**

@@ -3,7 +3,7 @@ package api.interfaces;
 /**
  * Contract of a Route Class.
  */
-public interface IRoute {
+public interface IRoute<T> {
 
     /**
      * Get id of the location where the player is currently.

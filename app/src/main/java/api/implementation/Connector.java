@@ -2,6 +2,7 @@ package api.implementation;
 
 import java.util.Iterator;
 
+import collections.exceptions.EmptyCollectionException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
