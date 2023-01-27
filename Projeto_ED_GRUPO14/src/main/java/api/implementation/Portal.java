@@ -1,5 +1,7 @@
 
 package api.implementation;
+import org.json.simple.JSONObject;
+
 import api.enumerations.LocalTypeEnum;
 import api.interfaces.IPortal;
 
@@ -90,6 +92,26 @@ public class Portal extends Local implements IPortal{
         this.teamPlayer = teamPlayer;
     }
 
+     /**
+     * Transforms the portal into a JSONObject representation
+     * @return the JSONObject with all the details of the Portal
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public JSONObject portalToJSONObject() {
+        JSONObject root = new JSONObject();
+        root.put("Id", getId());
+        root.put("Name", getName());
+        root.put("Local Type", getLocalType());
+        root.put("Amount Energy It Has", getAmountEnergyItHas());
+        root.put("Cordinates", getCoordinates());
+        root.put("Maximum energy", this.maxEnergy);
+        root.put("Owner Player", this.ownerPlayer);
+        root.put("Owner Team", this.teamPlayer);
+        return root;
+    }
+
+    
     /**
      * Returns a string representative of the location, with information referring to this
      * @return string representative of the location.
@@ -99,6 +121,9 @@ public class Portal extends Local implements IPortal{
         return "Portal{" + "maxEnergy=" + maxEnergy + ", ownerPlayer=" + ownerPlayer + ", teamPlayer=" + teamPlayer + '}';
     }
 
+    /**
+     * 
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -111,5 +136,6 @@ public class Portal extends Local implements IPortal{
         return getName().equals(that.getName());
     }
     
-    
+  
+
 }

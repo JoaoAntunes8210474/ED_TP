@@ -87,28 +87,28 @@ public interface ILocalsManagement {
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String exportAllLocalsToJson() throws IOException;
+    public void exportAllLocalsToJson() throws IOException;
 
     /**
      * Export all portals from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String exportPortalsToJson() throws IOException;
+    public void exportPortalsToJson() throws IOException;
 
     /**
      * Export all Connectors from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong.
      */
-    public String  exportConnectorsToJson() throws IOException;
+    public void  exportConnectorsToJson() throws IOException;
 
     /**
      * Export all paths from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String exportPathsToJson() throws IOException;
+    public void exportPathsToJson() throws IOException;
 
     /**
      * Import locations from Json file to graph

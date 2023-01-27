@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
+import org.json.simple.JSONArray;
 
 import api.interfaces.IConnector;
 import api.interfaces.ILocal;
@@ -179,7 +180,7 @@ public class LocalsManagement implements ILocalsManagement {
      */
     @Override
     public String getPortalsOrderedByEnergyItHasListing(){
-
+       
     }
 
     /**
@@ -210,14 +211,59 @@ public class LocalsManagement implements ILocalsManagement {
 
     }
 
+
+     /**
+     * Put all the locals that are in the graph in a JSONArray
+     *
+     * @return the JSONArray with all the locals present on the graph
+     */
+    @SuppressWarnings("unchecked")
+    private JSONArray getLocalsJSONArray() {
+        JSONArray localsArray = new JSONArray();
+        Iterator<ILocal> iteratorLocals = this.pathGraph.getPortals();
+        while (iteratorLocals.hasNext()) {
+            localsArray.add(iteratorLocals.next().localToJSONObject());
+        }
+        return localsArray;
+    }
+
+    /**
+     * Put all the Portals that are in the graph in a JSONArray
+     * @return the JSONArray with all the locals present on the graph
+     */
+    @SuppressWarnings("unchecked")
+    private JSONArray getPortalsJSONArray() {
+        JSONArray portalsArray = new JSONArray();
+        Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
+        while (iteratorPortal.hasNext()) {
+            portalsArray.add(iteratorPortal.next().portalToJSONObject());
+        }
+        return portalsArray;
+    }
+
+
+    /**
+     * Put all the Portals that are in the graph in a JSONArray
+     * @return the JSONArray with all the locals present on the graph
+     */
+    @SuppressWarnings("unchecked")
+    private JSONArray getConnectorsJSONArray() {
+        JSONArray connectorsArray = new JSONArray();
+        Iterator<IConnector> iteratorConnectors = this.pathGraph.getConnectores();
+        while (iteratorConnectors.hasNext()) {
+            connectorsArray.add(iteratorConnectors.next().connectorToJSONObject());
+        }
+        return connectorsArray;
+    }
+
      /**
      * Export all locals from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
     @Override
-    public String exportAllLocalsToJson() throws IOException {
-
+    public void exportAllLocalsToJson() throws IOException {
+        ImportExportFiles.exportJSON(getLocalsJSONArray().toJSONString(), "Locals");
     }
 
     /**
@@ -226,9 +272,10 @@ public class LocalsManagement implements ILocalsManagement {
      * @return A string indicating whether the operation was successful or something went wrong
      */
     @Override
-    public String exportPortalsToJson() throws IOException {
-
+    public void exportPortalsToJson() throws IOException {
+        ImportExportFiles.exportJSON(getPortalsJSONArray().toJSONString(), "Portals");
     }
+    
 
     /**
      * Export all Connectors from a graph to a Json file
@@ -236,8 +283,8 @@ public class LocalsManagement implements ILocalsManagement {
      * @return A string indicating whether the operation was successful or something went wrong.
      */
     @Override
-    public String  exportConnectorsToJson() throws IOException {
-
+    public void  exportConnectorsToJson() throws IOException {
+        ImportExportFiles.exportJSON(getConnectorsJSONArray().toJSONString(), "Portals");
     }
 
     /**
@@ -246,7 +293,7 @@ public class LocalsManagement implements ILocalsManagement {
      * @return A string indicating whether the operation was successful or something went wrong
      */
     @Override
-    public String exportPathsToJson() throws IOException{
+    public void exportPathsToJson() throws IOException{
 
     }
 

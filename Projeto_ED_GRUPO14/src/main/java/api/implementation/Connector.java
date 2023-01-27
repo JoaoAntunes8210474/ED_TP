@@ -1,9 +1,17 @@
 
 package api.implementation;
 
+import java.util.Iterator;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import api.enumerations.LocalTypeEnum;
 import api.interfaces.IConnector;
+import collections.exceptions.EmptyCollectionException;
+import collections.implementation.ArrayUnorderedList;
 import collections.implementation.LinkedQueue;
+import collections.interfaces.UnorderedListADT;
 
 
 /**
@@ -70,6 +78,63 @@ public class Connector extends Local implements IConnector{
     }
     
     /**
+     * Returns a list of players who interacted with the connector
+     * @return the iterator with the list of players
+     * @throws EmptyCollectionException
+     */
+    @Override
+    public Iterator<ConnectorPlayerInteration> getListOfPlayersInteration() throws EmptyCollectionException {
+        if (!this.players.isEmpty()) {
+            LinkedQueue<ConnectorPlayerInteration> listOfPlayers = this.players;
+            UnorderedListADT<ConnectorPlayerInteration> list = new ArrayUnorderedList<>();
+
+            while (!listOfPlayers.isEmpty()) {
+                list.addToRear(listOfPlayers.dequeue());
+            }
+
+            Iterator<ConnectorPlayerInteration> iterator = list.iterator();
+            while (iterator.hasNext()) {
+                this.players.enqueue(iterator.next());
+            }
+
+            return list.iterator();
+        }
+        return null;
+    }
+
+
+
+    /**
+     * Transforms the connector into a JSONObject representation
+     * @return the JSONObject with all the details of the Connector
+     * @throws EmptyCollectionException
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public JSONObject connectorToJSONObject() throws EmptyCollectionException {
+        JSONObject root = new JSONObject();
+        root.put("Id", getId());
+        root.put("Name", getName());
+        root.put("Local Type", getLocalType());
+        root.put("Amount Energy It Has", getAmountEnergyItHas());
+        root.put("Cordinates", getCoordinates());
+        root.put("Cooldown time", this.cooldown);
+        
+        if (this.players.isEmpty()) {
+            root.put("Clients", "Don't have any clients");
+        } else {
+            JSONArray playresOfConnector = new JSONArray();
+            Iterator<ConnectorPlayerInteration> iterator = this.getListOfPlayersInteration();
+            while (iterator.hasNext()) {
+                playresOfConnector.add(iterator.next());
+            }
+            root.put("Players", playresOfConnector);
+        }
+        return root; 
+    }
+
+
+    /**
      * String representing a connector
      * @return String representing a connector
      */
@@ -90,5 +155,7 @@ public class Connector extends Local implements IConnector{
         IConnector that = (IConnector) o;
         return getName().equals(that.getName());
     }
+
+    
     
 }

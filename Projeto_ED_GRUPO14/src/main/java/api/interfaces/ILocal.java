@@ -1,6 +1,10 @@
 
 package api.interfaces;
 
+import java.io.IOException;
+
+import org.json.simple.JSONObject;
+
 import api.enumerations.LocalTypeEnum;
 import api.implementation.Coordinates;
 
@@ -70,11 +74,20 @@ public interface ILocal {
      */
     public void setCoordinates(Coordinates coordinates);
 
+
+    /**
+    * Transforms the local into a JSONObject representation
+    * @return The JSONObject with all the details of the local
+    */
+    public JSONObject localToJSONObject();
+
     /**
      * Aims to return a string representative of the location.
      * @return string representative of the location.
      */
     @Override
     public String toString();
+
+
     
 }

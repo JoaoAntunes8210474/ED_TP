@@ -1,6 +1,8 @@
 
 package api.interfaces;
 
+import org.json.simple.JSONObject;
+
 import api.implementation.Player;
 
 /**
@@ -52,6 +54,10 @@ public interface IPortal extends ILocal {
     @Override
     public String toString();
 
-    
+    /**
+     * Transforms the portal into a JSONObject representation
+     * @return the JSONObject with all the details of the Portal
+     */
+    public JSONObject portalToJSONObject();
     
 }

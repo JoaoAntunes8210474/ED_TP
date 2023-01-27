@@ -1,6 +1,8 @@
 
 package api.implementation;
 
+import org.json.simple.JSONObject;
+
 import api.enumerations.LocalTypeEnum;
 import api.interfaces.ILocal;
 
@@ -8,7 +10,7 @@ import api.interfaces.ILocal;
  * Class that represents a location
  * Class that implements the contract of a ILocal.
  */
-public abstract class Local implements ILocal {
+public abstract class Local implements ILocal, Comparable<Local>{
     
     //Integer representing the unique identifier of each location
     private int id;
@@ -142,6 +144,10 @@ public abstract class Local implements ILocal {
         return "Local{" + "id=" + id + ", name=" + name + ", localType=" + localType + ", amountEnergyItHas=" + amountEnergyItHas + ", coordinates=" + coordinates + '}';
     }
     
+    /**
+     * Compares whether two objects are equal behind the name field
+     * @return Returns true if the objects are equal, or false if the objects are not equal
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -154,5 +160,37 @@ public abstract class Local implements ILocal {
         return getName().equals(that.getName());
     }
     
+    /**
+     * 
+     * @param local
+     * @return
+     */
+    @Override
+    public int compareTo(Local local) {
+        if (this.getAmountEnergyItHas() > local.getAmountEnergyItHas()) {
+            return 1;
+        } else if (this.getAmountEnergyItHas() > local.getAmountEnergyItHas()) {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+
+
+    /**
+    * Transforms the local into a JSONObject representation
+    * @return The JSONObject with all the details of the local
+    */
+    @SuppressWarnings("unchecked")
+    @Override
+    public JSONObject localToJSONObject() {
+        JSONObject root = new JSONObject();
+        root.put("Id", getId());
+        root.put("Name", getName());
+        root.put("Local Type", getLocalType());
+        root.put("Amount Energy It Has", getAmountEnergyItHas());
+        root.put("Cordinates", getCoordinates());
+        return root;
+    }
     
 }

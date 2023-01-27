@@ -1,8 +1,13 @@
 
 package api.interfaces;
 
+import java.util.Iterator;
+
+import org.json.simple.JSONObject;
+
 import api.implementation.ConnectorPlayerInteration;
 import api.implementation.Player;
+import collections.exceptions.EmptyCollectionException;
 import collections.implementation.ArrayUnorderedList;
 import collections.implementation.LinkedQueue;
 
@@ -35,6 +40,18 @@ public interface IConnector extends ILocal{
      * @param players set of players who have recently interacted with the connector
      */
     public void setPlayers(LinkedQueue<ConnectorPlayerInteration> players);
+
+    /**
+     * Returns a list of players who interacted with the connector
+     * @return the iterator with the list of players
+     */
+    public Iterator<ConnectorPlayerInteration> getListOfPlayersInteration() throws EmptyCollectionException;
+
+    /**
+     * Transforms the connector into a JSONObject representation
+     * @return the JSONObject with all the details of the Connector
+     */
+    public JSONObject connectorToJSONObject() throws EmptyCollectionException;
 
     /**
      * String representing a connector
