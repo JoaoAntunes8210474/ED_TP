@@ -1,5 +1,6 @@
 
 package api.implementation;
+import api.enumerations.LocalTypeEnum;
 import api.interfaces.IPortal;
 
 
@@ -22,19 +23,17 @@ public class Portal extends Local implements IPortal{
     /**
      * Constructor method: serves to instantiate objects of the portal type.
      * @param maxEnergy Integer number that represents the maximum amount of energy that a portal has.
-     * @param ownerPlayer Player who conquered the portal.
-     * @param teamPlayer Team to whom the portal belongs.
      * @param id Integer representing the unique identifier of each location
      * @param name Location name, the name will be the name of points of interest like statues, churches ...
      * @param localType Location type, can be portal or connector type.
      * @param amountEnergyItHas Amount of energy the site contains.
      * @param coordinates Location coordinates
      */
-    public Portal(int maxEnergy, Player ownerPlayer, String teamPlayer, int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
+    public Portal(int maxEnergy, int id, String name, LocalTypeEnum localType, int amountEnergyItHas, Coordinates coordinates) {
         super(id, name, localType, amountEnergyItHas, coordinates);
         this.maxEnergy = maxEnergy;
-        this.ownerPlayer = ownerPlayer;
-        this.teamPlayer = teamPlayer;
+        this.ownerPlayer = null;
+        this.teamPlayer = "Neutro";
     }
 
     /**

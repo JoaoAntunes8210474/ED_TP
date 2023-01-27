@@ -24,9 +24,6 @@ public class Player implements IPlayer, Comparable<Player>{
     //Amount of energy the player has.
     private int currentEnergy;
     
-    //Time since last interaction with a connector.
-    private int connectorTimer;
-    
     //Number of portals conquered by the player
     private int numPortals;
 
@@ -35,20 +32,14 @@ public class Player implements IPlayer, Comparable<Player>{
      * Constructor method is used to instantiate objects of type player.
      * @param name Player's name
      * @param team Team the player belongs to.
-     * @param level Level the player is in the game.
-     * @param experiencePoints Points obtained by the player during interaction with the game.
-     * @param currentEnergy Amount of energy the player has.
-     * @param connectorTimer Time since last interaction with a connector.
-     * @param numPortals Number of portals conquered by the player
      */
-    public Player(String name, String team, int level, long experiencePoints, int currentEnergy, int connectorTimer, int numPortals) {
+    public Player(String name, String team) {
         this.name = name;
         this.team = team;
-        this.level = level;
-        this.experiencePoints = experiencePoints;
-        this.currentEnergy = currentEnergy;
-        this.connectorTimer = connectorTimer;
-        this.numPortals = numPortals;
+        this.level = 1;
+        this.experiencePoints = 0;
+        this.currentEnergy = 0;
+        this.numPortals = 0;
     }
 
     /**
@@ -94,15 +85,6 @@ public class Player implements IPlayer, Comparable<Player>{
     @Override
     public int getCurrentEnergy() {
         return currentEnergy;
-    }
-
-    /**
-     * Gettime since last interaction with a Connector.
-     * @return Time since last interaction with a connector.
-     */
-    @Override
-    public int getConnectorTimer() {
-        return connectorTimer;
     }
 
     /**
@@ -157,15 +139,6 @@ public class Player implements IPlayer, Comparable<Player>{
     @Override
     public void setCurrentEnergy(int currentEnergy) {
         this.currentEnergy = currentEnergy;
-    }
-
-    /**
-     * Defines and changes the time interval that the player has since the last interaction with a connector.
-     * @param connectorTimer Time since last interaction with a connector.
-     */
-    @Override
-    public void setConnectorTimer(int connectorTimer) {
-        this.connectorTimer = connectorTimer;
     }
 
     /**

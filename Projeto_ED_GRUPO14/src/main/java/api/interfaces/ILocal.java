@@ -1,6 +1,7 @@
 
 package api.interfaces;
 
+import api.enumerations.LocalTypeEnum;
 import api.implementation.Coordinates;
 
 /**
@@ -25,7 +26,7 @@ public interface ILocal {
      * Get location type
      * @return The location type, can be portal or connector type.
      */
-    public String getLocalType();
+    public LocalTypeEnum getLocalType();
 
     /**
      * Get amount of energy the location has.
@@ -55,7 +56,7 @@ public interface ILocal {
      * Set or change the location type.
      * @param localType Location type, can be portal or connector type.
      */
-    public void setLocalType(String localType);
+    public void setLocalType(LocalTypeEnum localType);
 
     /**
      * Set or change the amount of energy the location has.
