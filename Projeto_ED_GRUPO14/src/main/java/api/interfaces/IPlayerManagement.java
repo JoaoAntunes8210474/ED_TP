@@ -4,11 +4,18 @@ package api.interfaces;
 import api.implementation.Player;
 import collections.implementation.ArrayUnorderedList;
 
+import java.io.IOException;
+
 /**
  *
  *
  */
 public interface IPlayerManagement{
+    /**
+     * Returns the list of players
+     * @return list of players
+     */
+    public ArrayUnorderedList<Player> getPlayerList();
     /**
      * Adds a player to the list of players
      * @param player the player to be added into the list of players
@@ -68,12 +75,12 @@ public interface IPlayerManagement{
      * @param fileName to use for the import
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String importJSON(String fileName);
+    public String importJSON(String fileName) throws IOException;
 
     /**
      * Exports the content of this class into a specified JSON file with the name given through reference
      * @param fileName to use for the export
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String exportJSON(String fileName);
+    public String exportJSON(String fileName) throws IOException;
 }
