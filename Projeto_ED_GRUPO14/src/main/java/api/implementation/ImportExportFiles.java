@@ -2,6 +2,7 @@ package api.implementation;
 
 import api.interfaces.IImportExportFiles;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class ImportExportFiles implements IImportExportFiles {
@@ -42,7 +43,8 @@ public class ImportExportFiles implements IImportExportFiles {
         return mensagemSucesso.toString();
     }
 
-      /**
+    
+    /**
      * Directory that the JSON is gonna be saved
      */
     private static final String directory = "docs/outputs/json";

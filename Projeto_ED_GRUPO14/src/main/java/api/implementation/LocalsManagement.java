@@ -12,6 +12,7 @@ import api.interfaces.ILocalsManagement;
 import api.interfaces.IPathGameGraphADT;
 import api.interfaces.IPlayer;
 import api.interfaces.IPortal;
+import api.interfaces.IRoute;
 
 public class LocalsManagement implements ILocalsManagement {
     
@@ -256,6 +257,21 @@ public class LocalsManagement implements ILocalsManagement {
         return connectorsArray;
     }
 
+    /**
+     * Put all the Portals that are in the graph in a JSONArray
+     * @return the JSONArray with all the locals present on the graph
+     */
+    @SuppressWarnings("unchecked")
+    private JSONArray getRoutesJSONArray() {
+        JSONArray routesArray = new JSONArray();
+        Iterator<IRoute<ILocal>> iteratorRoute = this.pathGraph.getRoutes();
+        while (iteratorRoute.hasNext()) {
+            IRoute<ILocal> path = iteratorRoute.next();
+            routesArray.add(routeToJSONObject(path));
+        }
+        return routesArray;
+    }
+
      /**
      * Export all locals from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
@@ -294,7 +310,7 @@ public class LocalsManagement implements ILocalsManagement {
      */
     @Override
     public void exportPathsToJson() throws IOException{
-
+        ImportExportFiles.exportJSON(getRoutesJSONArray().toJSONString(), "Portals");
     }
 
     /**
