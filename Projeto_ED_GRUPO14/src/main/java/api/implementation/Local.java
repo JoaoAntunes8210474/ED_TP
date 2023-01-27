@@ -142,5 +142,17 @@ public abstract class Local implements ILocal {
         return "Local{" + "id=" + id + ", name=" + name + ", localType=" + localType + ", amountEnergyItHas=" + amountEnergyItHas + ", coordinates=" + coordinates + '}';
     }
     
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ILocal that = (ILocal) o;
+        return getName().equals(that.getName());
+    }
+    
     
 }

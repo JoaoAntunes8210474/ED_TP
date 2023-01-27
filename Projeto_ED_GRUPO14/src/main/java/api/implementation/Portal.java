@@ -99,8 +99,17 @@ public class Portal extends Local implements IPortal{
         return "Portal{" + "maxEnergy=" + maxEnergy + ", ownerPlayer=" + ownerPlayer + ", teamPlayer=" + teamPlayer + '}';
     }
 
-    
-    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        IPortal that = (IPortal) o;
+        return getName().equals(that.getName());
+    }
     
     
 }

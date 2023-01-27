@@ -16,27 +16,27 @@ public interface ILocalsManagement {
      * @return true if is the place was added, false if is not
      * @throws ElementAlreadyExistsException if the location already exists.
      */
-    public boolean addLocals (ILocal local) throws ElementAlreadyExistsException;
+    public String addLocals (ILocal local);
 
     /**
      * Remove a location from the graph
      * @param place to be deleted 
      */
-    public void removeLocals (ILocal local);
+    public String removeLocals (ILocal local);
 
     /**
      * Add a new interaction of a player to the connector and remove the first one from the queue if the cooldown time has already passed
      * @param connector connector where there was interaction
      * @param interation information about the interaction to be added to the connector
      */
-    public void addInterationConnector (IConnector connector, ConnectorPlayerInteration interation);
+    public String addInterationConnector (IConnector connector, ConnectorPlayerInteration interation);
 
     /**
      * Add new path between two points on graph.
      * @param local1 first location
      * @param local2 segundo local
      */
-    public void addPath(ILocal local1, ILocal local2);
+    public String addPath(ILocal local1, ILocal local2);
 
     /**
      * Gets the textual listing of all Portals

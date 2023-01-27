@@ -2,31 +2,53 @@ package api.implementation;
 
 import java.io.IOException;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+
 import api.interfaces.IConnector;
 import api.interfaces.ILocal;
 import api.interfaces.ILocalsManagement;
+import api.interfaces.IPathGameGraphADT;
+import api.interfaces.IPlayer;
+import api.interfaces.IPortal;
 
-public class LocalsManagement implements ILocalsManagement{
+public class LocalsManagement implements ILocalsManagement {
     
+    
+    /**
+     * Network graph that have information about the locals and path between them.
+     */
+    public IPathGameGraphADT<ILocal> pathGraph = new PathGameGraph<>();
+
 
      /**
      * Adds a new location to the graph
      * @param local to be added.
-     * @return true if is the place was added, false if is not
-     * @throws ElementAlreadyExistsException if the location already exists.
+     * @return string string that informs if the operation was performed successfully
      */
     @Override
-    public boolean addLocals (ILocal local) throws ElementAlreadyExistsException {
+    public String addLocals (ILocal local) {
+        if (local == null) {
+            throw new IllegalArgumentException("Place cannot be null!");
+        }
+         this.pathGraph.addVertex(local);
 
+         return "O local foi adicionado com sucesso";
     }
 
     /**
      * Remove a location from the graph
      * @param place to be deleted 
+     * @return string string that informs if the operation was performed successfully
      */
     @Override
-    public void removeLocals (ILocal local){
+    public String removeLocals (ILocal local){
+        if (local == null) {
+            throw new IllegalArgumentException("Place cannot be null!");
+        }
+        this.pathGraph.removeVertex(local);
 
+        return "O local foi removido com sucesso";
     }
 
     /**
@@ -35,8 +57,17 @@ public class LocalsManagement implements ILocalsManagement{
      * @param interation information about the interaction to be added to the connector
      */
     @Override
-    public void addInterationConnector (IConnector connector, ConnectorPlayerInteration interation){
+    public String addInterationConnector (IConnector connector, ConnectorPlayerInteration interation){
+        if (connector == null) {
+            throw new IllegalArgumentException("Place cannot be null!");
+        }
+        if (connector == interation) {
+            throw new IllegalArgumentException("Place cannot be null!");
+        }
 
+       
+
+        return " Interação adicionada com sucesso com sucesso";
     }
 
     /**
@@ -45,8 +76,14 @@ public class LocalsManagement implements ILocalsManagement{
      * @param local2 segundo local
      */
     @Override
-    public void addPath(ILocal local1, ILocal local2){
+    public String addPath(ILocal local1, ILocal local2){
+        if (local1 == null || local2 == null) {
+            throw new IllegalArgumentException("Place cannot be null!");
+        }
+        
+        this.pathGraph.addEdge(local1, local2);
 
+        return "O Caminho foi adicionado com sucesso";
     }
 
     /**
@@ -54,8 +91,18 @@ public class LocalsManagement implements ILocalsManagement{
      * @return string with portals listing
      */
     @Override
-    public String getAllPortalsListing(){
-
+    public String getAllPortalsListing() {
+        String string = "Portals: {\n";
+        if (this.pathGraph.getNumberOfPortals() != 0) {
+            Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
+            while (iteratorPortal.hasNext()) {
+                string += iteratorPortal.next().toString() + "\n";
+            }
+        } else {
+            string += "There is no Portals to list!\n";
+        }
+        string += "}";
+        return string;
     }
 
     /**
@@ -64,7 +111,20 @@ public class LocalsManagement implements ILocalsManagement{
      */
     @Override
     public String getPortalsWithoutTeamListing(){
-
+        String string = "Portals: {\n";
+        if (this.pathGraph.getNumberOfPortals() != 0) {
+            Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
+            while (iteratorPortal.hasNext()) {
+                IPortal portal = iteratorPortal.next();
+                if (portal.getTeamPlayer().equals("Neutro")){
+                    string += iteratorPortal.next().toString() + "\n";
+                }
+            }
+        } else {
+            string += "There is no Portals to list!\n";
+        }
+        string += "}";
+        return string;
     }
 
     /**
@@ -74,7 +134,20 @@ public class LocalsManagement implements ILocalsManagement{
      */
     @Override
     public String getPortalsPlayerListing(IPlayer player){
-
+        String string = "Portals: {\n";
+        if (this.pathGraph.getNumberOfPortals() != 0) {
+            Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
+            while (iteratorPortal.hasNext()) {
+                IPortal portal = iteratorPortal.next();
+                if (portal.getOwnerPlayer().equals(player)){
+                        string += iteratorPortal.next().toString() + "\n";
+                }
+            }
+        } else {
+            string += "There is no Portals to list!\n";
+        }
+        string += "}";
+        return string;
     }
 
     /**
@@ -84,7 +157,20 @@ public class LocalsManagement implements ILocalsManagement{
      */
     @Override
     public String getPortalsByTeamListing(String team){
-
+        String string = "Portals: {\n";
+        if (this.pathGraph.getNumberOfPortals() != 0) {
+            Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
+            while (iteratorPortal.hasNext()) {
+                IPortal portal = iteratorPortal.next();
+                if (portal.getTeamPlayer().equals(team)){
+                        string += iteratorPortal.next().toString() + "\n";
+                }
+            }
+        } else {
+            string += "There is no Portals to list!\n";
+        }
+        string += "}";
+        return string;
     }
 
     /**
@@ -102,7 +188,17 @@ public class LocalsManagement implements ILocalsManagement{
      */
     @Override
     public String getAllConnectorsListing(){
-
+        String string = "Connectors: {\n";
+        if (this.pathGraph.getNumberOfConnectores() != 0) {
+            Iterator<IConnector> iteratorConnectors = this.pathGraph.getConnectores();
+            while (iteratorConnectors.hasNext()) {
+                string += iteratorConnectors.next().toString() + "\n";
+            }
+        } else {
+            string += "There is no Connector to list!\n";
+        }
+        string += "}";
+        return string;
     }
 
     /**

@@ -78,4 +78,17 @@ public class Connector extends Local implements IConnector{
         return "Connector{" + "cooldown=" + cooldown + ", players=" + players + '}';
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        IConnector that = (IConnector) o;
+        return getName().equals(that.getName());
+    }
+    
 }
