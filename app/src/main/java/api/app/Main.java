@@ -12,13 +12,13 @@ public class Main {
 
         IPlayerManagement playerManagement = new PlayerManagement();
 
-        Player player = new Player("Joaquim", "Giants", 0, 0, 0, 0, 0);
-        Player player1 = new Player("Test1", "Sparks", 2, 0, 0, 0, 0);
-        Player player2 = new Player("Test2", "Sparks", 4, 0, 0, 0, 0);
-        Player player3 = new Player("Test3", "Sparks", 10, 0, 0, 0, 0);
-        Player player4 = new Player("Test4", "Sparks", 5, 0, 0, 0, 0);
-        Player player5 = new Player("Test5", "Sparks", 3, 0, 0, 0, 0);
-        Player player6 = new Player("Test6", "Sparks", 1, 0, 0, 0, 0);
+        Player player = new Player("Joaquim", "Giants");
+        Player player1 = new Player("Test1", "Sparks");
+        Player player2 = new Player("Test2", "Sparks");
+        Player player3 = new Player("Test3", "Sparks");
+        Player player4 = new Player("Test4", "Sparks");
+        Player player5 = new Player("Test5", "Sparks");
+        Player player6 = new Player("Test6", "Sparks");
 
         playerManagement.addPlayer(player);
         playerManagement.addPlayer(player1);

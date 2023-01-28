@@ -290,7 +290,7 @@ public class PlayerManagement implements IPlayerManagement {
                 int level = (int) levelLong;
                 int experiencePoints = (int) experiencePointsLong;
                 int currentEnergy = (int) currentEnergyLong;
-                Player player = new Player(name, team, level, experiencePoints, currentEnergy, 0, 0);
+                Player player = new Player(name, team);
                 this.playerList.addToRear(player);
             }
         } catch (ParseException e) {

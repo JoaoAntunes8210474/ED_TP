@@ -41,13 +41,6 @@ public interface IPlayer {
     public int getCurrentEnergy();
 
     /**
-     * Gettime since last interaction with a Connector.
-     *
-     * @return Time since last interaction with a connector.
-     */
-    public int getConnectorTimer();
-
-    /**
      * Get amount of portals conquered by the player
      *
      * @return Number of portals conquered by the player
@@ -86,13 +79,6 @@ public interface IPlayer {
      * @param currentEnergy Amount of energy the player has.
      */
     public void setCurrentEnergy(int currentEnergy);
-
-    /**
-     * Defines and changes the time interval that the player has since the last interaction with a connector.
-     *
-     * @param connectorTimer Time since last interaction with a connector.
-     */
-    public void setConnectorTimer(int connectorTimer);
 
     /**
      * Set and changes the number of portals conquered by a player.

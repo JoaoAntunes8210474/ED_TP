@@ -8,304 +8,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ED_TP.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Projeto_ED_GRUPO14.test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/implementation/Connector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/implementation/Coordinates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/implementation/ImportExportFiles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/implementation/Local.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/implementation/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/implementation/PlayerManagement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/implementation/Portal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/implementation/Route.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/interfaces/IConnector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/interfaces/ICoordinates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/interfaces/IImportExportFiles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/interfaces/ILocal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/interfaces/IPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/interfaces/IPlayerManagement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/interfaces/IPortal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/api/interfaces/IRoute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/exceptions/ElementDoesntExistException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/exceptions/ElementNotFoundException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/exceptions/EmptyCollectionException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/exceptions/InvalidOperationException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/exceptions/NonComparableElementException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/exceptions/NullException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/exceptions/UnknownPathException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/ArrayBinarySearchTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/ArrayBinaryTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/ArrayHeap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/ArrayList$BasicIterator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/ArrayList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/ArrayOrderedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/ArraySortingAndSearching.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/ArrayStack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/ArrayUnorderedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/BinaryTreeNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/CircularArrayQueue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/DoubleLinkedList$BasicIterator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/DoubleLinkedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/DoubleLinkedOrderedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/DoubleLinkedUnorderedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/DoubleNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/HeapNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/LinkedBinarySearchTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/LinkedBinaryTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/LinkedHeap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/LinkedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/LinkedListSortingAndSearching.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/LinkedNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/LinkedQueue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/LinkedStack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/MatrixGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/Network.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/OrderedBinarySearchTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/Pair.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/PriorityQueue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/implementation/PriorityQueueNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/BinarySearchTreeADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/BinaryTreeADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/GraphADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/HeapADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/ListADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/NetWorkADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/OrderedListADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/QueueADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/StackADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/main/collections/interfaces/UnorderedListADT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/classes/java/test/api/PlayerManagementTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/distributions/Projeto_ED_GRUPO14-1.0.tar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/distributions/Projeto_ED_GRUPO14-1.0.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacoco/test.exec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Connector.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Connector.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Coordinates.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Coordinates.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/ImportExportFiles.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/ImportExportFiles.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Local.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Local.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Player.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Player.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/PlayerManagement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/PlayerManagement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Portal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Portal.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Route.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/Route.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/api.implementation/index.source.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/ElementDoesntExistException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/ElementDoesntExistException.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/ElementNotFoundException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/ElementNotFoundException.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/EmptyCollectionException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/EmptyCollectionException.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/InvalidOperationException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/InvalidOperationException.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/NonComparableElementException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/NonComparableElementException.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/NullException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/NullException.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/UnknownPathException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/UnknownPathException.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.exceptions/index.source.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayBinarySearchTree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayBinarySearchTree.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayBinaryTree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayBinaryTree.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayHeap.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayHeap.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayList$BasicIterator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayList.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayOrderedList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayOrderedList.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArraySortingAndSearching.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArraySortingAndSearching.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayStack.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayStack.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayUnorderedList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/ArrayUnorderedList.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/BinaryTreeNode.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/BinaryTreeNode.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/CircularArrayQueue.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/CircularArrayQueue.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/DoubleLinkedList$BasicIterator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/DoubleLinkedList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/DoubleLinkedList.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/DoubleLinkedOrderedList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/DoubleLinkedOrderedList.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/DoubleLinkedUnorderedList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/DoubleLinkedUnorderedList.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/DoubleNode.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/DoubleNode.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/HeapNode.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/HeapNode.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedBinarySearchTree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedBinarySearchTree.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedBinaryTree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedBinaryTree.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedHeap.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedHeap.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedList.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedListSortingAndSearching.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedListSortingAndSearching.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedNode.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedNode.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedQueue.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedQueue.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedStack.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/LinkedStack.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/MatrixGraph.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/MatrixGraph.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/Network.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/Network.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/OrderedBinarySearchTree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/OrderedBinarySearchTree.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/Pair.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/Pair.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/PriorityQueue.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/PriorityQueue.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/PriorityQueueNode.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/PriorityQueueNode.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/collections.implementation/index.source.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/branchfc.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/branchnc.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/branchpc.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/bundle.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/class.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/down.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/greenbar.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/group.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/method.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/package.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/prettify.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/prettify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/redbar.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/report.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/report.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/session.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/sort.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/sort.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/source.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-resources/up.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/jacocoHtml/jacoco-sessions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/libs/Projeto_ED_GRUPO14-1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/jacoco/report.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/jacoco/report.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/pmd/main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/pmd/main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/pmd/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/pmd/test.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/tests/test/css/base-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/tests/test/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/tests/test/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/reports/tests/test/js/report.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/scripts/Projeto_ED_GRUPO14" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/scripts/Projeto_ED_GRUPO14.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/test-results/test/binary/output.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/test-results/test/binary/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/expandedArchives/org.jacoco.agent-0.8.8.jar_a33b649e552c51298e5a242c2f0d0e3c/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/expandedArchives/org.jacoco.agent-0.8.8.jar_a33b649e552c51298e5a242c2f0d0e3c/META-INF/maven/org.jacoco/org.jacoco.agent/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/expandedArchives/org.jacoco.agent-0.8.8.jar_a33b649e552c51298e5a242c2f0d0e3c/META-INF/maven/org.jacoco/org.jacoco.agent/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/expandedArchives/org.jacoco.agent-0.8.8.jar_a33b649e552c51298e5a242c2f0d0e3c/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/expandedArchives/org.jacoco.agent-0.8.8.jar_a33b649e552c51298e5a242c2f0d0e3c/jacocoagent.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/expandedArchives/org.jacoco.agent-0.8.8.jar_a33b649e552c51298e5a242c2f0d0e3c/org/jacoco/agent/AgentJar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/pmdMain/incremental.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/build/tmp/pmdTest/incremental.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/files/GameRules.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/implementation/Connector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/implementation/Coordinates.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/implementation/ImportExportFiles.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/implementation/Local.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/implementation/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/implementation/PlayerManagement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/implementation/Portal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/implementation/Route.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/interfaces/IConnector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/interfaces/ICoordinates.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/interfaces/IImportExportFiles.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/interfaces/ILocal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/interfaces/IPlayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/interfaces/IPlayerManagement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/interfaces/IPortal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/api/interfaces/IRoute.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/exceptions/ElementDoesntExistException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/exceptions/ElementNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/exceptions/EmptyCollectionException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/exceptions/InvalidOperationException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/exceptions/NonComparableElementException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/exceptions/NullException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/exceptions/UnknownPathException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/ArrayBinarySearchTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/ArrayBinaryTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/ArrayHeap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/ArrayList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/ArrayOrderedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/ArraySortingAndSearching.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/ArrayStack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/ArrayUnorderedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/BinaryTreeNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/CircularArrayQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/DoubleLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/DoubleLinkedOrderedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/DoubleLinkedUnorderedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/DoubleNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/HeapNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/LinkedBinarySearchTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/LinkedBinaryTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/LinkedHeap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/LinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/LinkedListSortingAndSearching.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/LinkedNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/LinkedQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/LinkedStack.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/MatrixGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/Network.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/OrderedBinarySearchTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/Pair.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/PriorityQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/implementation/PriorityQueueNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/BinarySearchTreeADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/BinaryTreeADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/GraphADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/HeapADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/ListADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/NetWorkADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/OrderedListADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/QueueADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/StackADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/main/java/collections/interfaces/UnorderedListADT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projeto_ED_GRUPO14/src/test/java/api/PlayerManagementTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/exceptions/ElementAlreadyExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/exceptions/NotPlaceInstanceException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/Connector.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/Connector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/LocalsManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/LocalsManagement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/PathGameGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/PathGameGraph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/Route.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/interfaces/IPathGameGraphADT.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/interfaces/IPathGameGraphADT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/interfaces/IRoute.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/interfaces/IRoute.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Route.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IRoute.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -379,28 +94,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Utilizador/Documents/NetBeansProjects/ED_TP",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Utilizador/Documents/NetBeansProjects/ED_TP&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Utilizador\Documents\NetBeansProjects\ED_TP\Projeto_ED_GRUPO14\src\main\java\collections\implementation" />
@@ -413,7 +128,28 @@
       <recent name="C:\Users\Utilizador\Documents\NetBeansProjects\ED_TP\Projeto_ED_GRUPO14" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PlayerManagementTest (1)">
+  <component name="RunManager" selected="Gradle.C:/Users/Utilizador/Documents/NetBeansProjects/ED_TP/Projeto_ED_GRUPO14 [build]">
+    <configuration name="C:/Users/Utilizador/Documents/NetBeansProjects/ED_TP/Projeto_ED_GRUPO14 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Projeto_ED_GRUPO14" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="PlayerManagementTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -451,29 +187,6 @@
             <option value=":app:test" />
             <option value="--tests" />
             <option value="&quot;api.PlayerManagementTest.testAssociatePlayerToTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheListAndValidTeam&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="PlayerManagementTest.testDisassociatePlayerFromTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":app:test" />
-            <option value="--tests" />
-            <option value="&quot;api.PlayerManagementTest.testDisassociatePlayerFromTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -531,11 +244,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.C:/Users/Utilizador/Documents/NetBeansProjects/ED_TP/Projeto_ED_GRUPO14 [build]" />
         <item itemvalue="Gradle.PlayerManagementTest (1)" />
         <item itemvalue="Gradle.PlayerManagementTest.testListPlayersByLevel_ReturnArrayUnorderedList" />
         <item itemvalue="Gradle.PlayerManagementTest.testAssociatePlayerToTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheListAndValidTeam" />
         <item itemvalue="Gradle.PlayerManagementTest.testUpdatePlayerFromPlayerList_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList" />
-        <item itemvalue="Gradle.PlayerManagementTest.testDisassociatePlayerFromTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList" />
       </list>
     </recent_temporary>
   </component>

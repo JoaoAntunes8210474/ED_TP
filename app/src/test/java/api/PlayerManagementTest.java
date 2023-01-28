@@ -31,7 +31,7 @@ public class PlayerManagementTest {
 
     @Test
     public void testAddPlayerToPlayerList_ReturnSuccessfulString_WhenSentAValidPlayer() {
-        Player player = new Player("Joaquim", "Sparks", 0, 0, 0, 0, 0);
+        Player player = new Player("Joaquim", "Sparks");
         String expected = "O jogador foi adicionado a lista de jogadores!";
 
         Assertions.assertEquals(expected, this.playersList.addPlayer(player));
@@ -43,19 +43,8 @@ public class PlayerManagementTest {
     }
 
     @Test
-    public void testUpdatePlayerFromPlayerList_ReturnNullPointerException_WhenSentANullReference() {
-        Assertions.assertThrows(NullPointerException.class, () -> this.playersList.updatePlayer(null));
-    }
-
-    @Test
-    public void testUpdatePlayerFromPlayerList_ReturnElementNotFoundException_WhenPlaySentIsNotInList() {
-        Player player = new Player("Marroquino", "Giants", 0, 0, 0, 0, 0);
-        Assertions.assertThrows(ElementNotFoundException.class, () -> this.playersList.updatePlayer(player));
-    }
-
-    @Test
     public void testRemovePlayerFromPlayerList_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList() {
-        Player player = new Player("Test1", "Sparks", 2, 0, 0, 0, 0);
+        Player player = new Player("Test1", "Sparks");
 
         Assertions.assertEquals(player.toString(), this.playersList.removePlayer(player).toString());
     }
@@ -66,14 +55,14 @@ public class PlayerManagementTest {
     }
 
     @Test
-    public void testRemovePlayerFromPlayerList_ReturnElementNotFoundException_WhenPlaySentIsNotInList() {
-        Player player = new Player("Teste9999", "Giants", 0, 0, 0, 0, 0);
+    public void testRemovePlayerFromPlayerList_ReturnElementNotFoundException_WhenPlayerSentIsNotInList() {
+        Player player = new Player("Teste9999", "Giants");
         Assertions.assertThrows(ElementNotFoundException.class, () -> this.playersList.removePlayer(player));
     }
 
     @Test
     public void testAssociatePlayerToTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheListAndValidTeam() {
-        Player player = new Player("Test1", "Sparks", 2, 0, 0, 0, 0);
+        Player player = new Player("Test1", "Sparks");
         String expected = "O jogador foi adicionado a equipa Giants";
 
         Assertions.assertEquals(expected, this.playersList.associatePlayerToTeam(player, "Giants"));
@@ -81,7 +70,7 @@ public class PlayerManagementTest {
 
     @Test
     public void testAssociatePlayerToTeam_ReturnElementNotFoundException_WhenPlayerSentIsNotInList() {
-        Player player = new Player("Test999", "Giants", 0, 0, 0, 0, 0);
+        Player player = new Player("Test999", "Giants");
         Assertions.assertThrows(ElementNotFoundException.class, () -> this.playersList.associatePlayerToTeam(player, "Teste"));
     }
 
@@ -92,7 +81,7 @@ public class PlayerManagementTest {
 
     @Test
     public void testDisassociatePlayerFromTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList() {
-        Player player = new Player("Joaquim", "Giants", 0, 0, 0, 0, 0);
+        Player player = new Player("Joaquim", "Giants");
         String expected = "O jogador foi removido da equipa " + player.getTeam();
 
         Assertions.assertEquals(expected, this.playersList.disassociatePlayerFromTeam(player));
@@ -100,7 +89,7 @@ public class PlayerManagementTest {
 
     @Test
     public void testDisassociatePlayerFromTeam_ReturnElementNotFoundException_WhenPlayerSentIsNotInList() {
-        Player player = new Player("Test999", "Giants", 0, 0, 0, 0, 0);
+        Player player = new Player("Test999", "Giants");
         Assertions.assertThrows(ElementNotFoundException.class, () -> this.playersList.disassociatePlayerFromTeam(player));
     }
 
