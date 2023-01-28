@@ -1,19 +1,5 @@
+# Ignore Gradle project-specific cache directory
 .gradle
-/build/
 
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Cache of project
-.gradletasknamecache
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
-/JavaApplication14/nbproject/private/
-/Projeto_ED_GRUPO14/nbproject/private/
-/JavaApplication16/nbproject/private/
-/JavaApplication17/nbproject/private/
-/oo/nbproject/private/
+# Ignore Gradle build output directory
+build

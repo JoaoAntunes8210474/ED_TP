@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/exceptions/ElementAlreadyExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/exceptions/NotPlaceInstanceException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/Connector.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/Connector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/LocalsManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/LocalsManagement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/PathGameGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/PathGameGraph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/Route.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/interfaces/IPathGameGraphADT.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/interfaces/IPathGameGraphADT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/api/interfaces/IRoute.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/interfaces/IRoute.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Route.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IRoute.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Projeto_ED_GRUPO14">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/Projeto_ED_GRUPO14">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Projeto_ED_GRUPO14" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Projeto_ED_GRUPO14" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Projeto_ED_GRUPO14" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2KpCBYuc0YmYWJBQFBoq5KCjhrH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Utilizador/Documents/NetBeansProjects/ED_TP&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Utilizador\Documents\NetBeansProjects\ED_TP\Projeto_ED_GRUPO14\src\main\java\collections\implementation" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Utilizador\Documents\NetBeansProjects\ED_TP\app\src\test\java" />
+      <recent name="C:\Users\Utilizador\Documents\NetBeansProjects\ED_TP\app\src\main\java" />
+      <recent name="C:\Users\Utilizador\Documents\NetBeansProjects\ED_TP\app" />
+      <recent name="C:\Users\Utilizador\Documents\NetBeansProjects\ED_TP" />
+      <recent name="C:\Users\Utilizador\Documents\NetBeansProjects\ED_TP\Projeto_ED_GRUPO14" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.C:/Users/Utilizador/Documents/NetBeansProjects/ED_TP/Projeto_ED_GRUPO14 [build]">
+    <configuration name="C:/Users/Utilizador/Documents/NetBeansProjects/ED_TP/Projeto_ED_GRUPO14 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Projeto_ED_GRUPO14" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PlayerManagementTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:test" />
+            <option value="--tests" />
+            <option value="&quot;api.PlayerManagementTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PlayerManagementTest.testAssociatePlayerToTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheListAndValidTeam" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:test" />
+            <option value="--tests" />
+            <option value="&quot;api.PlayerManagementTest.testAssociatePlayerToTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheListAndValidTeam&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PlayerManagementTest.testListPlayersByLevel_ReturnArrayUnorderedList" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:test" />
+            <option value="--tests" />
+            <option value="&quot;api.PlayerManagementTest.testListPlayersByLevel_ReturnArrayUnorderedList&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PlayerManagementTest.testUpdatePlayerFromPlayerList_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:test" />
+            <option value="--tests" />
+            <option value="&quot;api.PlayerManagementTest.testUpdatePlayerFromPlayerList_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.C:/Users/Utilizador/Documents/NetBeansProjects/ED_TP/Projeto_ED_GRUPO14 [build]" />
+        <item itemvalue="Gradle.PlayerManagementTest (1)" />
+        <item itemvalue="Gradle.PlayerManagementTest.testListPlayersByLevel_ReturnArrayUnorderedList" />
+        <item itemvalue="Gradle.PlayerManagementTest.testAssociatePlayerToTeam_ReturnSuccessfulString_WhenSentAValidPlayerFromTheListAndValidTeam" />
+        <item itemvalue="Gradle.PlayerManagementTest.testUpdatePlayerFromPlayerList_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="" />
+      <created>1674662003068</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674662003068</updated>
+      <workItem from="1674662004422" duration="18776000" />
+      <workItem from="1674746456030" duration="12818000" />
+      <workItem from="1674828368871" duration="2140000" />
+      <workItem from="1674831558547" duration="187000" />
+      <workItem from="1674831758184" duration="372000" />
+      <workItem from="1674832146998" duration="811000" />
+      <workItem from="1674833020830" duration="5247000" />
+      <workItem from="1674838334958" duration="7448000" />
+      <workItem from="1674847203477" duration="32000" />
+      <workItem from="1674847256620" duration="5926000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="8" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
