@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import api.exceptions.ElementAlreadyExistsException;
 import api.implementation.ConnectorPlayerInteration;
+import collections.exceptions.EmptyCollectionException;
 
 /**
  * Class for managing locations and routes
@@ -20,7 +21,7 @@ public interface ILocalsManagement {
 
     /**
      * Remove a location from the graph
-     * @param place to be deleted 
+     * @param local to be deleted
      */
     public String removeLocals (ILocal local);
 
@@ -82,47 +83,48 @@ public interface ILocalsManagement {
      */
     public String getConnectorsOrderedByEnergyItHasListing();
 
-     /**
-     * Export all locals from a graph to a Json file
-     * @throws IOException if occurs an error trying to write the file.
-     * @return A string indicating whether the operation was successful or something went wrong
-     */
-    public void exportAllLocalsToJson(String fileName) throws IOException;
 
     /**
      * Export all portals from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public void exportPortalsToJson(String fileName) throws IOException;
+    public String exportPortalsToJson(String fileName) throws IOException;
 
     /**
      * Export all Connectors from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong.
      */
-    public void  exportConnectorsToJson(String fileName) throws IOException;
+    public String  exportConnectorsToJson(String fileName) throws IOException, EmptyCollectionException;
 
     /**
      * Export all paths from a graph to a Json file
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public void exportPathsToJson(String fileName) throws IOException;
+    public String exportPathsToJson(String fileName) throws IOException;
 
     /**
-     * Import locations from Json file to graph
+     * Import portals from Json file to graph
      * @param fileName fileName to use for the import
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String importAllLocalsFromJSON(String fileName);
+    public String importPortalsFromJSON(String fileName) throws IOException;
+
+    /**
+     * Import connectors from Json file to graph
+     * @param fileName fileName to use for the import
+     * @return A string indicating whether the operation was successful or something went wrong
+     */
+    public String importConnectorsFromJSON(String fileName) throws IOException;
 
     /**
      * Import paths from a Json file into a graph
      * @param fileName fileName fileName to use for the import
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String importPathsFromJSON(String fileName);
+    public String importPathsFromJSON(String fileName) throws IOException;
 
 }
 

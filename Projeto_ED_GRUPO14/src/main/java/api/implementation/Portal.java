@@ -135,7 +135,6 @@ public class Portal extends Local implements IPortal{
         IPortal that = (IPortal) o;
         return getName().equals(that.getName());
     }
-    
-  
+
 
 }

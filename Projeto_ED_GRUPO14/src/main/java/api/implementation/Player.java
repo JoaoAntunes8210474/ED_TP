@@ -42,6 +42,7 @@ public class Player implements IPlayer, Comparable<Player>{
         this.numPortals = 0;
     }
 
+
     /**
      * Get player name.
      * @return Player's name.

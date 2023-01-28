@@ -28,7 +28,6 @@ public class Connector extends Local implements IConnector{
     /**
      * Constructor: instantiate objects of type connector
      * @param cooldown specific time interval that the connector supplies power after interaction
-     * @param players set of players that interacted with the connector
      * @param id Integer representing the unique identifier of each location
      * @param name Location name, the name will be the name of points of interest like statues, churches ...
      * @param localType Location type, can be portal or connector type.
