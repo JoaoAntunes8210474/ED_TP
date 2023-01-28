@@ -12,31 +12,21 @@ import collections.interfaces.ListADT;
  * @param <T> type of locals in graph.
  */
 public interface IPathGameGraphADT<T> extends GraphADT<T> {
-    
-    /**
-     * Gets the number of {@link Local locals} in graph.
-     * @return the number of {@link Local locals} in graph.
-     */
-    public int getNumberOfLocals();
+
 
     /**
-     * Gets the number of {@link Connector connectores} in graph.
-     * @return the number of {@link Connector connectores} in graph.
+     * Gets the number of connectors in graph.
+     * @return the number of connectors in graph.
      */
     public int getNumberOfConnectores();
 
     /**
-     * Gets the number of {@link Portal portals} in graph.
-     * @return the number of {@link Portal portals} in graph.
+     * Gets the number of portals in graph.
+     * @return the number of portals in graph.
      */
     public int getNumberOfPortals();
 
-    /**
-     * Gets the Locals on graph.
-     * @return iterator of locals.
-     */
-    Iterator<ILocal> getLocals();
-    
+
     /**
      * Gets the connectores on graph.
      * @return iterator of connectores.
@@ -51,9 +41,9 @@ public interface IPathGameGraphADT<T> extends GraphADT<T> {
 
     /**
      * Gets the paths existences on the graph
-     * @returnterator with those paths
+     * @return iterator with those paths
      */
-    Iterator<ILocal> getRoutes();
+    Iterator<IRoute<ILocal>> getRoutes();
 
     /**
      * Shortest path between two points.

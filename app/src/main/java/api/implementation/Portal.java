@@ -6,21 +6,21 @@ import api.interfaces.IPortal;
 
 
 /**
- * Class that represents a portal in the game
- * Class that complies with the IPortal interface contract.
+ *  Class that represents a portal in the game
+ *  Class that complies with the IPortal interface contract.
  */
-public class Portal extends Local implements IPortal {
-
+public class Portal extends Local implements IPortal{
+    
     // Integer number that represents the maximum amount of energy that a portal has.
     private int maxEnergy;
-
+    
     //Player who conquered the portal.
     private Player ownerPlayer;
-
+    
     //Team to whom the portal belongs.
     private String teamPlayer;
-
-
+    
+    
     /**
      * Constructor method: serves to instantiate objects of the portal type.
      * @param maxEnergy Integer number that represents the maximum amount of energy that a portal has.
@@ -28,7 +28,7 @@ public class Portal extends Local implements IPortal {
      * @param name Location name, the name will be the name of points of interest like statues, churches ...
      * @param localType Location type, can be portal or connector type.
      * @param amountEnergyItHas Amount of energy the site contains.
-     * @param coordinates       Location coordinates
+     * @param coordinates Location coordinates
      */
     public Portal(int maxEnergy, int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
         super(id, name, localType, amountEnergyItHas, coordinates);
@@ -39,7 +39,6 @@ public class Portal extends Local implements IPortal {
 
     /**
      * Get the maximum amount of energy the portal has.
-     *
      * @return maximum amount of energy the portal has.
      */
     @Override
@@ -49,7 +48,6 @@ public class Portal extends Local implements IPortal {
 
     /**
      * Get player who conquered the portal
-     *
      * @return Player who conquered the portal.
      */
     @Override
@@ -59,7 +57,6 @@ public class Portal extends Local implements IPortal {
 
     /**
      * Get the team that owns the portal.
-     *
      * @return Team to whom the portal belongs.
      */
     @Override
@@ -69,7 +66,6 @@ public class Portal extends Local implements IPortal {
 
     /**
      * Set and change the maximum amount of energy the portal has.
-     *
      * @param maxEnergy maximum amount of energy the portal has.
      */
     @Override
@@ -79,7 +75,6 @@ public class Portal extends Local implements IPortal {
 
     /**
      * Define and change the player who owns the portal, that is, the player who conquered the portal.
-     *
      * @param ownerPlayer Player who conquered the portal.
      */
     @Override
@@ -88,8 +83,7 @@ public class Portal extends Local implements IPortal {
     }
 
     /**
-     * Define and change the team that owns the portal.
-     *
+     * Define and change the team that owns the portal. 
      * @param teamPlayer Team to whom the portal belongs.
      */
     @Override
@@ -119,7 +113,6 @@ public class Portal extends Local implements IPortal {
     
     /**
      * Returns a string representative of the location, with information referring to this
-     *
      * @return string representative of the location.
      */
     @Override
@@ -141,7 +134,6 @@ public class Portal extends Local implements IPortal {
         IPortal that = (IPortal) o;
         return getName().equals(that.getName());
     }
-    
-  
+
 
 }

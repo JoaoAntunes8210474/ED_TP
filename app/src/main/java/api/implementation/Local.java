@@ -1,9 +1,7 @@
 package api.implementation;
 
-import org.json.simple.JSONObject;
-
-
 import api.interfaces.ILocal;
+import org.json.simple.JSONObject;
 
 /**
  * Class that represents a location
@@ -13,28 +11,28 @@ public abstract class Local implements ILocal, Comparable<Local>{
     
     //Integer representing the unique identifier of each location
     private int id;
-
+    
     // Location name, the name will be the name of points of interest like statues, churches ...
     private String name;
-
+    
     //Location type, can be portal or connector type.
     private String localType;
-
+    
     //Amount of energy the site contains.
     private int amountEnergyItHas;
-
+    
     //Location coordinates
     private Coordinates coordinates;
 
-
+    
+    
     /**
      * Constructor: instantiates objects of type local.
-     *
-     * @param id                Integer representing the unique identifier of each location
-     * @param name              Location name, the name will be the name of points of interest like statues, churches ...
-     * @param localType         Location type, can be portal or connector type.
+     * @param id Integer representing the unique identifier of each location
+     * @param name Location name, the name will be the name of points of interest like statues, churches ...
+     * @param localType Location type, can be portal or connector type.
      * @param amountEnergyItHas Amount of energy the site contains.
-     * @param coordinates       Location coordinates
+     * @param coordinates Location coordinates
      */
     public Local(int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
         this.id = id;
@@ -46,7 +44,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Get unique location identification number.
-     *
      * @return The integer representing the unique identifier of each location
      */
     @Override
@@ -56,7 +53,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Get place name.
-     *
      * @return The location name, the name will be the name of points of interest like statues, churches ...
      */
     @Override
@@ -66,7 +62,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Get location type
-     *
      * @return The location type, can be portal or connector type.
      */
     @Override
@@ -76,7 +71,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Get amount of energy the location has.
-     *
      * @return The amount of energy the site contains.
      */
     @Override
@@ -86,7 +80,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Get location coordinates.
-     *
      * @return The location coordinates
      */
     @Override
@@ -95,8 +88,7 @@ public abstract class Local implements ILocal, Comparable<Local>{
     }
 
     /**
-     * Set or change a location's unique ID number
-     *
+     * Set or change a location's unique ID number    
      * @param id The integer representing the unique identifier of each location
      */
     @Override
@@ -106,7 +98,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Set or change the location name.
-     *
      * @param name Location name, the name will be the name of points of interest like statues, churches ...
      */
     @Override
@@ -116,7 +107,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Set or change the location type.
-     *
      * @param localType Location type, can be portal or connector type.
      */
     @Override
@@ -126,7 +116,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Set or change the amount of energy the location has.
-     *
      * @param amountEnergyItHas Amount of energy the site contains.
      */
     @Override
@@ -136,7 +125,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Set or change location coordinates.
-     *
      * @param coordinates Location coordinates
      */
     @Override
@@ -146,7 +134,6 @@ public abstract class Local implements ILocal, Comparable<Local>{
 
     /**
      * Aims to return a string representative of the location.
-     *
      * @return string representative of the location.
      */
     @Override

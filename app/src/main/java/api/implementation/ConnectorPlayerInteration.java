@@ -61,9 +61,5 @@ public class ConnectorPlayerInteration {
     @Override
     public String toString() {
         return "ConnectorPlayerInteration [player=" + player + ", diaHoraInteracao=" + diaHoraInteracao + "]";
-    }
-
-  
-
-    
+    }    
 }

@@ -2,7 +2,6 @@ package api.implementation;
 
 import java.util.Iterator;
 
-import collections.exceptions.EmptyCollectionException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -11,24 +10,23 @@ import api.interfaces.IConnector;
 import collections.implementation.ArrayUnorderedList;
 import collections.implementation.LinkedQueue;
 import collections.interfaces.UnorderedListADT;
+import collections.exceptions.EmptyCollectionException;
 
 
 /**
  * Class that implements the contract of a Connector.
  */
-public class Connector extends Local implements IConnector {
-
+public class Connector extends Local implements IConnector{
+    
     // specific time interval that the connector supplies power after interaction
     private int cooldown;
-
+    
     //set of players that interacted with the connector
     private LinkedQueue<ConnectorPlayerInteration> players;
 
     /**
      * Constructor: instantiate objects of type connector
-     *
      * @param cooldown specific time interval that the connector supplies power after interaction
-     * @param players set of players that interacted with the connector
      * @param id Integer representing the unique identifier of each location
      * @param name Location name, the name will be the name of points of interest like statues, churches ...
      * @param localType Location type, can be portal or connector type.
@@ -43,7 +41,6 @@ public class Connector extends Local implements IConnector {
 
     /**
      * get the specific time interval that the connector supplies power after interaction
-     *
      * @return specific time interval that the connector supplies power after interaction
      */
     @Override
@@ -53,7 +50,6 @@ public class Connector extends Local implements IConnector {
 
     /**
      * Get a set of players that have recently interacted with the connector
-     *
      * @return players who have recently interacted with the connector
      */
     @Override
@@ -63,24 +59,22 @@ public class Connector extends Local implements IConnector {
 
     /**
      * Change the set of players that have recently interacted with the connector
-     *
      * @param players set of players who have recently interacted with the connector
      */
     @Override
     public void setPlayers(LinkedQueue<ConnectorPlayerInteration> players) {
         this.players = players;
     }
-
+    
     /**
      * Change the specific time interval that the connector supplies power after interaction
-     *
      * @param cooldown the specific time interval that the connector supplies power after interaction
      */
     @Override
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }
-
+    
     /**
      * Returns a list of players who interacted with the connector
      * @return the iterator with the list of players
@@ -140,7 +134,6 @@ public class Connector extends Local implements IConnector {
 
     /**
      * String representing a connector
-     *
      * @return String representing a connector
      */
     @Override

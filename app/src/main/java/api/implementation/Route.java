@@ -9,7 +9,7 @@ import api.interfaces.IRoute;
  * Class representing a route between two locations
  * Class that complies with the IRoute interface contract.
  */
-public class Route<T> implements IRoute<T>{
+public class Route<T> implements IRoute <T>{
     
     //integer number that represents the id of the location where the player is at the moment.
     private T from;
@@ -19,9 +19,8 @@ public class Route<T> implements IRoute<T>{
 
     /**
      * Constructor method used to instantiate objects of type route.
-     *
      * @param from integer number that represents the id of the location where the player is at the moment.
-     * @param to   integer number that represents the id of the place where the player wants to go.
+     * @param to integer number that represents the id of the place where the player wants to go.
      */
     public Route(T from, T to) {
         this.from = from;
@@ -30,7 +29,6 @@ public class Route<T> implements IRoute<T>{
 
     /**
      * Get id of the location where the player is currently.
-     *
      * @return integer number that represents the id of the location where the player is at the moment.
      */
     @Override
@@ -40,7 +38,6 @@ public class Route<T> implements IRoute<T>{
 
     /**
      * Get the id of the location where the player wants to move.
-     *
      * @return integer number that represents the id of the place where the player wants to go.
      */
     @Override
@@ -48,29 +45,17 @@ public class Route<T> implements IRoute<T>{
         return to;
     }
 
-    @Override
-    public void setFrom(int from) {
-
-    }
-
-    @Override
-    public void setTo(int to) {
-
-    }
-
     /**
      * Set or change the id of the location where the player is currently located.
-     *
      * @param from integer number that represents the id of the location where the player is at the moment.
      */
     @Override
     public void setFrom(T from) {
         this.from = from;
     }
-
+    
     /**
      * Set or change the id of the place where the player wants to move
-     *
      * @param to integer number that represents the id of the place where the player wants to go.
      */
     @Override
@@ -95,13 +80,13 @@ public class Route<T> implements IRoute<T>{
 
     /**
      * Route representative string.
-     *
      * @return Route representative string.
      */
     @Override
     public String toString() {
         return "Route{" + "from=" + from + ", to=" + to + '}';
     }
-
-
+    
+    
+    
 }
