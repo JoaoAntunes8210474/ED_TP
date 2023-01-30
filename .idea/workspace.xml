@@ -7,7 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="" />
+    <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPathGameGraphADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPathGameGraphADT.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -256,7 +260,7 @@
       <workItem from="1674838334958" duration="7448000" />
       <workItem from="1674847203477" duration="32000" />
       <workItem from="1674847256620" duration="5926000" />
-      <workItem from="1675044973899" duration="6468000" />
+      <workItem from="1675044973899" duration="6944000" />
     </task>
     <servers />
   </component>

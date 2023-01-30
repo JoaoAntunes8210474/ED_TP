@@ -14,7 +14,6 @@ import collections.implementation.ArrayUnorderedList;
 import collections.implementation.LinkedQueue;
 import collections.implementation.LinkedStack;
 import collections.implementation.MatrixGraph;
-import collections.interfaces.ListADT;
 import collections.interfaces.UnorderedListADT;
 
 public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphADT <T>{
@@ -198,7 +197,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
     
         /**
          * Gets the paths existences on the graph
-         * @returnterator with those paths
+         * @return iterator of paths.
          */
         @Override
         public Iterator<IRoute<ILocal>> getRoutes(){
@@ -225,6 +224,10 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
          */
         @Override
         public Iterator<ILocal> shortestPathBetweenTwoPoints(T source, T destiny) throws NotPlaceInstanceException{
+            if (!(source instanceof ILocal) || !(destiny instanceof ILocal)) {
+                throw new NotPlaceInstanceException("Source or destiny is not a ILocal instance.");
+            }
+
             Iterator<ILocal> iterator = (Iterator<ILocal>) super.iteratorShortestPath(source, destiny);
             return iterator;
         }
@@ -238,6 +241,10 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
          */
         @Override
         public Iterator<ILocal> shortestPathWithOnlyPortals(T source, T destiny) throws NotPlaceInstanceException{
+            if (!(source instanceof ILocal) || !(destiny instanceof ILocal)) {
+                throw new NotPlaceInstanceException("Source or destiny is not a ILocal instance.");
+            }
+
             ArrayUnorderedList<ILocal> resultList = new ArrayUnorderedList<>();
             if (!indexIsValid(this.getIndex(source)) || !indexIsValid(this.getIndex(destiny))) {
                 return resultList.iterator();
@@ -267,6 +274,10 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
          */
         @Override
         public Iterator<ILocal> shortestPathWithOnlyConnectors(T source, T destiny) throws NotPlaceInstanceException{
+            if (!(source instanceof ILocal) || !(destiny instanceof ILocal)) {
+                throw new NotPlaceInstanceException("Source or destiny is not a ILocal instance.");
+            }
+
             ArrayUnorderedList<ILocal> resultList = new ArrayUnorderedList<>();
             if (!indexIsValid(this.getIndex(source)) || !indexIsValid(this.getIndex(destiny))) {
                 return resultList.iterator();
@@ -289,6 +300,10 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
 
         @Override
         public Iterator<ILocal> shortestPathAtleastOneConnector(T source, T destiny) throws NotPlaceInstanceException{
+            if (!(source instanceof ILocal) || !(destiny instanceof ILocal)) {
+                throw new NotPlaceInstanceException("Source or destiny is not a ILocal instance.");
+            }
+
             ArrayUnorderedList<ILocal> resultList = new ArrayUnorderedList<>();
             if (!indexIsValid(this.getIndex(source)) || !indexIsValid(this.getIndex(destiny))) {
                 return resultList.iterator();
