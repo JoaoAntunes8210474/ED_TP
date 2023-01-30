@@ -267,28 +267,46 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
          */
         @Override
         public Iterator<ILocal> shortestPathWithOnlyConnectors(T source, T destiny) throws NotPlaceInstanceException{
-            //TODO: Copy logic from shortestPathWithOnlyPortals
-            Iterator<ILocal> iteratorConnectorsOnly = null;
-            try {
-                iteratorConnectorsOnly = (Iterator<ILocal>) this.iteratorShortestPathIndices(SearchType.CONNECTOR_ONLY, this.getIndex(source), this.getIndex(destiny));
-            } catch (EmptyCollectionException | NullException e) {
-                throw new RuntimeException(e);
+            ArrayUnorderedList<ILocal> resultList = new ArrayUnorderedList<>();
+            if (!indexIsValid(this.getIndex(source)) || !indexIsValid(this.getIndex(destiny))) {
+                return resultList.iterator();
             }
 
-            return iteratorConnectorsOnly;
+            Iterator<Integer> it;
+            try {
+                it = iteratorShortestPathIndices(SearchType.CONNECTOR_ONLY, this.getIndex(source), this.getIndex(destiny));
+
+                while (it.hasNext()) {
+                    resultList.addToRear((ILocal) this.vertices[it.next()]);
+                }
+
+            } catch (EmptyCollectionException | NullException e) {
+                e.printStackTrace();
+            }
+
+            return resultList.iterator();
         }
 
         @Override
         public Iterator<ILocal> shortestPathAtleastOneConnector(T source, T destiny) throws NotPlaceInstanceException{
-            //TODO: Copy logic from shortestPathWithOnlyPortals
-            Iterator<ILocal> iteratorAtleastOneConnector = null;
-            try {
-                iteratorAtleastOneConnector = (Iterator<ILocal>) this.iteratorShortestPathIndices(SearchType.CONNECTOR_REQUIRED, this.getIndex(source), this.getIndex(destiny));
-            } catch (EmptyCollectionException | NullException e) {
-                throw new RuntimeException(e);
+            ArrayUnorderedList<ILocal> resultList = new ArrayUnorderedList<>();
+            if (!indexIsValid(this.getIndex(source)) || !indexIsValid(this.getIndex(destiny))) {
+                return resultList.iterator();
             }
 
-            return iteratorAtleastOneConnector;
+            Iterator<Integer> it;
+            try {
+                it = iteratorShortestPathIndices(SearchType.CONNECTOR_REQUIRED, this.getIndex(source), this.getIndex(destiny));
+
+                while (it.hasNext()) {
+                    resultList.addToRear((ILocal) this.vertices[it.next()]);
+                }
+
+            } catch (EmptyCollectionException | NullException e) {
+                e.printStackTrace();
+            }
+
+            return resultList.iterator();
         }
     
     }
