@@ -8,12 +8,22 @@ import api.interfaces.ILocal;
 import api.interfaces.IPathGameGraphADT;
 import api.interfaces.IPortal;
 import api.interfaces.IRoute;
+import collections.exceptions.EmptyCollectionException;
+import collections.exceptions.NullException;
 import collections.implementation.ArrayUnorderedList;
+import collections.implementation.LinkedQueue;
+import collections.implementation.LinkedStack;
 import collections.implementation.MatrixGraph;
 import collections.interfaces.ListADT;
 import collections.interfaces.UnorderedListADT;
 
 public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphADT <T>{
+
+        private enum SearchType {
+            CONNECTOR_REQUIRED,
+            PORTAL_ONLY,
+            CONNECTOR_ONLY,
+        }
 
         /**
          * Constructor of PathGameGraph.
@@ -38,7 +48,106 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
             }
             return count;
         }
-    
+        private Iterator<Integer> iteratorShortestPathIndices(SearchType typeOfSearch, int startIndex, int targetIndex) throws EmptyCollectionException, NullException {
+            int index = startIndex;
+            int[] pathLength = new int[this.numVertices];
+            int[] predecessor = new int[this.numVertices];
+            LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
+            ArrayUnorderedList<Integer> resultList = new ArrayUnorderedList<>();
+
+            if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)
+                    || (startIndex == targetIndex)) {
+                return resultList.iterator();
+            }
+
+            boolean[] visited = new boolean[this.numVertices];
+            for (int i = 0; i < this.numVertices; i++) {
+                visited[i] = false;
+            }
+
+            traversalQueue.enqueue(startIndex);
+            visited[startIndex] = true;
+            pathLength[startIndex] = 0;
+            predecessor[startIndex] = -1;
+
+            if (typeOfSearch == SearchType.CONNECTOR_ONLY) {
+                while (!traversalQueue.isEmpty() && (index != targetIndex)) {
+                    index = (traversalQueue.dequeue());
+
+                    // Update the pathLength for each unvisited vertex adjacent to the vertex at the current index
+                    for (int i = 0; i < this.numVertices; i++) {
+                        if (this.adjMatrix[index][i] && !visited[i] && this.vertices[i] instanceof IConnector) {
+                            pathLength[i] = pathLength[index] + 1;
+                            predecessor[i] = index;
+                            traversalQueue.enqueue(i);
+                            visited[i] = true;
+                        }
+                    }
+                }
+            } else if (typeOfSearch == SearchType.PORTAL_ONLY) {
+                while (!traversalQueue.isEmpty() && (index != targetIndex)) {
+                    index = (traversalQueue.dequeue());
+
+                    // Update the pathLength for each unvisited vertex adjacent to the vertex at the current index
+                    for (int i = 0; i < this.numVertices; i++) {
+                        if (this.adjMatrix[index][i] && !visited[i] && this.vertices[i] instanceof IPortal) {
+                            pathLength[i] = pathLength[index] + 1;
+                            predecessor[i] = index;
+                            traversalQueue.enqueue(i);
+                            visited[i] = true;
+                        }
+                    }
+                }
+            } else if (typeOfSearch == SearchType.CONNECTOR_REQUIRED) {
+                boolean visitedConnector = false;
+
+                while (!traversalQueue.isEmpty() && (index != targetIndex)) {
+                    index = (traversalQueue.dequeue());
+
+                    // Update the pathLength for each unvisited vertex adjacent to the vertex at the current index
+                    for (int i = 0; i < this.numVertices; i++) {
+                        if (this.adjMatrix[index][i] && !visited[i]) {
+                            pathLength[i] = pathLength[index] + 1;
+                            predecessor[i] = index;
+                            traversalQueue.enqueue(i);
+                            visited[i] = true;
+
+                            // if the vertex is a connector, mark it as visited
+                            if (this.vertices[i] instanceof IConnector) {
+                                visitedConnector = true;
+                            }
+                        }
+                    }
+
+                    // if the target index was reached and a connector was visited, break the loop
+                    // otherwise, if a connector was not visited, continue the loop
+                    if (index == targetIndex && visitedConnector) {
+                        break;
+                    }
+
+                }
+            }
+
+            // no path must have been found
+            if (index != targetIndex) {
+                return resultList.iterator();
+            }
+
+            LinkedStack<Integer> stack = new LinkedStack<>();
+            index = targetIndex;
+            stack.push(index);
+            do {
+                index = predecessor[index];
+                stack.push(index);
+            } while (index != startIndex);
+
+            while (!stack.isEmpty()) {
+                resultList.addToRear(stack.pop());
+            }
+
+            return resultList.iterator();
+        }
+
         /**
          * Gets the number of {@link Connector connectores} in graph.
          * @return the number of {@link Connector connectores} in graph.
@@ -116,34 +225,70 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
          */
         @Override
         public Iterator<ILocal> shortestPathBetweenTwoPoints(T source, T destiny) throws NotPlaceInstanceException{
-            return null;
-    
+            Iterator<ILocal> iterator = (Iterator<ILocal>) super.iteratorShortestPath(source, destiny);
+            return iterator;
         }
     
         /**
          * Shortest path considering crossing only through portals.
          * @param source starting point, starting point
-         * @param listOfPortals list of existing portals
+         * @param destiny Point of arrival, place where you want to go
          * @return iterator with the path.
          * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
          */
         @Override
-        public Iterator<ILocal> shortestPathWithOnlyPortals(T source, ListADT<String> listOfPortals) throws NotPlaceInstanceException{
-            return null;
-    
+        public Iterator<ILocal> shortestPathWithOnlyPortals(T source, T destiny) throws NotPlaceInstanceException{
+            ArrayUnorderedList<ILocal> resultList = new ArrayUnorderedList<>();
+            if (!indexIsValid(this.getIndex(source)) || !indexIsValid(this.getIndex(destiny))) {
+                return resultList.iterator();
+            }
+
+            Iterator<Integer> it;
+            try {
+                it = iteratorShortestPathIndices(SearchType.PORTAL_ONLY, this.getIndex(source), this.getIndex(destiny));
+
+                while (it.hasNext()) {
+                    resultList.addToRear((ILocal) this.vertices[it.next()]);
+                }
+
+            } catch (EmptyCollectionException | NullException e) {
+                e.printStackTrace();
+            }
+
+            return resultList.iterator();
         }
     
         /**
          * Shortest path with crossing only by connectors.
          * @param source starting point, starting point
-         * @param listOfConnectores list of existing connectors
+         * @param destiny Point of arrival, place where you want to go
          * @return iterator with the path.
          * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
          */
         @Override
-        public Iterator<ILocal> shortestPathWithOnlyConnectors(T source, ListADT<String> listOfConnectores) throws NotPlaceInstanceException{
-            return null;
-    
+        public Iterator<ILocal> shortestPathWithOnlyConnectors(T source, T destiny) throws NotPlaceInstanceException{
+            //TODO: Copy logic from shortestPathWithOnlyPortals
+            Iterator<ILocal> iteratorConnectorsOnly = null;
+            try {
+                iteratorConnectorsOnly = (Iterator<ILocal>) this.iteratorShortestPathIndices(SearchType.CONNECTOR_ONLY, this.getIndex(source), this.getIndex(destiny));
+            } catch (EmptyCollectionException | NullException e) {
+                throw new RuntimeException(e);
+            }
+
+            return iteratorConnectorsOnly;
+        }
+
+        @Override
+        public Iterator<ILocal> shortestPathAtleastOneConnector(T source, T destiny) throws NotPlaceInstanceException{
+            //TODO: Copy logic from shortestPathWithOnlyPortals
+            Iterator<ILocal> iteratorAtleastOneConnector = null;
+            try {
+                iteratorAtleastOneConnector = (Iterator<ILocal>) this.iteratorShortestPathIndices(SearchType.CONNECTOR_REQUIRED, this.getIndex(source), this.getIndex(destiny));
+            } catch (EmptyCollectionException | NullException e) {
+                throw new RuntimeException(e);
+            }
+
+            return iteratorAtleastOneConnector;
         }
     
     }

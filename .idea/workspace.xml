@@ -10,17 +10,9 @@
     <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/bin/main/api/exceptions/ElementAlreadyExistsException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/bin/main/api/exceptions/NotPlaceInstanceException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/Connector.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/Connector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/LocalsManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/LocalsManagement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/PathGameGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/PathGameGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/bin/main/api/implementation/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/implementation/Route.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/bin/main/api/interfaces/IPathGameGraphADT.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/interfaces/IPathGameGraphADT.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/bin/main/api/interfaces/IRoute.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/api/interfaces/IRoute.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Route.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IRoute.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IRoute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPathGameGraphADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPathGameGraphADT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/collections/implementation/MatrixGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/collections/implementation/MatrixGraph.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,11 +262,29 @@
       <workItem from="1674838334958" duration="7448000" />
       <workItem from="1674847203477" duration="32000" />
       <workItem from="1674847256620" duration="5926000" />
+      <workItem from="1675044973899" duration="5861000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

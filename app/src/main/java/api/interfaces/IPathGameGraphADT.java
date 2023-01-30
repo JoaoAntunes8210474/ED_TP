@@ -61,16 +61,24 @@ public interface IPathGameGraphADT<T> extends GraphADT<T> {
      * @return iterator with the path.
      * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
      */
-    Iterator<ILocal> shortestPathWithOnlyPortals(T source, ListADT<String> listOfPortals) throws NotPlaceInstanceException;
+    Iterator<ILocal> shortestPathWithOnlyPortals(T source, T destiny) throws NotPlaceInstanceException;
 
     /**
-     * Shortest path with crossing only by connectors.
+     * Shortest path between two locals with crossing only by connectors.
      * @param source starting point, starting point
-     * @param listOfConnectores list of existing connectors
+     * @param destiny Point of arrival, place where you want to go
      * @return iterator with the path.
      * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
      */
-    Iterator<ILocal> shortestPathWithOnlyConnectors(T source, ListADT<String> listOfConnectores)throws NotPlaceInstanceException;
+    Iterator<ILocal> shortestPathWithOnlyConnectors(T source, T destiny)throws NotPlaceInstanceException;
 
+    /**
+     * Shortest path between two locals crossing through at least one connector.
+     * @param source starting point, starting point
+     * @param destiny Point of arrival, place where you want to go
+     * @return
+     * @throws NotPlaceInstanceException
+     */
+    Iterator<ILocal> shortestPathAtleastOneConnector(T source, T destiny) throws NotPlaceInstanceException;
 
 }

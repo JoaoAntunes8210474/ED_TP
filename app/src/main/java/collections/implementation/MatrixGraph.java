@@ -259,6 +259,7 @@ public class MatrixGraph<T> implements GraphADT<T> {
         } catch (EmptyCollectionException | NullException e) {
             e.printStackTrace();
         }
+
         return resultList.iterator();
     }
 
