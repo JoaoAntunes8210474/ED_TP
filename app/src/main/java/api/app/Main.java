@@ -14,12 +14,17 @@ import org.json.simple.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLOutput;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
 
+    private static final int NUM_ACTIONS_CONNECTOR = 1;
+
+    private static final int NUM_ACTIONS_PORTAL = 3;
+
+    private static final int NUM_AVAILABLE_ACTIONS = 7;
+
+    private static final int NUM_PORTALS_TO_WIN = 5;
     /**
      * Method that gets the option selected by the user
      * @return option selected by the user
@@ -32,6 +37,14 @@ public class Main {
         } while (option < 0 || option > 9);
 
         return option;
+    }
+
+    /**
+     * Method that checks if the player's current location is a portal
+     * @return true if the player's current location is a portal, false otherwise
+     */
+    private static boolean checkIfPlayerLocationIsPortal(Player currentPlayer) {
+        return currentPlayer.getCurrentLocation() instanceof IPortal;
     }
 
     /**
@@ -51,9 +64,10 @@ public class Main {
             }
         }
 
-        return numPortalsTeamSparks == 5 || numPortalsTeamGiants == 5;
+        return numPortalsTeamSparks >= NUM_PORTALS_TO_WIN || numPortalsTeamGiants >= NUM_PORTALS_TO_WIN;
     }
 
+    @SuppressWarnings("unchecked")
     /**
      * Method that saves the game state to a file
      */
@@ -81,27 +95,36 @@ public class Main {
     private static void gameStart(PlayerManagement playerManagement, LocalsManagement localsManagement) {
         int playerTurn = 0;
         boolean gameEnd = false;
+        boolean currentLocationIsPortal;
         int indiceLista = 0;
         int option;
+        Player currentPlayer;
+        int numberOfAvailableActionsForPortals = NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_PORTAL;
+        int numberOfAvailableActionsForConnectors = NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR;
 
         while (!(gameEnd)) {
             try {
-                // Get the neighbours of the current location of the player
-                ArrayUnorderedList<ILocal> neighbours = localsManagement.getPathGraph().getNeighbours(playerManagement.getPlayerList().get(playerTurn).getCurrentLocation());
+                // Get the current player
+                currentPlayer = playerManagement.getPlayerList().get(playerTurn);
 
-                System.out.println("Turno do jogador " + playerManagement.getPlayerList().get(playerTurn).getName());
+                currentLocationIsPortal = Main.checkIfPlayerLocationIsPortal(currentPlayer);
+
+                // Get the neighbours of the current location of the player
+                ArrayUnorderedList<ILocal> neighbours = localsManagement.getPathGraph().getNeighbours(currentPlayer.getCurrentLocation());
+
+                System.out.println("Turno do jogador " + currentPlayer.getName());
 
                 // Display the possible actions
                 System.out.println("Possíveis ações: ");
                 System.out.println("0 - Sair do jogo e guardar o progresso");
                 // If a player is in a portal, he can conquer it, attack it, reinforce it or visit a neighbour
-                if (playerManagement.getPlayerList().get(playerTurn).getCurrentLocation() instanceof IPortal) {
+                if (currentLocationIsPortal) {
                     System.out.println("1 - Conquistar portal");
                     System.out.println("2 - Atacar portal");
                     System.out.println("3 - Reforçar portal");
 
-                    for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * 4), 4); i++) {
-                        System.out.println((3 + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName());
+                    for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * numberOfAvailableActionsForPortals), numberOfAvailableActionsForPortals); i++) {
+                        System.out.println((NUM_ACTIONS_PORTAL + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName());
                     }
 
                     System.out.println("8 - Mudar para a próxima página de locais a visitar");
@@ -114,42 +137,30 @@ public class Main {
 
                     // Execute the action selected by the user
                     switch (option) {
-                        case 0:
+                        case 0 -> {
                             gameEnd = true;
                             Main.saveGameState(playerManagement, localsManagement, playerTurn);
-                            break;
-                        case 1:
+                        }
+                        case 1 ->
                             // TODO: Conquer portal (if possible) method implementation
-                            playerManagement.getPlayerList().get(playerTurn).conquerPortal();
-                            break;
-                        case 2:
+                                currentPlayer.conquerPortal();
+                        case 2 ->
                             // TODO: Attack portal (if possible) method implementation
-                            playerManagement.getPlayerList().get(playerTurn).attackPortal();
-                            break;
-                        case 3:
+                                currentPlayer.attackPortal();
+                        case 3 ->
                             // TODO: Reinforce portal (if possible) method implementation
-                            playerManagement.getPlayerList().get(playerTurn).reinforcePortal();
-                            break;
-                        case 8:
-                            indiceLista++;
-                            break;
-                        case 9:
-                            indiceLista--;
-                            break;
-                        default:
-                            playerManagement.getPlayerList().get(playerTurn).setCurrentLocation(neighbours.get((indiceLista * 4) + (option - 4)));
-                            break;
+                                currentPlayer.reinforcePortal();
+                        case 8 -> indiceLista++;
+                        case 9 -> indiceLista--;
+                        default ->
+                                currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForPortals) + option - numberOfAvailableActionsForPortals));
                     }
-
-                    // Change the turn to the next player in the list of players
-                    // If the player is the last in the list, the turn goes to the first player
-                    playerTurn = (playerTurn + 1) % playerManagement.getPlayerList().size();
                 } else {
                     // If a player is in a connector, he can recharge his energy or visit a neighbour
                     System.out.println("1 - Recarregar energia");
 
-                    for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * 6), 6); i++) {
-                        System.out.println((1 + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName());
+                    for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * numberOfAvailableActionsForConnectors), numberOfAvailableActionsForConnectors); i++) {
+                        System.out.println((NUM_ACTIONS_CONNECTOR + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName());
                     }
 
                     System.out.println("8 - Mudar para a próxima página de locais a visitar");
@@ -168,7 +179,7 @@ public class Main {
                             break;
                         case 1:
                             // TODO: recharge energy (if not on cooldown) method implementation
-                            playerManagement.getPlayerList().get(playerTurn).rechargeEnergy();
+                            currentPlayer.rechargeEnergy();
                             break;
                         case 8:
                             indiceLista++;
@@ -177,18 +188,18 @@ public class Main {
                             indiceLista--;
                             break;
                         default:
-                            playerManagement.getPlayerList().get(playerTurn).setCurrentLocation(neighbours.get((indiceLista * 6) + (option - 2)));
+                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForConnectors) + option - numberOfAvailableActionsForConnectors));
                             break;
                     }
-
-                    // Change the turn to the next player in the list of players
-                    // If the current player is the last one in the list, the turn goes to the first player
-                    playerTurn = (playerTurn + 1) % playerManagement.getPlayerList().size();
                 }
-            } catch (NotPlaceInstanceException e) {
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (NotPlaceInstanceException | IOException e) {
+                e.printStackTrace();
             }
+
+
+            // Change the turn to the next player in the list of players
+            // If the player is the last in the list, the turn goes to the first player
+            playerTurn = (playerTurn + 1) % playerManagement.getPlayerList().size();
 
             // Check if the game can end
             // If the game can end, the game ends
