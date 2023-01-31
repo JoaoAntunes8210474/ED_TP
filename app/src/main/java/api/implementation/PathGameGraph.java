@@ -323,5 +323,36 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
 
             return resultList.iterator();
         }
+
+        /**
+         * Shortest path with crossing only by portals and connectors.
+         * @param vertex starting point, starting point
+         * @return iterator with the path.
+         * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
+         */
+        @SuppressWarnings("unchecked")
+        public ArrayUnorderedList<ILocal> getNeighbours(T vertex) throws NotPlaceInstanceException{
+            if (!(vertex instanceof ILocal)) {
+                throw new NotPlaceInstanceException("Vertex is not a ILocal instance.");
+            }
+
+            ArrayUnorderedList<ILocal> neighours = new ArrayUnorderedList<>();
+            int index = this.getIndex(vertex);
+            int i;
+
+            for (i = 0; i < super.numVertices; i++) {
+                if (super.adjMatrix[i][index]) {
+                    neighours.addToRear((ILocal) super.vertices[i]);
+                }
+            }
+
+            for (i = 0; i < super.numVertices; i++) {
+                if (super.adjMatrix[index][i] && !neighours.contains((ILocal) super.vertices[i])) {
+                    neighours.addToRear((ILocal) super.vertices[i]);
+                }
+            }
+
+            return neighours;
+        }
     
     }

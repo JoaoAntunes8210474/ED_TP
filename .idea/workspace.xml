@@ -7,10 +7,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="">
+    <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
+      <change afterPath="$PROJECT_DIR$/app/files/Game.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/LocalsManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/LocalsManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/ILocalsManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/ILocalsManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPathGameGraphADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPathGameGraphADT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/collections/implementation/MatrixGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/collections/implementation/MatrixGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/collections/interfaces/GraphADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/collections/interfaces/GraphADT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,8 +269,17 @@
       <workItem from="1674838334958" duration="7448000" />
       <workItem from="1674847203477" duration="32000" />
       <workItem from="1674847256620" duration="5926000" />
-      <workItem from="1675044973899" duration="6944000" />
+      <workItem from="1675044973899" duration="7041000" />
+      <workItem from="1675175141652" duration="12414000" />
     </task>
+    <task id="LOCAL-00001" summary="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
+      <created>1675053872347</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675053872347</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +304,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

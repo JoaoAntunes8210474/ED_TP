@@ -9,6 +9,12 @@ import java.util.Iterator;
 public interface GraphADT<T> {
 
     /**
+     * Returns all the vertices in this graph as an array.
+     * @return an array of all the vertices in this graph
+     */
+    public T[] getVertices();
+
+    /**
      * Adds a vertex to this graph, associating object with vertex.
      *
      * @param vertex the vertex to be added to this graph

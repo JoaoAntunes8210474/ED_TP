@@ -24,6 +24,10 @@ public class MatrixGraph<T> implements GraphADT<T> {
         this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
     }
 
+    public T[] getVertices() {
+        return this.vertices;
+    }
+
     @Override
     public void addVertex(T vertex) {
         if (numVertices == vertices.length) {

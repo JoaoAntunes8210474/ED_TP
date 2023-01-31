@@ -3,6 +3,7 @@ package api.interfaces;
 import java.util.Iterator;
 
 import api.exceptions.NotPlaceInstanceException;
+import collections.implementation.ArrayUnorderedList;
 import collections.interfaces.GraphADT;
 
 /**
@@ -75,9 +76,16 @@ public interface IPathGameGraphADT<T> extends GraphADT<T> {
      * Shortest path between two locals crossing through at least one connector.
      * @param source starting point, starting point
      * @param destiny Point of arrival, place where you want to go
-     * @return
-     * @throws NotPlaceInstanceException
+     * @return iterator with the path.
+     * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
      */
     Iterator<ILocal> shortestPathAtleastOneConnector(T source, T destiny) throws NotPlaceInstanceException;
 
+    /**
+     * Gets the neighbours of a local.
+     * @param vertex local to get neighbours.
+     * @return iterator with the neighbours.
+     * @throws NotPlaceInstanceException if vertex is not {@link ILocal local} instance.
+     */
+    ArrayUnorderedList<ILocal> getNeighbours(T vertex) throws NotPlaceInstanceException;
 }

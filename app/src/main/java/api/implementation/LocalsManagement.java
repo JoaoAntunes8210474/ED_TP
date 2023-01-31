@@ -38,6 +38,9 @@ public class LocalsManagement implements ILocalsManagement {
         this.pathGraph = new PathGameGraph<>();
     }
 
+    public IPathGameGraphADT<ILocal> getPathGraph(){
+        return this.pathGraph;
+    }
 
     /**
      * Adds a new location to the graph
