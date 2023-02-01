@@ -5,6 +5,7 @@ import java.io.IOException;
 import api.exceptions.ElementAlreadyExistsException;
 import api.implementation.ConnectorPlayerInteration;
 import collections.exceptions.EmptyCollectionException;
+import collections.implementation.MatrixGraph;
 
 /**
  * Class for managing locations and routes
@@ -126,4 +127,9 @@ public interface ILocalsManagement {
      */
     public String importPathsFromJSON(String fileName) throws IOException;
 
+    /**
+     * Get the graph of the game
+     * @return the graph of the game
+     */
+    public IPathGameGraphADT<ILocal> getPathGraph();
 }

@@ -3,8 +3,8 @@ package api.interfaces;
 import java.util.Iterator;
 
 import api.exceptions.NotPlaceInstanceException;
+import collections.implementation.ArrayUnorderedList;
 import collections.interfaces.GraphADT;
-import collections.interfaces.ListADT;
 
 /**
  * Contract of a graph with paths of a game between portals and connectors.
@@ -57,20 +57,35 @@ public interface IPathGameGraphADT<T> extends GraphADT<T> {
     /**
      * Shortest path considering crossing only through portals.
      * @param source starting point, starting point
-     * @param listOfPortals list of existing portals
+     * @param destiny Point of arrival, place where you want to go
      * @return iterator with the path.
      * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
      */
-    Iterator<ILocal> shortestPathWithOnlyPortals(T source, ListADT<String> listOfPortals) throws NotPlaceInstanceException;
+    Iterator<ILocal> shortestPathWithOnlyPortals(T source, T destiny) throws NotPlaceInstanceException;
 
     /**
-     * Shortest path with crossing only by connectors.
+     * Shortest path between two locals with crossing only by connectors.
      * @param source starting point, starting point
-     * @param listOfConnectores list of existing connectors
+     * @param destiny Point of arrival, place where you want to go
      * @return iterator with the path.
      * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
      */
-    Iterator<ILocal> shortestPathWithOnlyConnectors(T source, ListADT<String> listOfConnectores)throws NotPlaceInstanceException;
+    Iterator<ILocal> shortestPathWithOnlyConnectors(T source, T destiny)throws NotPlaceInstanceException;
 
+    /**
+     * Shortest path between two locals crossing through at least one connector.
+     * @param source starting point, starting point
+     * @param destiny Point of arrival, place where you want to go
+     * @return iterator with the path.
+     * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
+     */
+    Iterator<ILocal> shortestPathAtleastOneConnector(T source, T destiny) throws NotPlaceInstanceException;
 
+    /**
+     * Gets the neighbours of a local.
+     * @param vertex local to get neighbours.
+     * @return iterator with the neighbours.
+     * @throws NotPlaceInstanceException if vertex is not {@link ILocal local} instance.
+     */
+    ArrayUnorderedList<ILocal> getNeighbours(T vertex) throws NotPlaceInstanceException;
 }

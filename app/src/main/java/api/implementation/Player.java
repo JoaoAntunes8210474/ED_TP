@@ -1,6 +1,8 @@
 package api.implementation;
 
+import api.interfaces.ILocal;
 import api.interfaces.IPlayer;
+import api.interfaces.IPortal;
 
 /**
  * Class representing a player.
@@ -19,6 +21,8 @@ public class Player implements IPlayer, Comparable<Player> {
 
     //Points obtained by the player during interaction with the game.
     private long experiencePoints;
+
+    private ILocal currentLocation;
 
     //Amount of energy the player has.
     private int currentEnergy;
@@ -73,6 +77,16 @@ public class Player implements IPlayer, Comparable<Player> {
     }
 
     /**
+     * Get the current location of the player.
+     *
+     * @return Current location of the player.
+     */
+    @Override
+    public ILocal getCurrentLocation() {
+        return currentLocation;
+    }
+
+    /**
      * Get the amount of points the player has in the game.
      *
      * @return Points obtained by the player during interaction with the game.
@@ -118,6 +132,16 @@ public class Player implements IPlayer, Comparable<Player> {
     @Override
     public void setTeam(String team) {
         this.team = team;
+    }
+
+    /**
+     * Set and change the current location of the player.
+     *
+     * @param currentLocation Current location of the player.
+     */
+    @Override
+    public void setCurrentLocation(ILocal currentLocation) {
+        this.currentLocation = currentLocation;
     }
 
     /**

@@ -27,6 +27,13 @@ public interface IPlayer {
     public int getLevel();
 
     /**
+     * Get the current location of the player.
+     *
+     * @return Current location of the player.
+     */
+    public ILocal getCurrentLocation();
+
+    /**
      * Get the amount of points the player has in the game.
      *
      * @return Points obtained by the player during interaction with the game.
@@ -58,6 +65,13 @@ public interface IPlayer {
      * @param team Team the player belongs to.
      */
     public void setTeam(String team);
+
+    /**
+     * Set and change the current location of the player.
+     *
+     * @param currentLocation Current location of the player.
+     */
+    public void setCurrentLocation(ILocal currentLocation);
 
     /**
      * Set and change the level in which the player is in the game
