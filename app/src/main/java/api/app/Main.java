@@ -137,23 +137,30 @@ public class Main {
 
                     // Execute the action selected by the user
                     switch (option) {
-                        case 0 -> {
+                        case 0:
                             gameEnd = true;
                             Main.saveGameState(playerManagement, localsManagement, playerTurn);
-                        }
-                        case 1 ->
+                            break;
+                        case 1:
                             // TODO: Conquer portal (if possible) method implementation
-                                currentPlayer.conquerPortal();
-                        case 2 ->
+                                //currentPlayer.conquerPortal();
+                            break;
+                        case 2:
                             // TODO: Attack portal (if possible) method implementation
-                                currentPlayer.attackPortal();
-                        case 3 ->
+                                //currentPlayer.attackPortal();
+                            break;
+                        case 3:
                             // TODO: Reinforce portal (if possible) method implementation
-                                currentPlayer.reinforcePortal();
-                        case 8 -> indiceLista++;
-                        case 9 -> indiceLista--;
-                        default ->
-                                currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForPortals) + option - numberOfAvailableActionsForPortals));
+                                //currentPlayer.reinforcePortal();
+                            break;
+                        case 8:
+                            indiceLista++;
+                            break;
+                        case 9:
+                            indiceLista--;
+                            break;
+                        default:
+                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForPortals) + option - numberOfAvailableActionsForPortals));
                     }
                 } else {
                     // If a player is in a connector, he can recharge his energy or visit a neighbour
@@ -179,7 +186,7 @@ public class Main {
                             break;
                         case 1:
                             // TODO: recharge energy (if not on cooldown) method implementation
-                            currentPlayer.rechargeEnergy();
+                            //currentPlayer.rechargeEnergy();
                             break;
                         case 8:
                             indiceLista++;
