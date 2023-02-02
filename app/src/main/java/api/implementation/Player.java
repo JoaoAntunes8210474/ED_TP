@@ -1,5 +1,6 @@
 package api.implementation;
 
+import api.interfaces.IConnector;
 import api.interfaces.ILocal;
 import api.interfaces.IPlayer;
 import api.interfaces.IPortal;
@@ -9,6 +10,17 @@ import api.interfaces.IPortal;
  * Class that implements the IPlayer interface contract.
  */
 public class Player implements IPlayer, Comparable<Player> {
+    private final int FLAT_ATTACK_EXPERIENCE_POINTS = 15;
+
+    private final int FLAT_CONQUER_EXPERIENCE_POINTS = 25;
+
+    private final int FLAT_REINFORCE_EXPERIENCE_POINTS = 10;
+
+    private final int FLAT_RECHARGE_EXPERIENCE_POINTS = 5;
+
+    private final double X_VALUE_IN_FORMULA = 0.10;
+
+    private final int Y_VALUE_IN_FORMULA = 2;
 
     //Player's name
     private String name;
@@ -30,7 +42,6 @@ public class Player implements IPlayer, Comparable<Player> {
     //Number of portals conquered by the player
     private int numPortals;
 
-
     /**
      * Constructor method is used to instantiate objects of type player.
      * @param name Player's name
@@ -43,6 +54,44 @@ public class Player implements IPlayer, Comparable<Player> {
         this.experiencePoints = 0;
         this.currentEnergy = 0;
         this.numPortals = 0;
+    }
+
+    /**
+     * Method that adds experience points to the player depending on the action performed by the player.
+     * @param actionPlayerPerformed Action performed by the player.
+     */
+    private void addExperiencePoints(String actionPlayerPerformed) {
+        switch (actionPlayerPerformed) {
+            case "ATTACK":
+                this.experiencePoints += ((long) FLAT_ATTACK_EXPERIENCE_POINTS * this.level);
+                break;
+            case "REINFORCE":
+                this.experiencePoints += ((long) FLAT_REINFORCE_EXPERIENCE_POINTS * this.level);
+                break;
+            case "CONQUER":
+                this.experiencePoints += ((long) FLAT_CONQUER_EXPERIENCE_POINTS * this.level);
+                break;
+            case "RECHARGE":
+                this.experiencePoints += ((long) FLAT_RECHARGE_EXPERIENCE_POINTS * this.level);
+                break;
+        }
+    }
+
+    /**
+     * Method that returns a boolean value depending on whether the player can increase level.
+     * @return Boolean value depending on whether the player can increase level.
+     */
+    private boolean canIncreaseLevel() {
+        return this.experiencePoints >= Math.pow((this.level/X_VALUE_IN_FORMULA), Y_VALUE_IN_FORMULA);
+    }
+
+    /**
+     * Method that increases the level of the player.
+     */
+    private void increaseLevel() {
+        if (canIncreaseLevel()) {
+            this.level++;
+        }
     }
 
     /**
@@ -184,6 +233,66 @@ public class Player implements IPlayer, Comparable<Player> {
     }
 
     /**
+     * Method that allows the player to attack the portal in the current location using the energy of the player.
+     * If the player has enough energy, the player can conquer the portal.
+     */
+    @Override
+    public void attackPortal() {
+        if (!(this.currentLocation instanceof IPortal)) {
+            throw new IllegalArgumentException("The current location is not a portal.");
+        }
+
+        this.addExperiencePoints("ATTACK");
+        this.increaseLevel();
+    }
+
+    /**
+     * Method that allows the player to conquer the portal in the current location using the energy of the player.
+     */
+    @Override
+    public void conquerPortal() {
+        if (!(this.currentLocation instanceof IPortal)) {
+            throw new IllegalArgumentException("The current location is not a portal.");
+        }
+
+        this.addExperiencePoints("CONQUER");
+        this.increaseLevel();
+    }
+
+    /**
+     * Method that allows the player to reinforce the portal in the current location if the player has enough energy.
+     * Only works if the portal is conquered by the player's team.
+     */
+    @Override
+    public void reinforcePortal() {
+        if (!(this.currentLocation instanceof IPortal)) {
+            throw new IllegalArgumentException("The current location is not a portal.");
+        }
+
+        this.addExperiencePoints("REINFORCE");
+        this.increaseLevel();
+    }
+
+    /**
+     * Method that allows the player to recharge his energy.
+     */
+    @Override
+    public void rechargeEnergy() {
+        if (!(this.currentLocation instanceof IConnector)) {
+            throw new IllegalArgumentException("The current location is not a connector.");
+        }
+
+        Connector connector = (Connector) this.currentLocation;
+
+        this.currentEnergy += connector.getAmountEnergyItHas();
+
+        //connector.getPlayers().addToRear();
+
+        this.addExperiencePoints("RECHARGE");
+        this.increaseLevel();
+    }
+
+    /**
      * Aims to return a string that represents a player, with information about him.
      *
      * @return string that represents a player, with information about him.
@@ -201,13 +310,7 @@ public class Player implements IPlayer, Comparable<Player> {
      */
     @Override
     public int compareTo(Player player) {
-        if (this.getLevel() > player.getLevel()) {
-            return 1;
-        } else if (this.getLevel() == player.getLevel()) {
-            return 0;
-        } else {
-            return -1;
-        }
+        return Integer.compare(this.getLevel(), player.getLevel());
     }
 
 

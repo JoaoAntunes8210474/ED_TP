@@ -160,7 +160,7 @@ public class LinkedBinaryTree<T> implements BinaryTreeADT<T> {
     }
 
     protected void levelorder(BinaryTreeNode<T> root, ArrayUnorderedList<T> results) {
-        LinkedQueue<BinaryTreeNode<T>> nodes = new LinkedQueue<>();
+        ArrayUnorderedList<BinaryTreeNode<T>> nodes = new ArrayUnorderedList<>();
         BinaryTreeNode<T> node = null;
         nodes.enqueue(root);
         while (!nodes.isEmpty()) {

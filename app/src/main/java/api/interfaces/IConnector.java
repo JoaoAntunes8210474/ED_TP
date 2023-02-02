@@ -2,11 +2,12 @@ package api.interfaces;
 
 import java.util.Iterator;
 
+import api.implementation.Player;
 import org.json.simple.JSONObject;
 
 import api.implementation.ConnectorPlayerInteration;
 import collections.exceptions.EmptyCollectionException;
-import collections.implementation.LinkedQueue;
+import collections.implementation.ArrayUnorderedList;
 
 /**
  *
@@ -24,7 +25,7 @@ public interface IConnector extends ILocal{
     * Get a set of players that have recently interacted with the connector
     * @return players who have recently interacted with the connector
     */
-   public LinkedQueue<ConnectorPlayerInteration> getPlayers();
+   public ArrayUnorderedList<ConnectorPlayerInteration> getPlayers();
 
    /**
     * Change the specific time interval that the connector supplies power after interaction
@@ -36,13 +37,13 @@ public interface IConnector extends ILocal{
     * Change the set of players that have recently interacted with the connector
     * @param players set of players who have recently interacted with the connector
     */
-   public void setPlayers(LinkedQueue<ConnectorPlayerInteration> players);
+   public void setPlayers(ArrayUnorderedList<ConnectorPlayerInteration> players);
 
    /**
     * Returns a list of players who interacted with the connector
     * @return the iterator with the list of players
     */
-   public Iterator<ConnectorPlayerInteration> getListOfPlayersInteration() throws EmptyCollectionException;
+   public Iterator<Player> getListOfPlayersInteration() throws EmptyCollectionException;
 
    /**
     * Transforms the connector into a JSONObject representation
