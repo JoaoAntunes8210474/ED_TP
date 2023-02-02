@@ -11,7 +11,7 @@ import api.interfaces.IRoute;
 import collections.exceptions.EmptyCollectionException;
 import collections.exceptions.NullException;
 import collections.implementation.ArrayUnorderedList;
-import collections.implementation.LinkedQueue;
+import collections.implementation.ArrayUnorderedList;
 import collections.implementation.LinkedStack;
 import collections.implementation.MatrixGraph;
 import collections.interfaces.UnorderedListADT;
@@ -51,7 +51,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
             int index = startIndex;
             int[] pathLength = new int[this.numVertices];
             int[] predecessor = new int[this.numVertices];
-            LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
+            ArrayUnorderedList<Integer> traversalQueue = new ArrayUnorderedList<>();
             ArrayUnorderedList<Integer> resultList = new ArrayUnorderedList<>();
 
             if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)

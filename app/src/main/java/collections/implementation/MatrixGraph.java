@@ -134,7 +134,7 @@ public class MatrixGraph<T> implements GraphADT<T> {
 
     private Iterator<T> iteratorBFS(int startIndex) {
         Integer x;
-        LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
+        ArrayUnorderedList<Integer> traversalQueue = new ArrayUnorderedList<>();
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
 
         if (!indexIsValid(startIndex)) {
@@ -271,7 +271,7 @@ public class MatrixGraph<T> implements GraphADT<T> {
         int index = startIndex;
         int[] pathLength = new int[numVertices];
         int[] predecessor = new int[numVertices];
-        LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
+        ArrayUnorderedList<Integer> traversalQueue = new ArrayUnorderedList<>();
         ArrayUnorderedList<Integer> resultList = new ArrayUnorderedList<>();
 
         if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)

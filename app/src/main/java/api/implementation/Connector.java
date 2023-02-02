@@ -8,7 +8,6 @@ import org.json.simple.JSONObject;
 
 import api.interfaces.IConnector;
 import collections.implementation.ArrayUnorderedList;
-import collections.implementation.LinkedQueue;
 import collections.interfaces.UnorderedListADT;
 import collections.exceptions.EmptyCollectionException;
 
@@ -22,7 +21,7 @@ public class Connector extends Local implements IConnector{
     private int cooldown;
     
     //set of players that interacted with the connector
-    private LinkedQueue<ConnectorPlayerInteration> players;
+    private UnorderedListADT<ConnectorPlayerInteration> players;
 
     /**
      * Constructor: instantiate objects of type connector
@@ -36,7 +35,7 @@ public class Connector extends Local implements IConnector{
     public Connector(int cooldown, int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
         super(id, name, localType, amountEnergyItHas, coordinates);
         this.cooldown = cooldown;
-        this.players = new LinkedQueue<>();  
+        this.players = new ArrayUnorderedList<>();  
     }
 
     /**
@@ -53,7 +52,7 @@ public class Connector extends Local implements IConnector{
      * @return players who have recently interacted with the connector
      */
     @Override
-    public LinkedQueue<ConnectorPlayerInteration> getPlayers() {
+    public UnorderedListADT<ConnectorPlayerInteration> getPlayers() {
         return this.players;
     }
 
@@ -62,7 +61,7 @@ public class Connector extends Local implements IConnector{
      * @param players set of players who have recently interacted with the connector
      */
     @Override
-    public void setPlayers(LinkedQueue<ConnectorPlayerInteration> players) {
+    public void setPlayers(ArrayUnorderedList<ConnectorPlayerInteration> players) {
         this.players = players;
     }
     
@@ -81,23 +80,15 @@ public class Connector extends Local implements IConnector{
      * @throws EmptyCollectionException
      */
     @Override
-    public Iterator<ConnectorPlayerInteration> getListOfPlayersInteration() throws EmptyCollectionException {
-        if (!this.players.isEmpty()) {
-            LinkedQueue<ConnectorPlayerInteration> listOfPlayers = this.players;
-            UnorderedListADT<ConnectorPlayerInteration> list = new ArrayUnorderedList<>();
+    public Iterator<Player> getListOfPlayersInteration() throws EmptyCollectionException {
+        UnorderedListADT<Player> listOfPlayers = new ArrayUnorderedList<>();
 
-            while (!listOfPlayers.isEmpty()) {
-                list.addToRear(listOfPlayers.dequeue());
-            }
-
-            Iterator<ConnectorPlayerInteration> iterator = list.iterator();
-            while (iterator.hasNext()) {
-                this.players.enqueue(iterator.next());
-            }
-
-            return list.iterator();
+        while (!this.players.isEmpty()) {
+            ConnectorPlayerInteration playerInteration = this.players.removeFirst();
+            listOfPlayers.addToRear(playerInteration.getPlayer());
         }
-        return null;
+
+        return listOfPlayers.iterator();
     }
 
 
