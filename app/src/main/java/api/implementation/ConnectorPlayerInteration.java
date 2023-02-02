@@ -1,6 +1,6 @@
 package api.implementation;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * Class that represents the interaction of a specific player with a specific connector.
@@ -11,16 +11,16 @@ public class ConnectorPlayerInteration {
     private Player player;
     
     //Date and time the player interacted with the connector
-    private LocalDateTime diaHoraInteracao;
+    private LocalTime horaInteracao;
 
     /**
      * Constructor method serves to instantiate objects of type ConnectorPlayerInteration.
      * @param player Player who interacted with the connector.
      * @param diaHoraInteracao Date and time the player interacted with the connector
      */
-    public ConnectorPlayerInteration(Player player, LocalDateTime diaHoraInteracao) {
+    public ConnectorPlayerInteration(Player player, LocalTime horaInteracao) {
         this.player = player;
-        this.diaHoraInteracao = diaHoraInteracao;
+        this.horaInteracao = horaInteracao;
     }
 
     /**
@@ -43,16 +43,16 @@ public class ConnectorPlayerInteration {
      * Get date and time when the player interacted with the connector.
      * @return diaHoraInteracao Date and time the player interacted with the connector
      */
-    public LocalDateTime getDiaHoraInteracao() {
-        return diaHoraInteracao;
+    public LocalTime getHoraInteracao() {
+        return this.horaInteracao;
     }
 
     /**
      * Set or change date and time when the player interacted with the connector.
      * @param diaHoraInteracao Date and time the player interacted with the connector
      */
-    public void setDiaHoraInteracao(LocalDateTime diaHoraInteracao) {
-        this.diaHoraInteracao = diaHoraInteracao;
+    public void setHoraInteracao(LocalTime horaInteracao) {
+        this.horaInteracao = horaInteracao;
     }
   
     /**
@@ -60,6 +60,6 @@ public class ConnectorPlayerInteration {
      */
     @Override
     public String toString() {
-        return "ConnectorPlayerInteration [player=" + player + ", diaHoraInteracao=" + diaHoraInteracao + "]";
+        return "ConnectorPlayerInteration [player=" + player + ", diaHoraInteracao=" + horaInteracao + "]";
     }    
 }

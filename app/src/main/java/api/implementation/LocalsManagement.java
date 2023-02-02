@@ -138,7 +138,7 @@ public class LocalsManagement implements ILocalsManagement {
             Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
             while (iteratorPortal.hasNext()) {
                 IPortal portal = iteratorPortal.next();
-                if (portal.getTeamPlayer().equals("Neutro")){
+                if (portal.getPlayerTeam().equals("Neutro")){
                     string += iteratorPortal.next().toString() + "\n";
                 }
             }
@@ -184,7 +184,7 @@ public class LocalsManagement implements ILocalsManagement {
             Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
             while (iteratorPortal.hasNext()) {
                 IPortal portal = iteratorPortal.next();
-                if (portal.getTeamPlayer().equals(team)){
+                if (portal.getPlayerTeam().equals(team)){
                         string += iteratorPortal.next().toString() + "\n";
                 }
             }

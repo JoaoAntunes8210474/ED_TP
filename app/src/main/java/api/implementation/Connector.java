@@ -51,9 +51,10 @@ public class Connector extends Local implements IConnector{
      * Get a set of players that have recently interacted with the connector
      * @return players who have recently interacted with the connector
      */
+    @SuppressWarnings("unchecked")
     @Override
-    public UnorderedListADT<ConnectorPlayerInteration> getPlayers() {
-        return this.players;
+    public ArrayUnorderedList<ConnectorPlayerInteration> getPlayers() {
+        return (ArrayUnorderedList<ConnectorPlayerInteration>) this.players;
     }
 
     /**
@@ -80,15 +81,8 @@ public class Connector extends Local implements IConnector{
      * @throws EmptyCollectionException
      */
     @Override
-    public Iterator<Player> getListOfPlayersInteration() throws EmptyCollectionException {
-        UnorderedListADT<Player> listOfPlayers = new ArrayUnorderedList<>();
-
-        while (!this.players.isEmpty()) {
-            ConnectorPlayerInteration playerInteration = this.players.removeFirst();
-            listOfPlayers.addToRear(playerInteration.getPlayer());
-        }
-
-        return listOfPlayers.iterator();
+    public Iterator<ConnectorPlayerInteration> getListOfPlayersInteration() throws EmptyCollectionException {
+        return this.players.iterator();
     }
 
 
@@ -110,14 +104,14 @@ public class Connector extends Local implements IConnector{
         root.put("Cooldown time", this.cooldown);
         
         if (this.players.isEmpty()) {
-            root.put("Clients", "Don't have any clients");
+            root.put("Players", "Don't have any players");
         } else {
-            JSONArray playresOfConnector = new JSONArray();
+            JSONArray playersOfConnector = new JSONArray();
             Iterator<ConnectorPlayerInteration> iterator = this.getListOfPlayersInteration();
             while (iterator.hasNext()) {
-                playresOfConnector.add(iterator.next());
+                playersOfConnector.add(iterator.next());
             }
-            root.put("Players", playresOfConnector);
+            root.put("Players", playersOfConnector);
         }
         return root; 
     }

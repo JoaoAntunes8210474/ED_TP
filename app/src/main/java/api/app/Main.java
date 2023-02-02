@@ -1,10 +1,7 @@
 package api.app;
 
 import api.exceptions.NotPlaceInstanceException;
-import api.implementation.ImportExportFiles;
-import api.implementation.LocalsManagement;
-import api.implementation.Player;
-import api.implementation.PlayerManagement;
+import api.implementation.*;
 import api.interfaces.*;
 import collections.implementation.ArrayUnorderedList;
 import com.google.gson.Gson;
@@ -14,10 +11,11 @@ import org.json.simple.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
-
+    private static final int COOLDOWN = 3;
     private static final int NUM_ACTIONS_CONNECTOR = 1;
 
     private static final int NUM_ACTIONS_PORTAL = 3;
@@ -25,6 +23,8 @@ public class Main {
     private static final int NUM_AVAILABLE_ACTIONS = 7;
 
     private static final int NUM_PORTALS_TO_WIN = 5;
+
+    private static LocalTime gameTimer = LocalTime.now();
     /**
      * Method that gets the option selected by the user
      * @return option selected by the user
@@ -36,7 +36,25 @@ public class Main {
             option = scanner.nextInt();
         } while (option < 0 || option > 9);
 
+        scanner.close();
+
         return option;
+    }
+
+    private static int getEnergyInputPortal(Player currentPlayer, Portal currentPlayerLocation) {
+        Scanner scanner = new Scanner(System.in);
+        int energy;
+        System.out.println("The amount of energy you have is: " + currentPlayer.getCurrentEnergy());
+        System.out.println("Portal's current energy: [" + currentPlayerLocation.getAmountEnergyItHas() + "/" + currentPlayerLocation.getMaxEnergy() + "]");
+        System.out.println("Insert the amount of energy you want to use to attack the portal: ");
+
+        do {
+            energy = scanner.nextInt();
+        } while (energy > currentPlayer.getCurrentEnergy() || energy < 0);
+
+        scanner.close();
+
+        return energy;
     }
 
     /**
@@ -96,11 +114,17 @@ public class Main {
         int playerTurn = 0;
         boolean gameEnd = false;
         boolean currentLocationIsPortal;
+        boolean playerTurnEnded = false;
+        Player currentPlayer;
+
         int indiceLista = 0;
         int option;
-        Player currentPlayer;
+
         int numberOfAvailableActionsForPortals = NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_PORTAL;
         int numberOfAvailableActionsForConnectors = NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR;
+
+        Scanner scanner = new Scanner(System.in);
+        int energy;
 
         while (!(gameEnd)) {
             try {
@@ -119,6 +143,7 @@ public class Main {
                 System.out.println("0 - Sair do jogo e guardar o progresso");
                 // If a player is in a portal, he can conquer it, attack it, reinforce it or visit a neighbour
                 if (currentLocationIsPortal) {
+                    Portal currentPlayerLocation = (Portal) currentPlayer.getCurrentLocation();
                     System.out.println("1 - Conquistar portal");
                     System.out.println("2 - Atacar portal");
                     System.out.println("3 - Reforçar portal");
@@ -142,16 +167,34 @@ public class Main {
                             Main.saveGameState(playerManagement, localsManagement, playerTurn);
                             break;
                         case 1:
-                            // TODO: Conquer portal (if possible) method implementation
-                                //currentPlayer.conquerPortal();
+                            if (currentPlayerLocation.getPlayerTeam().equals(currentPlayer.getTeam())) {
+                                System.out.println("O portal já pertence à sua equipa!");
+                                break;
+                            }
+
+                            energy = getEnergyInputPortal(currentPlayer, currentPlayerLocation);
+                            currentPlayer.conquerPortal(energy);
+                            playerTurnEnded = true;
                             break;
                         case 2:
-                            // TODO: Attack portal (if possible) method implementation
-                                //currentPlayer.attackPortal();
+                            if (currentPlayerLocation.getPlayerTeam().equals(currentPlayer.getTeam())) {
+                                System.out.println("O portal já pertence à sua equipa!");
+                                break;
+                            }
+
+                            energy = getEnergyInputPortal(currentPlayer, currentPlayerLocation);
+                            currentPlayer.attackPortal(energy);
+                            playerTurnEnded = true;
                             break;
                         case 3:
-                            // TODO: Reinforce portal (if possible) method implementation
-                                //currentPlayer.reinforcePortal();
+                            if (!currentPlayerLocation.getPlayerTeam().equals(currentPlayer.getTeam())) {
+                                System.out.println("O portal não pertence à sua equipa!");
+                                break;
+                            }
+
+                            energy = getEnergyInputPortal(currentPlayer, currentPlayerLocation);
+                            currentPlayer.reinforcePortal(energy);
+                            playerTurnEnded = true;
                             break;
                         case 8:
                             indiceLista++;
@@ -161,6 +204,15 @@ public class Main {
                             break;
                         default:
                             currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForPortals) + option - numberOfAvailableActionsForPortals));
+                    }
+
+                    if (!playerTurnEnded) {
+                        System.out.println("O turno do jogador " + currentPlayer.getName() + " nao terminou!");
+                    } else {
+                        playerTurnEnded = false;
+                        // Change the turn to the next player in the list of players
+                        // If the player is the last in the list, the turn goes to the first player
+                        playerTurn = (playerTurn + 1) % playerManagement.getPlayerList().size();
                     }
                 } else {
                     // If a player is in a connector, he can recharge his energy or visit a neighbour
@@ -185,8 +237,13 @@ public class Main {
                             Main.saveGameState(playerManagement, localsManagement, playerTurn);
                             break;
                         case 1:
-                            // TODO: recharge energy (if not on cooldown) method implementation
-                            //currentPlayer.rechargeEnergy();
+                            if (currentPlayer.rechargeEnergy().equals("You can't recharge your energy yet.")) {
+                                System.out.println("Your turn didn't end because you couldn't recharge your energy.");
+                            } else {
+                                // Change the turn to the next player in the list of players
+                                // If the player is the last in the list, the turn goes to the first player
+                                playerTurn = (playerTurn + 1) % playerManagement.getPlayerList().size();
+                            }
                             break;
                         case 8:
                             indiceLista++;
@@ -203,16 +260,20 @@ public class Main {
                 e.printStackTrace();
             }
 
-
-            // Change the turn to the next player in the list of players
-            // If the player is the last in the list, the turn goes to the first player
-            playerTurn = (playerTurn + 1) % playerManagement.getPlayerList().size();
-
             // Check if the game can end
             // If the game can end, the game ends
             gameEnd = Main.checkIfGameCanEnd(playerManagement);
-        }
 
+            Main.gameTimer = Main.gameTimer.plusMinutes(1);
+        }
+    }
+
+    public static LocalTime getGameTimer() {
+        return Main.gameTimer;
+    }
+
+    public static int getCooldown() {
+        return Main.COOLDOWN;
     }
 
     public static void main(String[] args) {
