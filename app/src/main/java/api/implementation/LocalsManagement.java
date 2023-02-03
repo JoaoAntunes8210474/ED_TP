@@ -333,7 +333,6 @@ public class LocalsManagement implements ILocalsManagement {
         FileWriter writer = new FileWriter(fileName);
         writer.write(json);
         writer.flush();
-        writer.close();
 
         return "O export foi feito com sucesso";
     }
@@ -351,7 +350,6 @@ public class LocalsManagement implements ILocalsManagement {
         FileWriter writer = new FileWriter(fileName);
         writer.write(json);
         writer.flush();
-        writer.close();
 
         return "O export foi feito com sucesso";
     }
@@ -368,7 +366,6 @@ public class LocalsManagement implements ILocalsManagement {
         FileWriter writer = new FileWriter(fileName);
         writer.write(json);
         writer.flush();
-        writer.close();
 
         return "O export foi feito com sucesso";
     }

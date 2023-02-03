@@ -333,7 +333,6 @@ public class PlayerManagement implements IPlayerManagement {
         FileWriter writer = new FileWriter(fileName);
         writer.write(json);
         writer.flush();
-        writer.close();
 
         return "O export foi feito com sucesso";
 

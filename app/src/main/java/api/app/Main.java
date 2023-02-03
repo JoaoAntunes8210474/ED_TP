@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,30 +35,24 @@ public class Main {
      * Method that gets the option selected by the user
      * @return option selected by the user
      */
-    private static int getOptionInput() {
-        Scanner scanner = new Scanner(System.in);
+    private static int getOptionInput(Scanner scanner) {
         int option;
         do {
             option = scanner.nextInt();
         } while (option < 0 || option > 9);
 
-        scanner.close();
-
         return option;
     }
 
-    private static int getEnergyInputPortal(Player currentPlayer, Portal currentPlayerLocation) {
-        Scanner scanner = new Scanner(System.in);
+    private static int getEnergyInputPortal(Player currentPlayer, Portal currentPlayerLocation, Scanner scanner) {
         int energy;
         System.out.println("The amount of energy you have is: " + currentPlayer.getCurrentEnergy());
         System.out.println("Portal's current energy: [" + currentPlayerLocation.getAmountEnergyItHas() + "/" + currentPlayerLocation.getMaxEnergy() + "]");
-        System.out.println("Insert the amount of energy you want to use to attack the portal: ");
+        System.out.println("Insert the amount of energy you want to use on the portal: ");
 
         do {
             energy = scanner.nextInt();
         } while (energy > currentPlayer.getCurrentEnergy() || energy < 0);
-
-        scanner.close();
 
         return energy;
     }
@@ -116,7 +111,10 @@ public class Main {
     private static void saveGameState(PlayerManagement playerManagement, LocalsManagement localsManagement) throws IOException {
         IImportExportFiles importExportFiles = new ImportExportFiles();
 
-        importExportFiles.exportJSON("files/Game.json", playerManagement, localsManagement);
+        File file = new File("Game.json");
+        String path = file.getAbsolutePath();
+
+        importExportFiles.exportJSON(path, playerManagement, localsManagement);
         JSONObject playerTurnJSON = new JSONObject();
         JSONObject gameTimerJSON = new JSONObject();
         playerTurnJSON.put("playerTurn", playerTurn);
@@ -126,11 +124,10 @@ public class Main {
         String playerTurnJson = beautifyGson.toJson(playerTurnJSON);
         String gameTimerJson = beautifyGson.toJson(gameTimerJSON);
 
-        FileWriter fileWriter = new FileWriter("files/Game.json");
+        FileWriter fileWriter = new FileWriter(path);
         fileWriter.write(playerTurnJson);
         fileWriter.write(gameTimerJson);
         fileWriter.flush();
-        fileWriter.close();
     }
 
     /**
@@ -138,7 +135,7 @@ public class Main {
      * @param playerManagement list of players
      * @param localsManagement list of locals
      */
-    private static void gameStart(PlayerManagement playerManagement, LocalsManagement localsManagement) {
+    private static void gameStart(PlayerManagement playerManagement, LocalsManagement localsManagement, Scanner scanner) {
         boolean gameEnd = false;
         boolean currentLocationIsPortal;
         boolean playerTurnEnded = false;
@@ -147,8 +144,8 @@ public class Main {
         int indiceLista = 0;
         int option;
 
-        int numberOfAvailableActionsForPortals = NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_PORTAL;
-        int numberOfAvailableActionsForConnectors = NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR;
+        int numberOfAvailableActionsForPortals = 0;
+        int numberOfAvailableActionsForConnectors = 0;
 
         int energy;
 
@@ -161,8 +158,13 @@ public class Main {
 
                 // Get the neighbours of the current location of the player
                 ArrayUnorderedList<ILocal> neighbours = localsManagement.getPathGraph().getNeighbours(currentPlayer.getCurrentLocation());
+                if (currentLocationIsPortal) {
+                    numberOfAvailableActionsForPortals = neighbours.size();
+                } else {
+                    numberOfAvailableActionsForConnectors = neighbours.size();
+                }
 
-                System.out.println("Turno do jogador " + currentPlayer.getName());
+                System.out.println("Turno do jogador/a " + currentPlayer.getName());
 
                 // Display the possible actions
                 System.out.println("Possíveis ações: ");
@@ -175,7 +177,7 @@ public class Main {
                     System.out.println("3 - Reforçar portal");
 
                     for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * numberOfAvailableActionsForPortals), numberOfAvailableActionsForPortals); i++) {
-                        System.out.println((NUM_ACTIONS_PORTAL + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName());
+                        System.out.println((NUM_ACTIONS_PORTAL + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName() + "(" + neighbours.get(i).getClass().getName() + ")");
                     }
 
                     System.out.println("8 - Mudar para a próxima página de locais a visitar");
@@ -184,12 +186,14 @@ public class Main {
                     System.out.println("Indique a ação que pretende realizar: ");
 
                     // Get the option selected by the user
-                    option = Main.getOptionInput();
+                    option = Main.getOptionInput(scanner);
+                    scanner = scanner.reset();
 
                     // Execute the action selected by the user
                     switch (option) {
                         case 0:
                             gameEnd = true;
+                            scanner.close();
                             Main.saveGameState(playerManagement, localsManagement);
                             break;
                         case 1:
@@ -198,7 +202,8 @@ public class Main {
                                 break;
                             }
 
-                            energy = getEnergyInputPortal(currentPlayer, currentPlayerLocation);
+                            energy = getEnergyInputPortal(currentPlayer, currentPlayerLocation, scanner);
+                            scanner = scanner.reset();
                             currentPlayer.conquerPortal(energy);
                             playerTurnEnded = true;
                             break;
@@ -208,7 +213,8 @@ public class Main {
                                 break;
                             }
 
-                            energy = getEnergyInputPortal(currentPlayer, currentPlayerLocation);
+                            energy = getEnergyInputPortal(currentPlayer, currentPlayerLocation, scanner);
+                            scanner = scanner.reset();
                             currentPlayer.attackPortal(energy);
                             playerTurnEnded = true;
                             break;
@@ -218,7 +224,8 @@ public class Main {
                                 break;
                             }
 
-                            energy = getEnergyInputPortal(currentPlayer, currentPlayerLocation);
+                            energy = getEnergyInputPortal(currentPlayer, currentPlayerLocation, scanner);
+                            scanner = scanner.reset();
                             currentPlayer.reinforcePortal(energy);
                             playerTurnEnded = true;
                             break;
@@ -229,11 +236,11 @@ public class Main {
                             indiceLista--;
                             break;
                         default:
-                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForPortals) + option - numberOfAvailableActionsForPortals));
+                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForPortals) + option - 1));
                     }
 
                     if (!playerTurnEnded) {
-                        System.out.println("O turno do jogador " + currentPlayer.getName() + " nao terminou!");
+                        System.out.println("O turno do jogador/a " + currentPlayer.getName() + " nao terminou!");
                     } else {
                         playerTurnEnded = false;
                         // Change the turn to the next player in the list of players
@@ -245,7 +252,7 @@ public class Main {
                     System.out.println("1 - Recarregar energia");
 
                     for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * numberOfAvailableActionsForConnectors), numberOfAvailableActionsForConnectors); i++) {
-                        System.out.println((NUM_ACTIONS_CONNECTOR + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName());
+                        System.out.println((NUM_ACTIONS_CONNECTOR + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName() + "(" + neighbours.get(i).getClass().getName() + ")");
                     }
 
                     System.out.println("8 - Mudar para a próxima página de locais a visitar");
@@ -254,8 +261,8 @@ public class Main {
                     System.out.println("Indique a ação que pretende realizar: ");
 
                     // Get the option selected by the user
-                    option = Main.getOptionInput();
-
+                    option = Main.getOptionInput(scanner);
+                    scanner = scanner.reset();
                     // Execute the action selected by the user
                     switch (option) {
                         case 0:
@@ -278,7 +285,7 @@ public class Main {
                             indiceLista--;
                             break;
                         default:
-                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForConnectors) + option - numberOfAvailableActionsForConnectors));
+                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForConnectors) + option - 1));
                             break;
                     }
                 }
@@ -361,8 +368,12 @@ public class Main {
         localsManagement.addPath(route9);
         localsManagement.addPath(route10);
 
-        System.out.println("Deseja continuar o jogo anterior ou começar um jogo novo?\n (1 - Continuar, 2 - Novo jogo)");
+        player.setCurrentLocation(local4);
+        player1.setCurrentLocation(local4);
+
+        System.out.println("Deseja continuar o jogo anterior ou comecar um jogo novo?\n (1 - Continuar, 2 - Novo jogo)");
         Scanner scanner = new Scanner(System.in);
+
         int option;
         do {
             option = scanner.nextInt();
@@ -375,10 +386,10 @@ public class Main {
         switch (option) {
             case 1:
                 Main.loadGameState((PlayerManagement) playerManagement, (LocalsManagement) localsManagement);
-                Main.gameStart((PlayerManagement) playerManagement, (LocalsManagement) localsManagement);
+                Main.gameStart((PlayerManagement) playerManagement, (LocalsManagement) localsManagement, scanner);
                 break;
             case 2:
-                Main.gameStart((PlayerManagement) playerManagement, (LocalsManagement) localsManagement);
+                Main.gameStart((PlayerManagement) playerManagement, (LocalsManagement) localsManagement, scanner);
                 break;
         }
     }

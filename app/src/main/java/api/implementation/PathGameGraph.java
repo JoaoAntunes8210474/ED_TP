@@ -328,14 +328,13 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
          * @return iterator with the path.
          * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
          */
-        @SuppressWarnings("unchecked")
         public ArrayUnorderedList<ILocal> getNeighbours(T vertex) throws NotPlaceInstanceException{
             if (!(vertex instanceof ILocal)) {
-                throw new NotPlaceInstanceException("Vertex is not a ILocal instance.");
+                throw new NotPlaceInstanceException("Vertex is not a IPortal instance");
             }
 
             ArrayUnorderedList<ILocal> neighours = new ArrayUnorderedList<>();
-            int index = this.getIndex(vertex);
+            int index = super.getIndex(vertex);
             int i;
 
             for (i = 0; i < super.numVertices; i++) {

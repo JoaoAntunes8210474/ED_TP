@@ -365,13 +365,14 @@ public class Player implements IPlayer, Comparable<Player> {
                 break;
             } else if (!(connectorPlayerInterationIterator.getPlayer().toString().equals(this.toString())) && (tempoDesdeInteracao.compareTo(cooldown) >= 0)) {
                 iterator.remove();
-            } else {
+            } else if (connectorPlayerInterationIterator.getPlayer().toString().equals(this.toString()) && (tempoDesdeInteracao.compareTo(cooldown) < 0)){
                 return "You can't recharge your energy yet.";
             }
         }
 
         if (!jaInteragiu) {
             connector.getPlayers().addToRear(new ConnectorPlayerInteration(this, horaJogo));
+            this.currentEnergy += connector.getAmountEnergyItHas();
         }
 
         this.addExperiencePoints("RECHARGE");
