@@ -34,7 +34,7 @@ public class Portal extends Local implements IPortal{
         super(id, name, "Portal", amountEnergyItHas, coordinates);
         this.maxEnergy = maxEnergy;
         this.ownerPlayer = null;
-        this.playerTeam = "Neutro";
+        this.playerTeam = "NEUTRAL";
     }
 
     /**

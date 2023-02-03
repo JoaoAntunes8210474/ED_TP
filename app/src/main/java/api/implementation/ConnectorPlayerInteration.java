@@ -16,7 +16,7 @@ public class ConnectorPlayerInteration {
     /**
      * Constructor method serves to instantiate objects of type ConnectorPlayerInteration.
      * @param player Player who interacted with the connector.
-     * @param diaHoraInteracao Date and time the player interacted with the connector
+     * @param horaInteracao Date and time the player interacted with the connector
      */
     public ConnectorPlayerInteration(Player player, LocalTime horaInteracao) {
         this.player = player;
@@ -25,7 +25,7 @@ public class ConnectorPlayerInteration {
 
     /**
      * Get the player who interacted with the connector.
-     * @return player Player who interacted with the connector.
+     * @return Player who interacted with the connector.
      */
     public Player getPlayer() {
         return this.player;
@@ -49,7 +49,7 @@ public class ConnectorPlayerInteration {
 
     /**
      * Set or change date and time when the player interacted with the connector.
-     * @param diaHoraInteracao Date and time the player interacted with the connector
+     * @param horaInteracao Date and time the player interacted with the connector
      */
     public void setHoraInteracao(LocalTime horaInteracao) {
         this.horaInteracao = horaInteracao;
@@ -60,6 +60,6 @@ public class ConnectorPlayerInteration {
      */
     @Override
     public String toString() {
-        return "ConnectorPlayerInteration [player=" + player + ", diaHoraInteracao=" + horaInteracao + "]";
+        return "ConnectorPlayerInteration [player=" + player + ", horaInteracao=" + horaInteracao + "]";
     }    
 }
