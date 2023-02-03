@@ -75,3 +75,7 @@ application {
     mainClass = 'api.app.Main'
 }
 
+run {
+    standardInput = System.in
+}
+

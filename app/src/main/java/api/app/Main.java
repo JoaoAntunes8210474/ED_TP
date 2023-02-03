@@ -167,23 +167,23 @@ public class Main {
                 System.out.println("Turno do jogador/a " + currentPlayer.getName());
 
                 // Display the possible actions
-                System.out.println("Possíveis ações: ");
+                System.out.println("Possiveis acoes: ");
                 System.out.println("0 - Sair do jogo e guardar o progresso");
                 // If a player is in a portal, he can conquer it, attack it, reinforce it or visit a neighbour
                 if (currentLocationIsPortal) {
                     Portal currentPlayerLocation = (Portal) currentPlayer.getCurrentLocation();
                     System.out.println("1 - Conquistar portal");
                     System.out.println("2 - Atacar portal");
-                    System.out.println("3 - Reforçar portal");
+                    System.out.println("3 - Reforcar portal");
 
-                    for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * numberOfAvailableActionsForPortals), numberOfAvailableActionsForPortals); i++) {
+                    for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_PORTAL)), (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_PORTAL)); i++) {
                         System.out.println((NUM_ACTIONS_PORTAL + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName() + "(" + neighbours.get(i).getClass().getName() + ")");
                     }
 
-                    System.out.println("8 - Mudar para a próxima página de locais a visitar");
-                    System.out.println("9 - Mudar para a página anterior de locais a visitar");
+                    System.out.println("8 - Mudar para a proxima pagina de locais a visitar");
+                    System.out.println("9 - Mudar para a pagina anterior de locais a visitar");
                     System.out.println("--------------------");
-                    System.out.println("Indique a ação que pretende realizar: ");
+                    System.out.println("Indique a acao que pretende realizar: ");
 
                     // Get the option selected by the user
                     option = Main.getOptionInput(scanner);
@@ -198,7 +198,7 @@ public class Main {
                             break;
                         case 1:
                             if (currentPlayerLocation.getPlayerTeam().equals(currentPlayer.getTeam())) {
-                                System.out.println("O portal já pertence à sua equipa!");
+                                System.out.println("O portal ja pertence a sua equipa!");
                                 break;
                             }
 
@@ -209,7 +209,7 @@ public class Main {
                             break;
                         case 2:
                             if (currentPlayerLocation.getPlayerTeam().equals(currentPlayer.getTeam())) {
-                                System.out.println("O portal já pertence à sua equipa!");
+                                System.out.println("O portal ja pertence a sua equipa!");
                                 break;
                             }
 
@@ -220,7 +220,7 @@ public class Main {
                             break;
                         case 3:
                             if (!currentPlayerLocation.getPlayerTeam().equals(currentPlayer.getTeam())) {
-                                System.out.println("O portal não pertence à sua equipa!");
+                                System.out.println("O portal nao pertence a sua equipa!");
                                 break;
                             }
 
@@ -236,7 +236,9 @@ public class Main {
                             indiceLista--;
                             break;
                         default:
-                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForPortals) + option - 1));
+                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_PORTAL)) + option - numberOfAvailableActionsForPortals - 1));
+                            playerTurnEnded = true;
+                            break;
                     }
 
                     if (!playerTurnEnded) {
@@ -251,14 +253,14 @@ public class Main {
                     // If a player is in a connector, he can recharge his energy or visit a neighbour
                     System.out.println("1 - Recarregar energia");
 
-                    for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * numberOfAvailableActionsForConnectors), numberOfAvailableActionsForConnectors); i++) {
+                    for (int i = 0; i < Math.min(neighbours.size() - (indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR)), (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR)); i++) {
                         System.out.println((NUM_ACTIONS_CONNECTOR + (i + 1)) + " - Visitar local: " + neighbours.get(i).getName() + "(" + neighbours.get(i).getClass().getName() + ")");
                     }
 
-                    System.out.println("8 - Mudar para a próxima página de locais a visitar");
-                    System.out.println("9 - Mudar para a página anterior de locais a visitar");
+                    System.out.println("8 - Mudar para a proxima pagina de locais a visitar");
+                    System.out.println("9 - Mudar para a pagina anterior de locais a visitar");
                     System.out.println("--------------------");
-                    System.out.println("Indique a ação que pretende realizar: ");
+                    System.out.println("Indique a acao que pretende realizar: ");
 
                     // Get the option selected by the user
                     option = Main.getOptionInput(scanner);
@@ -270,12 +272,10 @@ public class Main {
                             Main.saveGameState(playerManagement, localsManagement);
                             break;
                         case 1:
-                            if (currentPlayer.rechargeEnergy().equals("You can't recharge your energy yet.")) {
-                                System.out.println("Your turn didn't end because you couldn't recharge your energy.");
+                            if (currentPlayer.rechargeEnergy().equals("You can t recharge your energy yet.")) {
+                                System.out.println("Your turn didn t end because you couldn t recharge your energy.");
                             } else {
-                                // Change the turn to the next player in the list of players
-                                // If the player is the last in the list, the turn goes to the first player
-                                playerTurn = (playerTurn + 1) % playerManagement.getPlayerList().size();
+                                playerTurnEnded = true;
                             }
                             break;
                         case 8:
@@ -285,8 +285,18 @@ public class Main {
                             indiceLista--;
                             break;
                         default:
-                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * numberOfAvailableActionsForConnectors) + option - 1));
+                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR)) + option - numberOfAvailableActionsForConnectors - 1));
+                            playerTurnEnded = true;
                             break;
+                    }
+
+                    if (!playerTurnEnded) {
+                        System.out.println("O turno do jogador/a " + currentPlayer.getName() + " nao terminou!");
+                    } else {
+                        playerTurnEnded = false;
+                        // Change the turn to the next player in the list of players
+                        // If the player is the last in the list, the turn goes to the first player
+                        playerTurn = (playerTurn + 1) % playerManagement.getPlayerList().size();
                     }
                 }
             } catch (NotPlaceInstanceException | IOException e) {
@@ -331,10 +341,10 @@ public class Main {
         Coordinates coordinates4 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
         Coordinates coordinates5 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
 
-        ILocal local = new Portal(100, random.nextInt(3000), "Palácio de Monserratelo", 0, coordinates);
-        ILocal local1 = new Portal(100, random.nextInt(3000), "Palácio da Pena", 0, coordinates1);
+        ILocal local = new Portal(100, random.nextInt(3000), "Palacio de Monserratelo", 0, coordinates);
+        ILocal local1 = new Portal(100, random.nextInt(3000), "Palacio da Pena", 0, coordinates1);
         ILocal local2 = new Portal(100, random.nextInt(3000), "Quinta da regaleira", 0, coordinates2);
-        ILocal local3 = new Portal(100, random.nextInt(3000), "Palácio de Monserrate", 0, coordinates3);
+        ILocal local3 = new Portal(100, random.nextInt(3000), "Palacio de Monserrate", 0, coordinates3);
         ILocal local4 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Arco do Triunfo", 50, coordinates4);
         ILocal local5 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Torre Eifel", 50, coordinates5);
 
@@ -368,7 +378,7 @@ public class Main {
         localsManagement.addPath(route9);
         localsManagement.addPath(route10);
 
-        player.setCurrentLocation(local4);
+        player.setCurrentLocation(local);
         player1.setCurrentLocation(local4);
 
         System.out.println("Deseja continuar o jogo anterior ou comecar um jogo novo?\n (1 - Continuar, 2 - Novo jogo)");

@@ -65,7 +65,7 @@ public class LocalsManagement implements ILocalsManagement {
     @Override
     public String removeLocals (ILocal local){
         if (local == null) {
-            throw new IllegalArgumentException("Place cannot be null!");
+            throw new NullPointerException("Place cannot be null!");
         }
         this.pathGraph.removeVertex(local);
 
@@ -101,8 +101,6 @@ public class LocalsManagement implements ILocalsManagement {
         if (route.getFrom() == null || route.getTo() == null) {
             throw new IllegalArgumentException("Place cannot be null!");
         }
-
-
 
         this.pathGraph.addEdge((ILocal) route.getFrom(), (ILocal) route.getTo());
 
@@ -344,7 +342,7 @@ public class LocalsManagement implements ILocalsManagement {
      * @return A string indicating whether the operation was successful or something went wrong.
      */
     @Override
-    public String  exportConnectorsToJson(String fileName) throws IOException, EmptyCollectionException {
+    public String exportConnectorsToJson(String fileName) throws IOException, EmptyCollectionException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(this.getConnectorsJSONArray());
         FileWriter writer = new FileWriter(fileName);
