@@ -105,7 +105,7 @@ public class LocalsManagement implements ILocalsManagement {
 
         this.pathGraph.addEdge((ILocal) route.getFrom(), (ILocal) route.getTo());
 
-        return "O Caminho foi adicionado com sucesso";
+        return "O caminho foi adicionado com sucesso";
     }
 
 

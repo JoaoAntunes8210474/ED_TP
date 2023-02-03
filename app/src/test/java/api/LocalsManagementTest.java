@@ -59,6 +59,7 @@ public class LocalsManagementTest {
         Connector local1 = new Connector (5,1, "Palácio da Pena", 90, coordinates1);
         Connector local2 = new Connector (4,2, "Quinta da regaleira", 100, coordinates2);
         Route route = new Route(local1, local2);
+
         String expected = "O caminho foi adicionado com sucesso";
 
         Assertions.assertEquals(expected, this.pathGraph.addPath(route));
