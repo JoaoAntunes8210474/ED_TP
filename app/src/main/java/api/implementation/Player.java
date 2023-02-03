@@ -1,26 +1,20 @@
 package api.implementation;
 
+import api.app.Main;
 import api.interfaces.IConnector;
 import api.interfaces.ILocal;
 import api.interfaces.IPlayer;
 import api.interfaces.IPortal;
+
+import java.time.Duration;
+import java.time.LocalTime;
+import java.util.Iterator;
 
 /**
  * Class representing a player.
  * Class that implements the IPlayer interface contract.
  */
 public class Player implements IPlayer, Comparable<Player> {
-    private final int FLAT_ATTACK_EXPERIENCE_POINTS = 15;
-
-    private final int FLAT_CONQUER_EXPERIENCE_POINTS = 25;
-
-    private final int FLAT_REINFORCE_EXPERIENCE_POINTS = 10;
-
-    private final int FLAT_RECHARGE_EXPERIENCE_POINTS = 5;
-
-    private final double X_VALUE_IN_FORMULA = 0.10;
-
-    private final int Y_VALUE_IN_FORMULA = 2;
 
     //Player's name
     private String name;
@@ -62,18 +56,22 @@ public class Player implements IPlayer, Comparable<Player> {
      * @param actionPlayerPerformed Action performed by the player.
      */
     private void addExperiencePoints(String actionPlayerPerformed) {
+        final int FLAT_ATTACK_EXPERIENCE_POINTS = 15;
+        final int FLAT_CONQUER_EXPERIENCE_POINTS = 25;
+        final int FLAT_REINFORCE_EXPERIENCE_POINTS = 10;
+        final int FLAT_RECHARGE_EXPERIENCE_POINTS = 5;
         switch (actionPlayerPerformed) {
             case "ATTACK":
-                this.experiencePoints += ((long) FLAT_ATTACK_EXPERIENCE_POINTS * this.level);
+                this.experiencePoints += ((long) FLAT_ATTACK_EXPERIENCE_POINTS * (1 + this.level));
                 break;
             case "REINFORCE":
-                this.experiencePoints += ((long) FLAT_REINFORCE_EXPERIENCE_POINTS * this.level);
+                this.experiencePoints += ((long) FLAT_REINFORCE_EXPERIENCE_POINTS * (1 + this.level));
                 break;
             case "CONQUER":
-                this.experiencePoints += ((long) FLAT_CONQUER_EXPERIENCE_POINTS * this.level);
+                this.experiencePoints += ((long) FLAT_CONQUER_EXPERIENCE_POINTS * (1 + this.level));
                 break;
             case "RECHARGE":
-                this.experiencePoints += ((long) FLAT_RECHARGE_EXPERIENCE_POINTS * this.level);
+                this.experiencePoints += ((long) FLAT_RECHARGE_EXPERIENCE_POINTS * (1 + this.level));
                 break;
         }
     }
@@ -83,7 +81,9 @@ public class Player implements IPlayer, Comparable<Player> {
      * @return Boolean value depending on whether the player can increase level.
      */
     private boolean canIncreaseLevel() {
-        return this.experiencePoints >= Math.pow((this.level/X_VALUE_IN_FORMULA), Y_VALUE_IN_FORMULA);
+        final double X_VALUE_IN_FORMULA = 0.10;
+        final int Y_VALUE_IN_FORMULA = 2;
+        return this.experiencePoints >= Math.pow((this.level/ X_VALUE_IN_FORMULA), Y_VALUE_IN_FORMULA);
     }
 
     /**
@@ -238,9 +238,30 @@ public class Player implements IPlayer, Comparable<Player> {
      * If the player has enough energy, the player can conquer the portal.
      */
     @Override
-    public void attackPortal() {
+    public void attackPortal(int energy) {
         if (!(this.currentLocation instanceof IPortal)) {
             throw new IllegalArgumentException("The current location is not a portal.");
+        }
+
+        Portal portal = (Portal) this.currentLocation;
+
+        if (portal.getPlayerTeam().equals(this.team)) {
+            throw new IllegalArgumentException("The portal is already conquered by your team.");
+        }
+
+        // If player attacks portal, we subtract the energy received to the portals energy
+        // If the portals energy becomes negative, we check if the negative energy is over 25% of the portal's max energy in positive values
+        // If it is, the portal is conquered by the player's team, and we set the portal's energy to the positive value of the energy that was over 25% of the portal's max energy
+        // If it is not, we set the portal's energy to the positive value of the energy that was not over 25% of the portal's max energy and set the portal's player team to "NEUTRAL"
+        portal.setAmountEnergyItHas(portal.getAmountEnergyItHas() - energy);
+        if (portal.getAmountEnergyItHas() < 0) {
+            if (Math.abs(portal.getAmountEnergyItHas()) > (portal.getMaxEnergy() * 0.25)) {
+                portal.setPlayerTeam(this.team);
+                portal.setAmountEnergyItHas(Math.abs(portal.getAmountEnergyItHas()));
+            } else {
+                portal.setAmountEnergyItHas(Math.abs(portal.getAmountEnergyItHas()));
+                portal.setPlayerTeam("NEUTRAL");
+            }
         }
 
         this.addExperiencePoints("ATTACK");
@@ -251,9 +272,25 @@ public class Player implements IPlayer, Comparable<Player> {
      * Method that allows the player to conquer the portal in the current location using the energy of the player.
      */
     @Override
-    public void conquerPortal() {
+    public void conquerPortal(int energy) {
         if (!(this.currentLocation instanceof IPortal)) {
             throw new IllegalArgumentException("The current location is not a portal.");
+        }
+
+        Portal portal = (Portal) this.currentLocation;
+
+        if (!(portal.getPlayerTeam().equals("NEUTRAL"))) {
+            throw new IllegalArgumentException("The portal is already conquered by a team.");
+        }
+
+        // If the player is charging a neutral portal that already has energy, the portal's energy is set to the sum of the amount it previously had with the energy it received
+        // If the player charges the portal with 25% or more of the portal's max energy, the portal is conquered by the player's team
+        // If the player charges the portal with less than 25% of the portal's max energy, the portal's team remains "NEUTRAL"
+        if ((portal.getAmountEnergyItHas() + energy) >= (portal.getMaxEnergy() * 0.25)) {
+            portal.setPlayerTeam(this.team);
+            portal.setAmountEnergyItHas(portal.getAmountEnergyItHas() + energy);
+        } else {
+            portal.setAmountEnergyItHas(portal.getAmountEnergyItHas() + energy);
         }
 
         this.addExperiencePoints("CONQUER");
@@ -265,9 +302,28 @@ public class Player implements IPlayer, Comparable<Player> {
      * Only works if the portal is conquered by the player's team.
      */
     @Override
-    public void reinforcePortal() {
+    public void reinforcePortal(int energy) {
         if (!(this.currentLocation instanceof IPortal)) {
             throw new IllegalArgumentException("The current location is not a portal.");
+        }
+
+        Portal portal = (Portal) this.currentLocation;
+
+        if (!portal.getPlayerTeam().equals(this.team)) {
+            throw new IllegalArgumentException("The portal is not from the player's team.");
+        }
+
+        // If player reinforces portal, we add the energy received to the portals energy
+        portal.setAmountEnergyItHas(portal.getAmountEnergyItHas() + energy);
+
+        // If the portal's energy is over the portal's max energy, we set the portal's energy to the portal's max energy, and we subtract the energy left to the player's energy
+        // If the portal's energy is not over the portal's max energy, we subtract the energy received to the player's energy
+        if (portal.getAmountEnergyItHas() > portal.getMaxEnergy()) {
+            int energyLeft = portal.getAmountEnergyItHas() - portal.getMaxEnergy();
+            portal.setAmountEnergyItHas(portal.getMaxEnergy());
+            this.setCurrentEnergy(this.getCurrentEnergy() - energy + energyLeft);
+        } else {
+            this.setCurrentEnergy(this.getCurrentEnergy() - energy);
         }
 
         this.addExperiencePoints("REINFORCE");
@@ -276,21 +332,53 @@ public class Player implements IPlayer, Comparable<Player> {
 
     /**
      * Method that allows the player to recharge his energy.
+     * The player can only recharge his energy if he is in a connector.
+     * @return String informing the player that his energy has been recharged or that the connector is in cooldown.
      */
     @Override
-    public void rechargeEnergy() {
+    public String rechargeEnergy() {
         if (!(this.currentLocation instanceof IConnector)) {
             throw new IllegalArgumentException("The current location is not a connector.");
         }
 
         Connector connector = (Connector) this.currentLocation;
 
-        this.currentEnergy += connector.getAmountEnergyItHas();
+        // If the player is in a connector, we check if the player has already interacted with the connector in the last 3 minutes
+        Iterator<ConnectorPlayerInteration> iterator = connector.getPlayers().iterator();
+        LocalTime horaJogo = Main.getGameTimer();
+        LocalTime horaInteracao;
+        Duration tempoDesdeInteracao;
+        Duration cooldown = Duration.ofMinutes(Main.getCooldown());
+        boolean jaInteragiu = false;
 
-        //connector.getPlayers().addToRear();
+        // If the player has already interacted with the connector in the last 3 minutes, we return a string informing the player that he can't recharge his energy yet
+        // If the player hasn't interacted with the connector in the last 3 minutes, we set the new interaction time to the current time and we add the connector's energy to the player's energy
+        // If there is a player that hasn't interacted with the connector in the last 3 minutes, we remove him from the connector's list of players
+        // If the player hasn't interacted with the connector, we add him to the connector's list of players
+        while (iterator.hasNext()) {
+            ConnectorPlayerInteration connectorPlayerInterationIterator = iterator.next();
+            horaInteracao = connectorPlayerInterationIterator.getHoraInteracao();
+            tempoDesdeInteracao = Duration.between(horaInteracao, horaJogo);
+            if (connectorPlayerInterationIterator.getPlayer().toString().equals(this.toString()) && (tempoDesdeInteracao.compareTo(cooldown) >= 0)) {
+                connectorPlayerInterationIterator.setHoraInteracao(horaJogo);
+                this.currentEnergy += connector.getAmountEnergyItHas();
+                jaInteragiu = true;
+                break;
+            } else if (!(connectorPlayerInterationIterator.getPlayer().toString().equals(this.toString())) && (tempoDesdeInteracao.compareTo(cooldown) >= 0)) {
+                iterator.remove();
+            } else {
+                return "You can't recharge your energy yet.";
+            }
+        }
+
+        if (!jaInteragiu) {
+            connector.getPlayers().addToRear(new ConnectorPlayerInteration(this, horaJogo));
+        }
 
         this.addExperiencePoints("RECHARGE");
         this.increaseLevel();
+
+        return "You have recharged your energy.";
     }
 
     /**

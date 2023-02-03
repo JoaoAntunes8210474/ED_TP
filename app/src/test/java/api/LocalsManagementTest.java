@@ -17,7 +17,7 @@ public class LocalsManagementTest {
     @Test
     public void testAddLocal_ReturnSuccessfulString_WhenSentAValidLocal() {
         Coordinates coordinates = new Coordinates(50,45);
-        Connector local = new Connector (4,11, "Palácio de Monserrate", "Connector",100,coordinates);
+        Connector local = new Connector (4,11, "Palácio de Monserrate", 100,coordinates);
         String expected = "O local foi adicionado ao grafo com sucesso!";
 
         Assertions.assertEquals(expected, this.pathGraph.addLocals(local));
@@ -32,7 +32,7 @@ public class LocalsManagementTest {
     @Test
     public void testRemoveLocal_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList() {
         Coordinates cordinates = new Coordinates(50,45);
-        Connector local = new Connector(3,11, "Palácio de Monserrate", "Connector",100, cordinates);
+        Connector local = new Connector(3,11, "Palácio de Monserrate", 100, cordinates);
 
         Assertions.assertEquals(local.toString(), this.pathGraph.removeLocals(local).toString());
     }
@@ -45,7 +45,7 @@ public class LocalsManagementTest {
     @Test
     public void testRemoveLocal_ReturnElementNotFoundException_WhenLocalsSentIsNotInList() {
         Coordinates coordinates = new Coordinates(60,70);
-        Portal local = new Portal (100,9999, "TESTE 1111", "Local",50, coordinates);
+        Portal local = new Portal (100,9999, "TESTE 1111", 50, coordinates);
         Assertions.assertThrows(ElementNotFoundException.class, () -> this.pathGraph.removeLocals(local));
     }
 
@@ -54,18 +54,20 @@ public class LocalsManagementTest {
     public void testAddPath_ReturnSuccessfulString_WhenSentAValidLocal() {
         Coordinates coordinates1 = new Coordinates(50,45);
         Coordinates coordinates2 = new Coordinates(60,50);
-        Connector local1 = new Connector (5,1, "Palácio da Pena", "Connector",90,coordinates1);
-        Connector local2 = new Connector (4,2, "Quinta da regaleira", "Connector",100,coordinates2);
+        Connector local1 = new Connector (5,1, "Palácio da Pena", 90, coordinates1);
+        Connector local2 = new Connector (4,2, "Quinta da regaleira", 100, coordinates2);
+        Route route = new Route(local1, local2);
         String expected = "O caminho foi adicionado ao grafo com sucesso!";
 
-        Assertions.assertEquals(expected, this.pathGraph.addPath(local1,local2));
+        Assertions.assertEquals(expected, this.pathGraph.addPath(route));
     }
 
     @Test
     public void testAddPath_ReturnNullPointerException_WhenSentANullReference() {
         Coordinates coordinates1 = new Coordinates(60,50);
-        Connector local1 = new Connector (5,1, "Palácio da Pena", "Connector",90,coordinates1);
-        Assertions.assertThrows(NullPointerException.class, () -> this.pathGraph.addPath(local1, null));
+        Connector local1 = new Connector (5,1, "Palácio da Pena", 90,coordinates1);
+        Route route = new Route(local1, null);
+        Assertions.assertThrows(NullPointerException.class, () -> this.pathGraph.addPath(route));
     }
 
 

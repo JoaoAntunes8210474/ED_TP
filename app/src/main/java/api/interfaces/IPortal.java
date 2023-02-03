@@ -26,7 +26,7 @@ public interface IPortal extends ILocal {
      * Get the team that owns the portal.
      * @return Team to whom the portal belongs.
      */
-    public String getTeamPlayer();
+    public String getPlayerTeam();
 
     /**
      * Set and change the maximum amount of energy the portal has.
@@ -42,9 +42,9 @@ public interface IPortal extends ILocal {
 
     /**
      * Define and change the team that owns the portal. 
-     * @param teamPlayer Team to whom the portal belongs.
+     * @param playerTeam Team to whom the portal belongs.
      */
-    public void setTeamPlayer(String teamPlayer);
+    public void setPlayerTeam(String playerTeam);
 
     /**
      * Returns a string representative of the location, with information referring to this

@@ -18,7 +18,7 @@ public class Portal extends Local implements IPortal{
     private Player ownerPlayer;
     
     //Team to whom the portal belongs.
-    private String teamPlayer;
+    private String playerTeam;
     
     
     /**
@@ -30,11 +30,11 @@ public class Portal extends Local implements IPortal{
      * @param amountEnergyItHas Amount of energy the site contains.
      * @param coordinates Location coordinates
      */
-    public Portal(int maxEnergy, int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
-        super(id, name, localType, amountEnergyItHas, coordinates);
+    public Portal(int maxEnergy, int id, String name, int amountEnergyItHas, Coordinates coordinates) {
+        super(id, name, "Portal", amountEnergyItHas, coordinates);
         this.maxEnergy = maxEnergy;
         this.ownerPlayer = null;
-        this.teamPlayer = "Neutro";
+        this.playerTeam = "Neutro";
     }
 
     /**
@@ -60,8 +60,8 @@ public class Portal extends Local implements IPortal{
      * @return Team to whom the portal belongs.
      */
     @Override
-    public String getTeamPlayer() {
-        return teamPlayer;
+    public String getPlayerTeam() {
+        return playerTeam;
     }
 
     /**
@@ -84,11 +84,11 @@ public class Portal extends Local implements IPortal{
 
     /**
      * Define and change the team that owns the portal. 
-     * @param teamPlayer Team to whom the portal belongs.
+     * @param playerTeam Team to whom the portal belongs.
      */
     @Override
-    public void setTeamPlayer(String teamPlayer) {
-        this.teamPlayer = teamPlayer;
+    public void setPlayerTeam(String playerTeam) {
+        this.playerTeam = playerTeam;
     }
 
      /**
@@ -106,7 +106,7 @@ public class Portal extends Local implements IPortal{
         root.put("Cordinates", getCoordinates());
         root.put("Maximum energy", this.maxEnergy);
         root.put("Owner Player", this.ownerPlayer);
-        root.put("Owner Team", this.teamPlayer);
+        root.put("Owner Team", this.playerTeam);
         return root;
     }
 
@@ -117,7 +117,7 @@ public class Portal extends Local implements IPortal{
      */
     @Override
     public String toString() {
-        return "Portal{" + "maxEnergy=" + maxEnergy + ", ownerPlayer=" + ownerPlayer + ", teamPlayer=" + teamPlayer + '}';
+        return "Portal{" + "maxEnergy=" + maxEnergy + ", ownerPlayer=" + ownerPlayer + ", teamPlayer=" + playerTeam + '}';
     }
 
     /**

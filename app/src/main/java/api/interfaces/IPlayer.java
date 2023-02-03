@@ -105,23 +105,23 @@ public interface IPlayer {
      * Method that allows the player to attack the portal in the current location using the energy of the player.
      * If the player has enough energy, the player can conquer the portal.
      */
-    void attackPortal();
+    void attackPortal(int energy);
 
     /**
      * Method that allows the player to conquer the portal in the current location using the energy of the player.
      */
-    void conquerPortal();
+    void conquerPortal(int energy);
 
     /**
      * Method that allows the player to reinforce the portal in the current location if the player has enough energy.
      * Only works if the portal is conquered by the player's team.
      */
-    void reinforcePortal();
+    void reinforcePortal(int energy);
 
     /**
      * Method that allows the player to recharge his energy.
      */
-    void rechargeEnergy();
+    String rechargeEnergy();
 
     /**
      * Aims to return a string that represents a player, with information about him.

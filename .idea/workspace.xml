@@ -8,15 +8,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/collections/implementation/LinkedQueue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/LocalsManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/LocalsManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Portal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Portal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/ILocalsManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/ILocalsManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/collections/implementation/LinkedBinaryTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/collections/implementation/LinkedBinaryTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/collections/implementation/LinkedQueue.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/collections/implementation/MatrixGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/collections/implementation/MatrixGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/api/LocalsManagementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/api/LocalsManagementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/api/PlayerManagementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/api/PlayerManagementTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +112,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -270,7 +273,9 @@
       <workItem from="1675044973899" duration="7041000" />
       <workItem from="1675175141652" duration="12414000" />
       <workItem from="1675194918718" duration="1951000" />
-      <workItem from="1675288761364" duration="3726000" />
+      <workItem from="1675288761364" duration="3970000" />
+      <workItem from="1675356310947" duration="11140000" />
+      <workItem from="1675384566731" duration="3009000" />
     </task>
     <task id="LOCAL-00001" summary="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
       <created>1675053872347</created>
