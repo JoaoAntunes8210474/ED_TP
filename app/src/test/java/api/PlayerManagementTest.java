@@ -1,6 +1,7 @@
 package api;
 
 import api.implementation.ImportExportFiles;
+import api.implementation.LocalsManagement;
 import api.implementation.Player;
 import api.implementation.PlayerManagement;
 import api.interfaces.IImportExportFiles;
@@ -15,6 +16,8 @@ import java.io.IOException;
 public class PlayerManagementTest {
     private PlayerManagement playersList;
 
+    private LocalsManagement pathGraph;
+
     public PlayerManagementTest() {
         this.playersList = new PlayerManagement();
     }
@@ -26,7 +29,7 @@ public class PlayerManagementTest {
 
         IImportExportFiles importer = new ImportExportFiles();
 
-        importer.importJSON(path, this.playersList);
+        importer.importJSON(path, this.playersList, this.pathGraph);
     }
 
     @Test

@@ -32,8 +32,8 @@ public class Connector extends Local implements IConnector{
      * @param amountEnergyItHas Amount of energy the site contains.
      * @param coordinates Location coordinates
      */
-    public Connector(int cooldown, int id, String name, String localType, int amountEnergyItHas, Coordinates coordinates) {
-        super(id, name, localType, amountEnergyItHas, coordinates);
+    public Connector(int cooldown, int id, String name, int amountEnergyItHas, Coordinates coordinates) {
+        super(id, name, "Connector", amountEnergyItHas, coordinates);
         this.cooldown = cooldown;
         this.players = new ArrayUnorderedList<>();  
     }

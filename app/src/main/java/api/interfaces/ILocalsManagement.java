@@ -38,7 +38,7 @@ public interface ILocalsManagement {
      * @param local1 first location
      * @param local2 segundo local
      */
-    public String addPath(ILocal local1, ILocal local2);
+    public String addPath(IRoute route);
 
     /**
      * Gets the textual listing of all Portals

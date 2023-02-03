@@ -10,10 +10,8 @@ import api.interfaces.IPortal;
 import api.interfaces.IRoute;
 import collections.exceptions.EmptyCollectionException;
 import collections.exceptions.NullException;
+import collections.implementation.*;
 import collections.implementation.ArrayUnorderedList;
-import collections.implementation.ArrayUnorderedList;
-import collections.implementation.LinkedStack;
-import collections.implementation.MatrixGraph;
 import collections.interfaces.UnorderedListADT;
 
 public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphADT <T>{
@@ -51,7 +49,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
             int index = startIndex;
             int[] pathLength = new int[this.numVertices];
             int[] predecessor = new int[this.numVertices];
-            ArrayUnorderedList<Integer> traversalQueue = new ArrayUnorderedList<>();
+            LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
             ArrayUnorderedList<Integer> resultList = new ArrayUnorderedList<>();
 
             if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)
@@ -153,7 +151,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
          */
         @Override
         public int getNumberOfConnectores(){
-            return this.getNumberOf(new Connector(3,1,"Igreja São Pedro","Connector",100,new Coordinates(90,45)));
+            return this.getNumberOf(new Connector(3,1,"Igreja São Pedro",100,new Coordinates(90,45)));
         }
     
         /**
@@ -162,7 +160,7 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
          */
         @Override
         public int getNumberOfPortals(){
-            return this.getNumberOf(new Connector(100,2,"Palácio da Pena","Portal",50,new Coordinates(97.55,60.79)));
+            return this.getNumberOf(new Connector(100,2,"Palácio da Pena",50,new Coordinates(97.55,60.79)));
         }
         
         /**

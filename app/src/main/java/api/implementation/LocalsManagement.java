@@ -97,12 +97,14 @@ public class LocalsManagement implements ILocalsManagement {
      * @param local2 segundo local
      */
     @Override
-    public String addPath(ILocal local1, ILocal local2){
-        if (local1 == null || local2 == null) {
+    public String addPath(IRoute route){
+        if (route.getFrom() == null || route.getTo() == null) {
             throw new IllegalArgumentException("Place cannot be null!");
         }
-        
-        this.pathGraph.addEdge(local1, local2);
+
+
+
+        this.pathGraph.addEdge((ILocal) route.getFrom(), (ILocal) route.getTo());
 
         return "O Caminho foi adicionado com sucesso";
     }
@@ -390,14 +392,13 @@ public class LocalsManagement implements ILocalsManagement {
                 JSONObject localsToCreate = (JSONObject) jsonArray.get(i);
                 int id = (int) localsToCreate.get("id");
                 String name = (String) localsToCreate.get("name");
-                String localType = (String) localsToCreate.get("localType");
                 int amountEnergyItHas = (int) localsToCreate.get("amountEnergyItHas");
                 double longitude = (double) localsToCreate.get("longitude");
                 double latitude = (double) localsToCreate.get("latitude");
                 Coordinates coordenadas = new Coordinates(longitude,latitude);
                 int maxEnergy = (int) localsToCreate.get("maxEnergy");
                 String teamPlayer = (String) localsToCreate.get("teamPlayer");
-                Portal portal = new Portal(maxEnergy, id, name, localType, amountEnergyItHas,coordenadas);
+                Portal portal = new Portal(maxEnergy, id, name, amountEnergyItHas,coordenadas);
                 this.pathGraph.addVertex(portal);
             }
         } catch (ParseException e) {
@@ -424,13 +425,12 @@ public class LocalsManagement implements ILocalsManagement {
                 JSONObject localsToCreate = (JSONObject) jsonArray.get(i);
                 int id = (int)localsToCreate.get("id");
                 String name = (String)localsToCreate.get("name");
-                String localType = (String)localsToCreate.get("localType");
                 int amountEnergyItHas = (int)localsToCreate.get("amountEnergyItHas");
                 double longitude = (double) localsToCreate.get("longitude");
                 double latitude = (double) localsToCreate.get("latitude");
                 Coordinates coordenadas = new Coordinates(longitude,latitude);
                 int cooldown = (int)localsToCreate.get("cooldown");
-                Connector connector = new Connector(cooldown, id, name, localType, amountEnergyItHas,coordenadas);
+                Connector connector = new Connector(cooldown, id, name, amountEnergyItHas,coordenadas);
                 this.pathGraph.addVertex(connector);
             }
         } catch (ParseException e) {
