@@ -18,9 +18,9 @@ public class ImportExportFiles implements IImportExportFiles {
 
         try {
             mensagemSucesso.append(playerList.importJSON(fileName)).append("\n");
-            mensagemSucesso.append(pathGraph.importPortalsFromJSON(fileName)).append("\n");
-            mensagemSucesso.append(pathGraph.importConnectorsFromJSON(fileName)).append("\n");
-            mensagemSucesso.append(pathGraph.importPathsFromJSON(fileName)).append("\n");
+            //mensagemSucesso.append(pathGraph.importPortalsFromJSON(fileName)).append("\n");
+            //mensagemSucesso.append(pathGraph.importConnectorsFromJSON(fileName)).append("\n");
+            //mensagemSucesso.append(pathGraph.importPathsFromJSON(fileName)).append("\n");
         } catch (IOException e) {
             return e.getMessage();
         }
