@@ -50,7 +50,7 @@ public class LocalsManagement implements ILocalsManagement {
     @Override
     public String addLocals (ILocal local) {
         if (local == null) {
-            throw new IllegalArgumentException("Place cannot be null!");
+            throw new NullPointerException("Place cannot be null!");
         }
          this.pathGraph.addVertex(local);
 
@@ -67,6 +67,7 @@ public class LocalsManagement implements ILocalsManagement {
         if (local == null) {
             throw new NullPointerException("Place cannot be null!");
         }
+
         this.pathGraph.removeVertex(local);
 
         return "O local foi removido com sucesso";
@@ -99,7 +100,7 @@ public class LocalsManagement implements ILocalsManagement {
     @Override
     public String addPath(IRoute route){
         if (route.getFrom() == null || route.getTo() == null) {
-            throw new IllegalArgumentException("Place cannot be null!");
+            throw new NullPointerException("Place cannot be null!");
         }
 
         this.pathGraph.addEdge((ILocal) route.getFrom(), (ILocal) route.getTo());

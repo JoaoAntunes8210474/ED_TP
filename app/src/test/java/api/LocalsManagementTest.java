@@ -18,7 +18,7 @@ public class LocalsManagementTest {
     public void testAddLocal_ReturnSuccessfulString_WhenSentAValidLocal() {
         Coordinates coordinates = new Coordinates(50,45);
         Connector local = new Connector (4,11, "Palácio de Monserrate", 100,coordinates);
-        String expected = "O local foi adicionado ao grafo com sucesso!";
+        String expected = "O local foi adicionado com sucesso";
 
         Assertions.assertEquals(expected, this.pathGraph.addLocals(local));
     }
@@ -34,7 +34,9 @@ public class LocalsManagementTest {
         Coordinates cordinates = new Coordinates(50,45);
         Connector local = new Connector(3,11, "Palácio de Monserrate", 100, cordinates);
 
-        Assertions.assertEquals(local.toString(), this.pathGraph.removeLocals(local).toString());
+        String expected = "O local foi removido com sucesso";
+
+        Assertions.assertEquals(expected, this.pathGraph.removeLocals(local));
     }
 
     @Test
@@ -57,7 +59,7 @@ public class LocalsManagementTest {
         Connector local1 = new Connector (5,1, "Palácio da Pena", 90, coordinates1);
         Connector local2 = new Connector (4,2, "Quinta da regaleira", 100, coordinates2);
         Route route = new Route(local1, local2);
-        String expected = "O caminho foi adicionado ao grafo com sucesso!";
+        String expected = "O caminho foi adicionado com sucesso";
 
         Assertions.assertEquals(expected, this.pathGraph.addPath(route));
     }

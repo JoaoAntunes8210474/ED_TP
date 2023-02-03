@@ -285,7 +285,7 @@ public class Main {
                             indiceLista--;
                             break;
                         default:
-                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR)) + option - numberOfAvailableActionsForConnectors - 1));
+                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR)) + option - 1));
                             playerTurnEnded = true;
                             break;
                     }

@@ -20,6 +20,7 @@ public class PlayerManagementTest {
 
     public PlayerManagementTest() {
         this.playersList = new PlayerManagement();
+        this.pathGraph = new LocalsManagement();
     }
 
     @BeforeEach
