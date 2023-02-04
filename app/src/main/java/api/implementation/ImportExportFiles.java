@@ -18,9 +18,9 @@ public class ImportExportFiles implements IImportExportFiles {
 
         try {
             mensagemSucesso.append(playerList.importJSON(fileName)).append("\n");
-            //mensagemSucesso.append(pathGraph.importPortalsFromJSON(fileName)).append("\n");
-            //mensagemSucesso.append(pathGraph.importConnectorsFromJSON(fileName)).append("\n");
-            //mensagemSucesso.append(pathGraph.importPathsFromJSON(fileName)).append("\n");
+            mensagemSucesso.append(pathGraph.importPortalsFromJSON(fileName)).append("\n");
+            mensagemSucesso.append(pathGraph.importConnectorsFromJSON(fileName)).append("\n");
+            mensagemSucesso.append(pathGraph.importPathsFromJSON(fileName)).append("\n");
         } catch (IOException e) {
             return e.getMessage();
         }
@@ -39,9 +39,9 @@ public class ImportExportFiles implements IImportExportFiles {
 
         try {
             mensagemSucesso.append(playerList.exportJSON(fileName)).append("\n");
-            //mensagemSucesso.append(pathGraph.exportPortalsToJson(fileName)).append("\n");
-            //mensagemSucesso.append(pathGraph.exportConnectorsToJson(fileName)).append("\n");
-            //mensagemSucesso.append(pathGraph.exportPathsToJson(fileName)).append("\n");
+            mensagemSucesso.append(pathGraph.exportPortalsToJson(fileName)).append("\n");
+            mensagemSucesso.append(pathGraph.exportConnectorsToJson(fileName)).append("\n");
+            mensagemSucesso.append(pathGraph.exportPathsToJson(fileName)).append("\n");
         } catch (IOException e) {
             return e.getMessage();
         }

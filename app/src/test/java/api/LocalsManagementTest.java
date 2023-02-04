@@ -1,16 +1,33 @@
 package api;
 
 import api.implementation.*;
+import api.interfaces.IImportExportFiles;
 import collections.exceptions.ElementNotFoundException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.io.IOException;
 
 public class LocalsManagementTest {
 
+    private PlayerManagement playersList;
     private LocalsManagement pathGraph;
 
     public LocalsManagementTest() {
+        this.playersList = new PlayerManagement();
         this.pathGraph= new LocalsManagement();
+    }
+
+    @BeforeEach
+    public void importInfoFromJSONBeforeTesting() {
+        File file = new File("files/ExportTest.json");
+        String path = file.getAbsolutePath();
+
+        IImportExportFiles importer = new ImportExportFiles();
+
+        importer.importJSON(path, this.playersList, this.pathGraph);
     }
 
 
@@ -133,11 +150,144 @@ public class LocalsManagementTest {
     }
 
     @Test
-    public void testGetConnectorsOrderedByEnergyItHasListing_ReturnString(){
+    public void testGetConnectorOrderedByEnergyItHasListing_ReturnString(){
         String expected = this.pathGraph.getConnectorsOrderedByEnergyItHasListing();
 
         Assertions.assertEquals(expected, this.pathGraph.getConnectorsOrderedByEnergyItHasListing());
     }
 
+    @Test
+    public void testImportPortalsFromJSON_ReturnSuccessfulString_WhenSentValidFileName() {
+        String expected = "O import foi feito com sucesso";
+
+        File file = new File("files/ExportTest.json");
+        String path = file.getAbsolutePath();
+
+        try {
+            Assertions.assertEquals(expected, this.pathGraph.importPortalsFromJSON(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testImportPortalsFromJSON_ReturnIOException_WhenSentInvalidFileName() {
+        String path = "";
+
+        Assertions.assertThrows(IOException.class, () -> this.pathGraph.importPortalsFromJSON(path));
+    }
+
+
+    @Test
+    public void testImportConnectorsFromJSON_ReturnSuccessfulString_WhenSentValidFileName() {
+        String expected = "O import foi feito com sucesso";
+
+        File file = new File("files/ExportTest.json");
+        String path = file.getAbsolutePath();
+
+        try {
+            Assertions.assertEquals(expected, this.pathGraph.importConnectorsFromJSON(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testImportConnectorsFromJSON_ReturnIOException_WhenSentInvalidFileName() {
+        String path = "";
+
+        Assertions.assertThrows(IOException.class, () -> this.pathGraph.importConnectorsFromJSON(path));
+    }
+
+    @Test
+    public void testImportPathsFromJSON_ReturnSuccessfulString_WhenSentValidFileName() {
+        String expected = "O import foi feito com sucesso";
+
+        File file = new File("files/ExportTest.json");
+        String path = file.getAbsolutePath();
+
+        try {
+            Assertions.assertEquals(expected, this.pathGraph.importPathsFromJSON(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+   @Test
+    public void testImportPathsFromJSON_ReturnIOException_WhenSentInvalidFileName() {
+        String path = "";
+
+        Assertions.assertThrows(IOException.class, () -> this.pathGraph.importPathsFromJSON(path));
+    }
+
+
+    @Test
+    public void testExportPortalsToJson_ReturnSuccessfulString_WhenSentValidFileName() {
+        File file = new File("files/ExportTest.json");
+        String path = file.getAbsolutePath();
+
+        IImportExportFiles exporter = new ImportExportFiles();
+
+        String expected = "O export foi feito com sucesso";
+
+        try {
+            Assertions.assertEquals(expected, this.pathGraph.exportPortalsToJson(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testExportPortalsToJson_ReturnIOException_WhenSentInvalidFileName() {
+        String path = "";
+
+        Assertions.assertThrows(IOException.class, () -> this.pathGraph.exportPortalsToJson(path));
+    }
+
+
+    @Test
+    public void testExportConnectorsToJson_ReturnSuccessfulString_WhenSentValidFileName() {
+        File file = new File("files/ExportTest.json");
+        String path = file.getAbsolutePath();
+
+        IImportExportFiles exporter = new ImportExportFiles();
+
+        String expected = "O export foi feito com sucesso";
+
+        try {
+            Assertions.assertEquals(expected, this.pathGraph.exportConnectorsToJson(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testExportConnectorsToJson_ReturnIOException_WhenSentInvalidFileName() {
+        String path = "";
+
+        Assertions.assertThrows(IOException.class, () -> this.pathGraph.exportConnectorsToJson(path));
+    }
+
+
+   @Test
+    public void testExportPathsToJson_ReturnSuccessfulString_WhenSentValidFileName() {
+        File file = new File("files/ExportTest.json");
+        String path = file.getAbsolutePath();
+
+        IImportExportFiles exporter = new ImportExportFiles();
+
+        String expected = "O export foi feito com sucesso";
+
+        try {
+            Assertions.assertEquals(expected, this.pathGraph.exportPathsToJson(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testExportPathsToJson_ReturnIOException_WhenSentInvalidFileName() {
+        String path = "";
+
+        Assertions.assertThrows(IOException.class, () -> this.pathGraph.exportPathsToJson(path));
+    }
 
 }

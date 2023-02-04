@@ -8,11 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/files/ExportTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/files/ExportTest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/ImportExportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/ImportExportFiles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/LocalsManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/LocalsManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/api/LocalsManagementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/api/LocalsManagementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/api/PlayerManagementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/api/PlayerManagementTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,18 +43,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Projeto_ED_GRUPO14" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Projeto_ED_GRUPO14" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Projeto_ED_GRUPO14" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
+                <item name="ED_TP" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -76,7 +67,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2KpCBYuc0YmYWJBQFBoq5KCjhrH" />
   <component name="ProjectLevelVcsManager">
@@ -302,6 +293,11 @@
           <properties class="java.util.NoSuchElementException" package="java.util" />
           <option name="timeStamp" value="8" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/api/implementation/LocalsManagement.java</url>
+          <line>149</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
