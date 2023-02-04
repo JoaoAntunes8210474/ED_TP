@@ -1,5 +1,6 @@
 package api.implementation;
 
+import api.interfaces.ILocal;
 import api.interfaces.IPlayerManagement;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -262,6 +263,30 @@ public class PlayerManagement implements IPlayerManagement {
         return tempPlayersList.toString();
     }
 
+    public JSONObject getPlayersAsJSONObject(Player player) {
+        JSONObject playerObject = new JSONObject();
+
+        playerObject.put("name", player.getName());
+        playerObject.put("team", player.getTeam());
+        playerObject.put("level", player.getLevel());
+        playerObject.put("experiencePoints", player.getExperiencePoints());
+        playerObject.put("currentEnergy", player.getCurrentEnergy());
+        playerObject.put("numPortalsConquered", player.getNumPortals());
+        playerObject.put("currentLocation", player.getCurrentLocation());
+
+        return playerObject;
+    }
+
+    public JSONArray getPlayersAsJSONArray() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Player player : this.playerList) {
+            jsonArray.add(getPlayersAsJSONObject(player));
+        }
+
+        return jsonArray;
+    }
+
     /**
      * Import the content of the JSON given through reference into an instance of this class
      *
@@ -269,29 +294,51 @@ public class PlayerManagement implements IPlayerManagement {
      * @return A string indicating whether the operation was successful or something went wrong
      */
     @Override
-    public String importJSON(String fileName) throws IOException {
+    public String importJSON(String fileName, JSONParser parser) throws IOException {
         if (fileName.trim().equals("") || Files.notExists(Paths.get(fileName))) {
             throw new IOException("O ficheiro em que estava a tentar escrever nao existe");
         }
 
-        JSONParser jsonParser = new JSONParser();
-
         try {
-            Object obj = jsonParser.parse(new FileReader(fileName));
+            Object obj = parser.parse(new FileReader(fileName));
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray jsonArray = (JSONArray) jsonObject.get("players");
             for (Object object : jsonArray) {
+                ILocal currentLocation;
                 JSONObject playerToCreate = (JSONObject) object;
                 String name = (String) playerToCreate.get("name");
                 String team = (String) playerToCreate.get("team");
+                JSONObject currentLocationJSON = (JSONObject) playerToCreate.get("currentLocation");
+                long amountEnergyItHasLong = (long) currentLocationJSON.get("amountEnergyItHas");
+                long idLong = (long) currentLocationJSON.get("id");
+                int id = (int) idLong;
+                int amountEnergyItHas = (int) amountEnergyItHasLong;
+                String nameLocal = (String) currentLocationJSON.get("name");
+                JSONObject coordinatesJSON = (JSONObject) currentLocationJSON.get("coordinates");
+                double longitude = (double) coordinatesJSON.get("longitude");
+                double latitude = (double) coordinatesJSON.get("latitude");
+                if (currentLocationJSON.get("localType").equals("Portal")) {
+                    long maxEnergyLong = (long) currentLocationJSON.get("maxEnergy");
+                    int maxEnergy = (int) maxEnergyLong;
+                    currentLocation = new Portal(maxEnergy, id, nameLocal, amountEnergyItHas, new Coordinates(longitude, latitude));
+                } else {
+                    long cooldownLong = (long) currentLocationJSON.get("cooldown");
+                    int cooldown = (int) cooldownLong;
+                    currentLocation = new Connector(cooldown, id, nameLocal, amountEnergyItHas, new Coordinates(longitude, latitude));
+                }
+
                 long levelLong = (long) playerToCreate.get("level");
                 long experiencePointsLong = (long) playerToCreate.get("experiencePoints");
                 long currentEnergyLong = (long) playerToCreate.get("currentEnergy");
+                long numPortalsConqueredLong = (long) playerToCreate.get("numPortalsConquered");
                 int level = (int) levelLong;
                 int experiencePoints = (int) experiencePointsLong;
                 int currentEnergy = (int) currentEnergyLong;
-                Player player = new Player(name, team);
+                int numPortalsConquered = (int) numPortalsConqueredLong;
+                Player player = new Player(name, team, level, experiencePoints, currentEnergy, numPortalsConquered);
+                player.setCurrentLocation(currentLocation);
                 this.playerList.addToRear(player);
+
             }
         } catch (ParseException e) {
             return "Houve um problema a fazer o import dos jogadores";
@@ -307,22 +354,12 @@ public class PlayerManagement implements IPlayerManagement {
      * @return A string indicating whether the operation was successful or something went wrong
      */
     @Override
-    public String exportJSON(String fileName) throws IOException {
+    public String exportJSON(String fileName, FileWriter fileWriter) throws IOException {
         if (fileName.trim().equals("") || Files.notExists(Paths.get(fileName))) {
             throw new IOException("O ficheiro em que estava a tentar escrever nao existe");
         }
 
-        JSONArray playersArray = new JSONArray();
-
-        for (Player player : this.playerList) {
-            JSONObject playerObject = new JSONObject();
-            playerObject.put("name", player.getName());
-            playerObject.put("team", player.getTeam());
-            playerObject.put("level", player.getLevel());
-            playerObject.put("experiencePoints", player.getExperiencePoints());
-            playerObject.put("currentEnergy", player.getCurrentEnergy());
-            playersArray.add(playerObject);
-        }
+        JSONArray playersArray = getPlayersAsJSONArray();
 
         JSONObject players = new JSONObject();
         players.put("players", playersArray);
@@ -330,9 +367,8 @@ public class PlayerManagement implements IPlayerManagement {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(players);
 
-        FileWriter writer = new FileWriter(fileName);
-        writer.write(json);
-        writer.flush();
+        fileWriter.write(json);
+        fileWriter.flush();
 
         return "O export foi feito com sucesso";
 

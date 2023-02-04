@@ -50,6 +50,15 @@ public class Player implements IPlayer, Comparable<Player> {
         this.numPortals = 0;
     }
 
+    protected Player(String name, String team, int level, long experiencePoints, int currentEnergy, int numPortals) {
+        this.name = name;
+        this.team = team;
+        this.level = level;
+        this.experiencePoints = experiencePoints;
+        this.currentEnergy = currentEnergy;
+        this.numPortals = numPortals;
+    }
+
     /**
      * Method that adds experience points to the player depending on the action performed by the player.
      * @param actionPlayerPerformed Action performed by the player.
@@ -257,9 +266,12 @@ public class Player implements IPlayer, Comparable<Player> {
             if (Math.abs(portal.getAmountEnergyItHas()) > (portal.getMaxEnergy() * 0.25)) {
                 portal.setPlayerTeam(this.team);
                 portal.setAmountEnergyItHas(Math.abs(portal.getAmountEnergyItHas()));
+                this.currentEnergy -= energy;
+                this.numPortals++;
             } else {
                 portal.setAmountEnergyItHas(Math.abs(portal.getAmountEnergyItHas()));
                 portal.setPlayerTeam("NEUTRAL");
+                this.currentEnergy -= energy;
             }
         }
 
@@ -288,8 +300,11 @@ public class Player implements IPlayer, Comparable<Player> {
         if ((portal.getAmountEnergyItHas() + energy) >= (portal.getMaxEnergy() * 0.25)) {
             portal.setPlayerTeam(this.team);
             portal.setAmountEnergyItHas(portal.getAmountEnergyItHas() + energy);
+            this.currentEnergy -= energy;
+            this.numPortals++;
         } else {
             portal.setAmountEnergyItHas(portal.getAmountEnergyItHas() + energy);
+            this.currentEnergy -= energy;
         }
 
         this.addExperiencePoints("CONQUER");
@@ -363,8 +378,6 @@ public class Player implements IPlayer, Comparable<Player> {
                 this.currentEnergy += connector.getAmountEnergyItHas();
                 jaInteragiu = true;
                 break;
-            } else if (!(connectorPlayerInterationIterator.getPlayer().toString().equals(this.toString())) && (tempoDesdeInteracao.compareTo(cooldown) >= 0)) {
-                iterator.remove();
             } else if (connectorPlayerInterationIterator.getPlayer().toString().equals(this.toString()) && (tempoDesdeInteracao.compareTo(cooldown) < 0)){
                 return "You can't recharge your energy yet.";
             }
