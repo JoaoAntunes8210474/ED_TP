@@ -2,12 +2,14 @@ package api;
 
 import api.implementation.*;
 import api.interfaces.IImportExportFiles;
+import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import collections.exceptions.ElementNotFoundException;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class PlayerManagementTest {
@@ -24,10 +26,11 @@ public class PlayerManagementTest {
     public void importInfoFromJSONBeforeTesting() {
         File file = new File("files/ExportTest.json");
         String path = file.getAbsolutePath();
+        JSONParser parser = new JSONParser();
 
         IImportExportFiles importer = new ImportExportFiles();
 
-        importer.importJSON(path, this.playersList, this.pathGraph);
+        importer.importJSON(path, this.playersList, this.pathGraph, parser);
     }
 
     @Test
@@ -129,7 +132,7 @@ public class PlayerManagementTest {
         String path = file.getAbsolutePath();
 
         try {
-            Assertions.assertEquals(expected, this.playersList.importJSON(path));
+            Assertions.assertEquals(expected, this.playersList.importJSON(path, new JSONParser()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -138,7 +141,7 @@ public class PlayerManagementTest {
     public void testImportJSON_ReturnIOException_WhenSentInvalidFileName() {
         String path = "";
 
-        Assertions.assertThrows(IOException.class, () -> this.playersList.importJSON(path));
+        Assertions.assertThrows(IOException.class, () -> this.playersList.importJSON(path, new JSONParser()));
     }
 
 
@@ -146,13 +149,22 @@ public class PlayerManagementTest {
     public void testExportJSON_ReturnSuccessfulString_WhenSentValidFileName() {
         File file = new File("files/ExportTest.json");
         String path = file.getAbsolutePath();
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FileWriter finalFileWriter = fileWriter;
 
         IImportExportFiles exporter = new ImportExportFiles();
 
         String expected = "O export foi feito com sucesso";
 
         try {
-            Assertions.assertEquals(expected, this.playersList.exportJSON(path));
+            Assertions.assertEquals(expected, this.playersList.exportJSON(path, finalFileWriter));
+            finalFileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,8 +173,14 @@ public class PlayerManagementTest {
     @Test
     public void testExportJSON_ReturnIOException_WhenSentInvalidFileName() {
         String path = "";
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(path);
+        } catch (IOException e) {
+        }
 
-        Assertions.assertThrows(IOException.class, () -> this.playersList.exportJSON(path));
+        FileWriter finalFileWriter = fileWriter;
+        Assertions.assertThrows(IOException.class, () -> this.playersList.exportJSON(path, finalFileWriter));
     }
 
 

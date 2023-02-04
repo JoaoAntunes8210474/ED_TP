@@ -3,6 +3,9 @@ package api.interfaces;
 import api.implementation.Player;
 
 import collections.implementation.ArrayUnorderedList;
+import org.json.simple.parser.JSONParser;
+
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -84,7 +87,7 @@ public interface IPlayerManagement {
      * @param fileName to use for the import
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String importJSON(String fileName) throws IOException;
+    public String importJSON(String fileName, JSONParser parser) throws IOException;
 
     /**
      * Exports the content of this class into a specified JSON file with the name given through reference
@@ -92,5 +95,5 @@ public interface IPlayerManagement {
      * @param fileName to use for the export
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String exportJSON(String fileName) throws IOException;
+    public String exportJSON(String fileName, FileWriter fileWriter) throws IOException;
 }

@@ -1,1 +1,60 @@
-[]
+{
+  "players": [
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Joaquim",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Giants"
+    },
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Test1",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Test2",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Test3",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Test4",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Test5",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    },
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Test6",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks"
+    }
+  ]
+}

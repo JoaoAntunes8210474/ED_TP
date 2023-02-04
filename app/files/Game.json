@@ -1,0 +1,86 @@
+{
+  "playerTurn": 1,
+  "players": [
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Joao",
+      "experiencePoints": 30,
+      "currentEnergy": 150,
+      "team": "Giants",
+      "currentLocation": {
+        "cooldown": 3,
+        "players": {},
+        "id": 511,
+        "name": "Torre Eifel",
+        "localType": "Connector",
+        "amountEnergyItHas": 50,
+        "coordinates": {
+          "longitude": 67.38593301667498,
+          "latitude": 6.529736069481515
+        }
+      }
+    },
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Regina",
+      "experiencePoints": 10,
+      "currentEnergy": 50,
+      "team": "Sparks",
+      "currentLocation": {
+        "cooldown": 3,
+        "players": {},
+        "id": 68,
+        "name": "Arco do Triunfo",
+        "localType": "Connector",
+        "amountEnergyItHas": 50,
+        "coordinates": {
+          "longitude": -27.555798406915486,
+          "latitude": -4.737779136930783
+        }
+      }
+    },
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Joao",
+      "experiencePoints": 50,
+      "currentEnergy": 0,
+      "team": "Giants",
+      "currentLocation": {
+        "maxEnergy": 100,
+        "playerTeam": "NEUTRAL",
+        "id": 2236,
+        "name": "Palacio de Monserratelo",
+        "localType": "Portal",
+        "amountEnergyItHas": 0,
+        "coordinates": {
+          "longitude": 35.49351178888443,
+          "latitude": 167.45756553404857
+        }
+      }
+    },
+    {
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Regina",
+      "experiencePoints": 50,
+      "currentEnergy": 0,
+      "team": "Sparks",
+      "currentLocation": {
+        "cooldown": 3,
+        "players": {},
+        "id": 68,
+        "name": "Arco do Triunfo",
+        "localType": "Connector",
+        "amountEnergyItHas": 50,
+        "coordinates": {
+          "longitude": -27.555798406915486,
+          "latitude": -4.737779136930783
+        }
+      }
+    }
+  ],
+  "gameTimer": "16:40:35"
+}

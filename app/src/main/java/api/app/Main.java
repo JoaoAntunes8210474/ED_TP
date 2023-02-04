@@ -15,6 +15,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -86,12 +88,16 @@ public class Main {
     }
 
     private static void loadGameState(PlayerManagement playerManagement, LocalsManagement localsManagement) {
-        IImportExportFiles importExportFiles = new ImportExportFiles();
-
-        importExportFiles.importJSON("files/Game.json", playerManagement, localsManagement);
         JSONParser parser = new JSONParser();
 
         try {
+            playerManagement.importJSON("files/Game.json", parser);
+            Iterator<Player> iterator = playerManagement.getPlayerList().iterator();
+            while (iterator.hasNext()) {
+                localsManagement.addLocals(iterator.next().getCurrentLocation());
+            }
+
+            
             Object obj = parser.parse(new FileReader("files/Game.json"));
             JSONObject jsonObject = (JSONObject) obj;
             long longPlayerTurn = (long) jsonObject.get("playerTurn");
@@ -109,25 +115,25 @@ public class Main {
      */
     @SuppressWarnings("unchecked")
     private static void saveGameState(PlayerManagement playerManagement, LocalsManagement localsManagement) throws IOException {
-        IImportExportFiles importExportFiles = new ImportExportFiles();
-
-        File file = new File("Game.json");
+        File file = new File("files/Game.json");
         String path = file.getAbsolutePath();
+        FileWriter fileWriter = new FileWriter(path);
 
-        importExportFiles.exportJSON(path, playerManagement, localsManagement);
-        JSONObject playerTurnJSON = new JSONObject();
-        JSONObject gameTimerJSON = new JSONObject();
-        playerTurnJSON.put("playerTurn", playerTurn);
-        gameTimerJSON.put("gameTimer", gameTimer);
+        JSONObject gameSettingsJSON = new JSONObject();
+        gameSettingsJSON.put("players", playerManagement.getPlayersAsJSONArray());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String gameTimerFormatted = gameTimer.format(formatter);
+
+        gameSettingsJSON.put("gameTimer", gameTimerFormatted);
+        gameSettingsJSON.put("playerTurn", playerTurn);
 
         Gson beautifyGson = new GsonBuilder().setPrettyPrinting().create();
-        String playerTurnJson = beautifyGson.toJson(playerTurnJSON);
-        String gameTimerJson = beautifyGson.toJson(gameTimerJSON);
+        String playerTurnJson = beautifyGson.toJson(gameSettingsJSON);
 
-        FileWriter fileWriter = new FileWriter(path);
         fileWriter.write(playerTurnJson);
-        fileWriter.write(gameTimerJson);
         fileWriter.flush();
+        fileWriter.close();
     }
 
     /**
@@ -193,7 +199,6 @@ public class Main {
                     switch (option) {
                         case 0:
                             gameEnd = true;
-                            scanner.close();
                             Main.saveGameState(playerManagement, localsManagement);
                             break;
                         case 1:
@@ -236,7 +241,7 @@ public class Main {
                             indiceLista--;
                             break;
                         default:
-                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_PORTAL)) + option - numberOfAvailableActionsForPortals - 1));
+                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_PORTAL)) + option - 4));
                             playerTurnEnded = true;
                             break;
                     }
@@ -285,7 +290,7 @@ public class Main {
                             indiceLista--;
                             break;
                         default:
-                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR)) + option - 1));
+                            currentPlayer.setCurrentLocation(neighbours.get((indiceLista * (NUM_AVAILABLE_ACTIONS - NUM_ACTIONS_CONNECTOR)) + option - 2));
                             playerTurnEnded = true;
                             break;
                     }
@@ -303,6 +308,9 @@ public class Main {
                 e.printStackTrace();
             }
 
+            if (gameEnd) {
+                break;
+            }
             // Check if the game can end
             // If the game can end, the game ends
             gameEnd = Main.checkIfGameCanEnd(playerManagement);
@@ -402,5 +410,7 @@ public class Main {
                 Main.gameStart((PlayerManagement) playerManagement, (LocalsManagement) localsManagement, scanner);
                 break;
         }
+
+        scanner.close();
     }
 }
