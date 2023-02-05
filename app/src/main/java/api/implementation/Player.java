@@ -262,15 +262,18 @@ public class Player implements IPlayer, Comparable<Player> {
         // If it is, the portal is conquered by the player's team, and we set the portal's energy to the positive value of the energy that was over 25% of the portal's max energy
         // If it is not, we set the portal's energy to the positive value of the energy that was not over 25% of the portal's max energy and set the portal's player team to "NEUTRAL"
         portal.setAmountEnergyItHas(portal.getAmountEnergyItHas() - energy);
-        if (portal.getAmountEnergyItHas() < 0) {
+        if (portal.getAmountEnergyItHas() > 0) {
             if (Math.abs(portal.getAmountEnergyItHas()) > (portal.getMaxEnergy() * 0.25)) {
                 portal.setPlayerTeam(this.team);
                 portal.setAmountEnergyItHas(Math.abs(portal.getAmountEnergyItHas()));
+                portal.setOwnerPlayer(this);
                 this.currentEnergy -= energy;
                 this.numPortals++;
             } else {
                 portal.setAmountEnergyItHas(Math.abs(portal.getAmountEnergyItHas()));
                 portal.setPlayerTeam("NEUTRAL");
+                portal.getOwnerPlayer().setNumPortals(portal.getOwnerPlayer().getNumPortals() - 1);
+                portal.setOwnerPlayer(null);
                 this.currentEnergy -= energy;
             }
         }

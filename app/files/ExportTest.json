@@ -1,60 +1,156 @@
 {
+  "routes": [
+    {
+      "from": 176,
+      "to": 1122
+    },
+    {
+      "from": 176,
+      "to": 2713
+    },
+    {
+      "from": 176,
+      "to": 948
+    },
+    {
+      "from": 1122,
+      "to": 149
+    },
+    {
+      "from": 1122,
+      "to": 1656
+    },
+    {
+      "from": 149,
+      "to": 2713
+    },
+    {
+      "from": 149,
+      "to": 948
+    },
+    {
+      "from": 2713,
+      "to": 1656
+    },
+    {
+      "from": 1656,
+      "to": 948
+    }
+  ],
   "players": [
     {
       "level": 1,
       "numPortalsConquered": 0,
-      "name": "Joaquim",
+      "name": "Joao",
       "experiencePoints": 0,
       "currentEnergy": 0,
-      "team": "Giants"
+      "team": "Giants",
+      "currentLocation": {
+        "maxEnergy": 100,
+        "playerTeam": "NEUTRAL",
+        "id": 1122,
+        "name": "Palacio da Pena",
+        "localType": "Portal",
+        "amountEnergyItHas": 40,
+        "coordinates": {
+          "longitude": -7.798056926075603,
+          "latitude": -188.54415504311604
+        }
+      }
     },
     {
       "level": 1,
       "numPortalsConquered": 0,
-      "name": "Test1",
+      "name": "Regina",
       "experiencePoints": 0,
       "currentEnergy": 0,
-      "team": "Sparks"
+      "team": "Sparks",
+      "currentLocation": {
+        "maxEnergy": 100,
+        "playerTeam": "NEUTRAL",
+        "id": 176,
+        "name": "Palacio de Monserratelo",
+        "localType": "Portal",
+        "amountEnergyItHas": 0,
+        "coordinates": {
+          "longitude": -17.320666171490814,
+          "latitude": 51.33595838900601
+        }
+      }
+    }
+  ],
+  "locals": [
+    {
+      "maxEnergy": 100,
+      "name": "Palacio de Monserratelo",
+      "coordinates": {
+        "longitude": -17.320666171490814,
+        "latitude": 51.33595838900601
+      },
+      "id": 176,
+      "amountEnergyItHas": 0,
+      "ownerTeam": "NEUTRAL",
+      "localType": "Portal"
     },
     {
-      "level": 1,
-      "numPortalsConquered": 0,
-      "name": "Test2",
-      "experiencePoints": 0,
-      "currentEnergy": 0,
-      "team": "Sparks"
+      "maxEnergy": 100,
+      "name": "Palacio da Pena",
+      "coordinates": {
+        "longitude": -7.798056926075603,
+        "latitude": -188.54415504311604
+      },
+      "id": 1122,
+      "amountEnergyItHas": 40,
+      "ownerTeam": "NEUTRAL",
+      "localType": "Portal"
     },
     {
-      "level": 1,
-      "numPortalsConquered": 0,
-      "name": "Test3",
-      "experiencePoints": 0,
-      "currentEnergy": 0,
-      "team": "Sparks"
+      "maxEnergy": 100,
+      "name": "Quinta da regaleira",
+      "coordinates": {
+        "longitude": 90.88454780577183,
+        "latitude": -62.92365463861077
+      },
+      "id": 149,
+      "amountEnergyItHas": 15,
+      "ownerTeam": "NEUTRAL",
+      "localType": "Portal"
     },
     {
-      "level": 1,
-      "numPortalsConquered": 0,
-      "name": "Test4",
-      "experiencePoints": 0,
-      "currentEnergy": 0,
-      "team": "Sparks"
+      "maxEnergy": 100,
+      "name": "Palacio de Monserrate",
+      "coordinates": {
+        "longitude": -75.156544201804,
+        "latitude": 83.77313422967916
+      },
+      "id": 2713,
+      "amountEnergyItHas": 1,
+      "ownerTeam": "NEUTRAL",
+      "localType": "Portal"
     },
     {
-      "level": 1,
-      "numPortalsConquered": 0,
-      "name": "Test5",
-      "experiencePoints": 0,
-      "currentEnergy": 0,
-      "team": "Sparks"
+      "players": "doesnt have any players",
+      "name": "Arco do Triunfo",
+      "coordinates": {
+        "longitude": -31.84784746979929,
+        "latitude": 193.9611348824289
+      },
+      "cooldown": 3,
+      "id": 1656,
+      "amountEnergyItHas": 60,
+      "localType": "Connector"
     },
     {
-      "level": 1,
-      "numPortalsConquered": 0,
-      "name": "Test6",
-      "experiencePoints": 0,
-      "currentEnergy": 0,
-      "team": "Sparks"
+      "players": "doesnt have any players",
+      "name": "Torre Eifel",
+      "coordinates": {
+        "longitude": 40.89891045454917,
+        "latitude": 108.93612150002963
+      },
+      "cooldown": 3,
+      "id": 948,
+      "amountEnergyItHas": 80,
+      "localType": "Connector"
     }
   ]
 }

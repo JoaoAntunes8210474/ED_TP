@@ -1,86 +1,46 @@
 {
-  "playerTurn": 1,
+  "playerTurn": 0,
   "players": [
     {
-      "level": 1,
-      "numPortalsConquered": 0,
+      "level": 2,
+      "numPortalsConquered": 1,
       "name": "Joao",
-      "experiencePoints": 30,
-      "currentEnergy": 150,
-      "team": "Giants",
-      "currentLocation": {
-        "cooldown": 3,
-        "players": {},
-        "id": 511,
-        "name": "Torre Eifel",
-        "localType": "Connector",
-        "amountEnergyItHas": 50,
-        "coordinates": {
-          "longitude": 67.38593301667498,
-          "latitude": 6.529736069481515
-        }
-      }
-    },
-    {
-      "level": 1,
-      "numPortalsConquered": 0,
-      "name": "Regina",
-      "experiencePoints": 10,
-      "currentEnergy": 50,
-      "team": "Sparks",
-      "currentLocation": {
-        "cooldown": 3,
-        "players": {},
-        "id": 68,
-        "name": "Arco do Triunfo",
-        "localType": "Connector",
-        "amountEnergyItHas": 50,
-        "coordinates": {
-          "longitude": -27.555798406915486,
-          "latitude": -4.737779136930783
-        }
-      }
-    },
-    {
-      "level": 1,
-      "numPortalsConquered": 0,
-      "name": "Joao",
-      "experiencePoints": 50,
-      "currentEnergy": 0,
+      "experiencePoints": 140,
+      "currentEnergy": 35,
       "team": "Giants",
       "currentLocation": {
         "maxEnergy": 100,
-        "playerTeam": "NEUTRAL",
-        "id": 2236,
+        "playerTeam": "Giants",
+        "id": 2933,
         "name": "Palacio de Monserratelo",
         "localType": "Portal",
-        "amountEnergyItHas": 0,
+        "amountEnergyItHas": 40,
         "coordinates": {
-          "longitude": 35.49351178888443,
-          "latitude": 167.45756553404857
+          "longitude": 93.91258128734407,
+          "latitude": 25.429966019390093
         }
       }
     },
     {
-      "level": 1,
-      "numPortalsConquered": 0,
+      "level": 2,
+      "numPortalsConquered": 1,
       "name": "Regina",
-      "experiencePoints": 50,
-      "currentEnergy": 0,
+      "experiencePoints": 130,
+      "currentEnergy": 220,
       "team": "Sparks",
       "currentLocation": {
         "cooldown": 3,
         "players": {},
-        "id": 68,
-        "name": "Arco do Triunfo",
+        "id": 1414,
+        "name": "Torre Eifel",
         "localType": "Connector",
-        "amountEnergyItHas": 50,
+        "amountEnergyItHas": 80,
         "coordinates": {
-          "longitude": -27.555798406915486,
-          "latitude": -4.737779136930783
+          "longitude": 75.10402090698665,
+          "latitude": -84.48306055667838
         }
       }
     }
   ],
-  "gameTimer": "16:40:35"
+  "gameTimer": "04:09:20"
 }

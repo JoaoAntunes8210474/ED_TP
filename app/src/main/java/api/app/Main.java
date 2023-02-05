@@ -94,10 +94,14 @@ public class Main {
             playerManagement.importJSON("files/Game.json", parser);
             Iterator<Player> iterator = playerManagement.getPlayerList().iterator();
             while (iterator.hasNext()) {
-                localsManagement.addLocals(iterator.next().getCurrentLocation());
+                Player player = iterator.next();
+                for (int i = 0; i < localsManagement.getPathGraph().size(); i++) {
+                    if (player.getCurrentLocation().toString().equals(localsManagement.getPathGraph().get(i).toString())) {
+                        localsManagement.addLocals(player.getCurrentLocation());
+                    }
+                }
             }
 
-            
             Object obj = parser.parse(new FileReader("files/Game.json"));
             JSONObject jsonObject = (JSONObject) obj;
             long longPlayerTurn = (long) jsonObject.get("playerTurn");
@@ -337,6 +341,18 @@ public class Main {
         Player player = new Player("Joao", "Giants");
         Player player1 = new Player("Regina", "Sparks");
 
+        //File file = new File("files/Paths.json");
+        //String path = file.getAbsolutePath();
+
+        JSONParser jsonParser = new JSONParser();
+
+        FileWriter fileWriter = null;
+        //try {
+            //fileWriter = new FileWriter(path);
+        //} catch (IOException e) {
+            //e.printStackTrace();
+        //}
+
         playerManagement.addPlayer(player);
         playerManagement.addPlayer(player1);
 
@@ -350,11 +366,11 @@ public class Main {
         Coordinates coordinates5 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
 
         ILocal local = new Portal(100, random.nextInt(3000), "Palacio de Monserratelo", 0, coordinates);
-        ILocal local1 = new Portal(100, random.nextInt(3000), "Palacio da Pena", 0, coordinates1);
-        ILocal local2 = new Portal(100, random.nextInt(3000), "Quinta da regaleira", 0, coordinates2);
-        ILocal local3 = new Portal(100, random.nextInt(3000), "Palacio de Monserrate", 0, coordinates3);
-        ILocal local4 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Arco do Triunfo", 50, coordinates4);
-        ILocal local5 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Torre Eifel", 50, coordinates5);
+        ILocal local1 = new Portal(100, random.nextInt(3000), "Palacio da Pena", 40, coordinates1);
+        ILocal local2 = new Portal(100, random.nextInt(3000), "Quinta da regaleira", 15, coordinates2);
+        ILocal local3 = new Portal(100, random.nextInt(3000), "Palacio de Monserrate", 1, coordinates3);
+        ILocal local4 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Arco do Triunfo", 60, coordinates4);
+        ILocal local5 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Torre Eifel", 80, coordinates5);
 
         IRoute route = new Route(local, local1);
         IRoute route1 = new Route(local1, local2);
@@ -386,31 +402,71 @@ public class Main {
         localsManagement.addPath(route9);
         localsManagement.addPath(route10);
 
-        player.setCurrentLocation(local);
-        player1.setCurrentLocation(local4);
+        player1.setCurrentLocation(local);
+        player.setCurrentLocation(local1);
 
-        System.out.println("Deseja continuar o jogo anterior ou comecar um jogo novo?\n (1 - Continuar, 2 - Novo jogo)");
+        System.out.println("Deseja continuar o jogo anterior ou comecar um jogo novo?\n (0 - Sair, 1 - Continuar, 2 - Novo jogo)");
         Scanner scanner = new Scanner(System.in);
 
         int option;
         do {
             option = scanner.nextInt();
 
-            if (option != 1 && option != 2) {
+            if (option < 0 || option > 2) {
                 System.out.println("Opção inválida. Tente novamente.");
             }
-        } while (option != 1 && option != 2);
+        } while (option < 0 || option > 2);
 
         switch (option) {
+            case 0:
+                System.exit(0);
+                break;
             case 1:
                 Main.loadGameState((PlayerManagement) playerManagement, (LocalsManagement) localsManagement);
                 Main.gameStart((PlayerManagement) playerManagement, (LocalsManagement) localsManagement, scanner);
                 break;
             case 2:
+                player.setCurrentLocation(local);
+                player1.setCurrentLocation(local4);
                 Main.gameStart((PlayerManagement) playerManagement, (LocalsManagement) localsManagement, scanner);
                 break;
         }
 
         scanner.close();
+        /**
+        System.out.println("--------------------------------------LISTA DE CONNECTORES----------------------------------------------" + "\n" );
+        System.out.println(localsManagement.getAllConnectorsListing() );
+        System.out.println("--------------------------------------LISTA DE CONNECTORES POR ORDEM CRESCENTE DE ENERGIA QUE CONTEM--------------------------------------"+ "\n" );
+        System.out.println(localsManagement.getConnectorsOrderedByEnergyItHasListing() );
+        System.out.println("--------------------------------------LISTA DE PORTAIS--------------------------------------");
+        System.out.println(localsManagement.getAllPortalsListing() + "\n");
+        System.out.println("--------------------------------------LISTA DE PORTAIS QUE PERTENCEM A UMA EQUIPA--------------------------------------" + "\n");
+        System.out.println(localsManagement.getPortalsByTeamListing("Sparks"));
+        System.out.println("--------------------------------------LISTA DE PORTAIS SEM EQUIPA/NEUTROS--------------------------------------" + "\n");
+        System.out.println(localsManagement.getPortalsWithoutTeamListing());
+        System.out.println("--------------------------------------LISTA DE PORTAIS ORDENADOS DE FORMA CRESCENTE PELA ENERGIA QUE CONTÊM--------------------------------------" + "\n");
+        System.out.println(localsManagement.getPortalsOrderedByEnergyItHasListing());
+        System.out.println("---------------------------------------CAMINHO MAIS CURTO ENTRE 2 LOCAIS PASSANDO POR UM CONECTOR-------------------------------------" + "\n");
+        //System.out.println(localsManagement.getPortalsPlayerListing(player1));
+        try {
+            Iterator<ILocal> iterator = localsManagement.getPathGraph().shortestPathAtleastOneConnector(local, local3);
+            while (iterator.hasNext()) {
+                System.out.println(iterator.next().toString());
+            }
+        } catch (NotPlaceInstanceException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(importExportFiles.exportJSON(path, (PlayerManagement) playerManagement, (LocalsManagement) localsManagement, fileWriter));
+        System.out.println(importExportFiles.importJSON(path, (PlayerManagement) playerManagement, (LocalsManagement) localsManagement));
+        System.out.println(importExportFiles.exportJSON(path, (PlayerManagement) playerManagement, (LocalsManagement) localsManagement, fileWriter));
+         try {
+            localsManagement.getPathGraph().exportShortestPathWithOnlyPortals(local, local3, path);
+            //localsManagement.getPathGraph().exportShortestPathWithOnlyConnectors(local4, local5, path);
+            //localsManagement.getPathGraph().exportShortestPathAtleastOneConnector(local, local3, path);
+            //localsManagement.getPathGraph().exportShortestPathBetweenTwoPoints(local, local3, path);
+        } catch (NotPlaceInstanceException e) {
+            throw new RuntimeException(e);
+        }
+         **/
     }
 }

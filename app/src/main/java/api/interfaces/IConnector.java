@@ -43,13 +43,13 @@ public interface IConnector extends ILocal{
     * Returns a list of players who interacted with the connector
     * @return the iterator with the list of players
     */
-   public Iterator<ConnectorPlayerInteration> getListOfPlayersInteration() throws EmptyCollectionException;
+   public Iterator<ConnectorPlayerInteration> getListOfPlayersInteration();
 
    /**
     * Transforms the connector into a JSONObject representation
     * @return the JSONObject with all the details of the Connector
     */
-   public JSONObject connectorToJSONObject() throws EmptyCollectionException;
+   public JSONObject connectorToJSONObject();
 
    /**
     * String representing a connector

@@ -1,0 +1,28 @@
+{
+  "shortestPathBetweenTwoPointsPortalsOnly": [
+    {
+      "maxEnergy": 100,
+      "name": "Palacio de Monserratelo",
+      "coordinates": {
+        "longitude": 93.91258128734407,
+        "latitude": 25.429966019390093
+      },
+      "id": 2933,
+      "amountEnergyItHas": 40,
+      "ownerTeam": "Giants",
+      "localType": "Portal"
+    },
+    {
+      "maxEnergy": 100,
+      "name": "Palacio de Monserrate",
+      "coordinates": {
+        "longitude": 90.34348289058536,
+        "latitude": -191.83279622176292
+      },
+      "id": 1904,
+      "amountEnergyItHas": 51,
+      "ownerTeam": "Sparks",
+      "localType": "Portal"
+    }
+  ]
+}

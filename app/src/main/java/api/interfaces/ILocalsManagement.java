@@ -31,7 +31,7 @@ public interface ILocalsManagement {
      * @param connector connector where there was interaction
      * @param interation information about the interaction to be added to the connector
      */
-    public String addInterationConnector (IConnector connector, ConnectorPlayerInteration interation);
+    public String addInterationConnector(IConnector connector, ConnectorPlayerInteration iteration);
 
     /**
      * Add new path between two points on graph.
@@ -39,6 +39,12 @@ public interface ILocalsManagement {
      * @param local2 segundo local
      */
     public String addPath(IRoute route);
+
+    /**
+     * Remove a path between two points on graph.
+     * @param route path to be removed
+     */
+    public String removePath (IRoute route);
 
     /**
      * Gets the textual listing of all Portals

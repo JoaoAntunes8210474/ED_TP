@@ -13,6 +13,12 @@ import collections.interfaces.GraphADT;
  */
 public interface IPathGameGraphADT<T> extends GraphADT<T> {
 
+    /**
+     * Returns the local with the given index.
+     * @param index index of local.
+     * @return local with the given index.
+     */
+    ILocal get(int index);
 
     /**
      * Gets the number of connectors in graph.
@@ -88,4 +94,40 @@ public interface IPathGameGraphADT<T> extends GraphADT<T> {
      * @throws NotPlaceInstanceException if vertex is not {@link ILocal local} instance.
      */
     ArrayUnorderedList<ILocal> getNeighbours(T vertex) throws NotPlaceInstanceException;
+
+    /**
+     * Exports the shortest path between two points to a json file.
+     * @param source starting point
+     * @param destiny destiny point
+     * @param fileName name of the file
+     * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
+     */
+    void exportShortestPathBetweenTwoPoints(T source, T destiny, String fileName) throws NotPlaceInstanceException;
+
+    /**
+     * Exports the shortest path between two points into a json file going only through portals.
+     * @param source starting point
+     * @param destiny destiny point
+     * @param fileName name of the file
+     * @throws NotPlaceInstanceException if source or destiny is not a {@link ILocal local} instance.
+     */
+    void exportShortestPathWithOnlyPortals(T source, T destiny, String fileName) throws NotPlaceInstanceException;
+
+    /**
+     * Exports the shortest path between two points into a json file going only through connectors.
+     * @param source starting point
+     * @param destiny destiny point
+     * @param fileName name of the file
+     * @throws NotPlaceInstanceException if source or destiny is not a {@link ILocal local} instance.
+     */
+    void exportShortestPathWithOnlyConnectors(T source, T destiny, String fileName) throws NotPlaceInstanceException;
+
+    /**
+     * Exports the shortest path between two points into a json file going through at least one connector.
+     * @param source starting point
+     * @param destiny destiny point
+     * @param fileName name of the file
+     * @throws NotPlaceInstanceException if source or destiny is not a {@link ILocal local} instance.
+     */
+    void exportShortestPathAtleastOneConnector(T source, T destiny, String fileName) throws NotPlaceInstanceException;
 }

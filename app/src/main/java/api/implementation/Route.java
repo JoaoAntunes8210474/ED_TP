@@ -72,8 +72,8 @@ public class Route<T> implements IRoute <T>{
     @SuppressWarnings("unchecked")
     public JSONObject routeToJSONObject(IRoute<ILocal> route) {
         JSONObject pathObject = new JSONObject();
-        pathObject.put("From", route.getFrom().getName());
-        pathObject.put("To", route.getTo().getName());
+        pathObject.put("from", route.getFrom());
+        pathObject.put("to", route.getTo());
         return pathObject;
     }
 

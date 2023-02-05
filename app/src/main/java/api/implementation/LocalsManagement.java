@@ -110,6 +110,17 @@ public class LocalsManagement implements ILocalsManagement {
         return "O caminho foi adicionado com sucesso";
     }
 
+    @Override
+    public String removePath(IRoute route) {
+        if (route.getFrom() == null && route.getTo() == null) {
+            throw new NullPointerException("Place cannot be null!");
+        }
+
+        this.pathGraph.removeEdge((ILocal) route.getFrom(), (ILocal) route.getTo());
+
+        return "O caminho foi removido  com sucesso";
+    }
+
 
     /**
      * Gets the textual listing of all Portals
@@ -143,8 +154,8 @@ public class LocalsManagement implements ILocalsManagement {
             Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
             while (iteratorPortal.hasNext()) {
                 IPortal portal = iteratorPortal.next();
-                if (portal.getPlayerTeam().equals("Neutro")) {
-                    string += iteratorPortal.next().toString() + "\n";
+                if (portal.getPlayerTeam().equals("NEUTRAL")) {
+                    string += portal + "\n";
                 }
             }
         } else {
@@ -162,13 +173,21 @@ public class LocalsManagement implements ILocalsManagement {
      */
     @Override
     public String getPortalsPlayerListing(IPlayer player) {
+        if (player == null) {
+            throw new NullPointerException("Player cannot be null!");
+        }
+
         String string = "Portals: {\n";
         if (this.pathGraph.getNumberOfPortals() != 0) {
             Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
             while (iteratorPortal.hasNext()) {
                 IPortal portal = iteratorPortal.next();
+                if (portal.getOwnerPlayer() == null) {
+                    break;
+                }
+
                 if (portal.getOwnerPlayer().equals(player)) {
-                    string += iteratorPortal.next().toString() + "\n";
+                    string += portal + "\n";
                 }
             }
         } else {
@@ -210,27 +229,36 @@ public class LocalsManagement implements ILocalsManagement {
     @Override
     public String getPortalsOrderedByEnergyItHasListing() {
         String string = "Portals: {\n";
-        List<IPortal> portals = new ArrayList<>();
-        if (this.pathGraph.getNumberOfPortals() != 0) {
+        int numberOfPortals = this.pathGraph.getNumberOfPortals();
+        IPortal[] portals = new IPortal[numberOfPortals];
+        int i = 0;
+        if (numberOfPortals != 0) {
             Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
             while (iteratorPortal.hasNext()) {
-                portals.add(iteratorPortal.next());
+                portals[i++] = iteratorPortal.next();
             }
         } else {
             string += "There is no Portals to list!\n";
+            return string + "}";
         }
-        Collections.sort(portals, new Comparator<IPortal>() {
-            @Override
-            public int compare(IPortal o1, IPortal o2) {
-                return o1.getAmountEnergyItHas() - o2.getAmountEnergyItHas();
+        for (int j = 0; j < portals.length; j++) {
+            for (int k = 0; k < portals.length - j - 1; k++) {
+                if (k >= 0 && k + 1 < portals.length && portals[k].getAmountEnergyItHas() > portals[k + 1].getAmountEnergyItHas()) {
+                    IPortal temp = portals[k];
+                    portals[k] = portals[k + 1];
+                    portals[k + 1] = temp;
+                }
             }
-        });
+        }
         for (IPortal portal : portals) {
             string += portal.toString() + "\n";
         }
         string += "}";
         return string;
-    }
+        }
+
+
+
 
     /**
      * Gets the textual listing of all Connectors
@@ -260,21 +288,25 @@ public class LocalsManagement implements ILocalsManagement {
     @Override
     public String getConnectorsOrderedByEnergyItHasListing() {
         String string = "Connectors: {\n";
-        List<IConnector> connectors = new ArrayList<>();
+        IConnector[] connectors = new IConnector[this.pathGraph.getNumberOfConnectores()];
+        int i = 0;
         if (this.pathGraph.getNumberOfPortals() != 0) {
             Iterator<IConnector> iteratorConnectors = this.pathGraph.getConnectores();
             while (iteratorConnectors.hasNext()) {
-                connectors.add(iteratorConnectors.next());
+                connectors[i++] = iteratorConnectors.next();
             }
         } else {
             string += "There is no Portals to list!\n";
         }
-        Collections.sort(connectors, new Comparator<IConnector>() {
-            @Override
-            public int compare(IConnector o1, IConnector o2) {
-                return o1.getAmountEnergyItHas() - o2.getAmountEnergyItHas();
+        for (int j = 0; j < connectors.length; j++) {
+            for (int k = 0; k < connectors.length - j - 1; k++) {
+                if (connectors[k].getAmountEnergyItHas() > connectors[k + 1].getAmountEnergyItHas()) {
+                    IConnector temp = connectors[k];
+                    connectors[k] = connectors[k + 1];
+                    connectors[k + 1] = temp;
+                }
             }
-        });
+        }
         for (IConnector connector : connectors) {
             string += connector.toString() + "\n";
         }
@@ -289,7 +321,7 @@ public class LocalsManagement implements ILocalsManagement {
      * @return the JSONArray with all the locals present on the graph
      */
     @SuppressWarnings("unchecked")
-    private JSONArray getPortalsJSONArray() {
+    protected JSONArray getPortalsJSONArray() {
         JSONArray portalsArray = new JSONArray();
         Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
         while (iteratorPortal.hasNext()) {
@@ -305,7 +337,7 @@ public class LocalsManagement implements ILocalsManagement {
      * @return the JSONArray with all the locals present on the graph
      */
     @SuppressWarnings("unchecked")
-    private JSONArray getConnectorsJSONArray() throws EmptyCollectionException {
+    protected JSONArray getConnectorsJSONArray() {
         JSONArray connectorsArray = new JSONArray();
         Iterator<IConnector> iteratorConnectors = this.pathGraph.getConnectores();
         while (iteratorConnectors.hasNext()) {
@@ -320,12 +352,12 @@ public class LocalsManagement implements ILocalsManagement {
      * @return the JSONArray with all the locals present on the graph
      */
     @SuppressWarnings("unchecked")
-    private JSONArray getRoutesJSONArray() {
+    protected JSONArray getRoutesJSONArray() {
         JSONArray routesArray = new JSONArray();
         Iterator<IRoute<ILocal>> iteratorRoute = this.pathGraph.getRoutes();
         while (iteratorRoute.hasNext()) {
             IRoute<ILocal> path = iteratorRoute.next();
-            routesArray.add(iteratorRoute.next().routeToJSONObject(path));
+            routesArray.add(path.routeToJSONObject(path));
         }
         return routesArray;
     }
@@ -343,8 +375,13 @@ public class LocalsManagement implements ILocalsManagement {
             throw new IOException("O ficheiro em que estava a tentar escrever nao existe");
         }
 
+        JSONArray portalsJSONArray = this.getPortalsJSONArray();
+        JSONObject portals = new JSONObject();
+        portals.put("portals", portalsJSONArray);
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(this.getPortalsJSONArray());
+
+        String json = gson.toJson(portals);
         FileWriter writer = new FileWriter(fileName);
         writer.write(json);
         writer.flush();
@@ -365,13 +402,13 @@ public class LocalsManagement implements ILocalsManagement {
             throw new IOException("O ficheiro em que estava a tentar escrever nao existe");
         }
 
+        JSONArray connectorsJSONArray = this.getConnectorsJSONArray();
+        JSONObject connectors = new JSONObject();
+
+        connectors.put("connectors", connectorsJSONArray);
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = null;
-        try {
-            json = gson.toJson(this.getConnectorsJSONArray());
-        } catch (EmptyCollectionException e) {
-            throw new RuntimeException(e);
-        }
+        String json = gson.toJson(connectors);
         FileWriter writer = new FileWriter(fileName);
         writer.write(json);
         writer.flush();
@@ -391,8 +428,13 @@ public class LocalsManagement implements ILocalsManagement {
             throw new IOException("O ficheiro em que estava a tentar escrever nao existe");
         }
 
+        JSONArray pathsJSONArray = this.getRoutesJSONArray();
+        JSONObject paths = new JSONObject();
+
+        paths.put("paths", pathsJSONArray);
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(this.getRoutesJSONArray());
+        String json = gson.toJson(paths);
         FileWriter writer = new FileWriter(fileName);
         writer.write(json);
         writer.flush();
@@ -415,18 +457,24 @@ public class LocalsManagement implements ILocalsManagement {
         try {
             Object obj = parser.parse(new FileReader(fileName));
             JSONObject jsonObject = (JSONObject) obj;
-            JSONArray jsonArray = (JSONArray) jsonObject.get("portals");
+            JSONArray jsonArray = (JSONArray) jsonObject.get("locals");
             for (int i = 0; i < jsonArray.size(); i++) {
                 JSONObject localsToCreate = (JSONObject) jsonArray.get(i);
-                int id = (int) localsToCreate.get("id");
-                String name = (String) localsToCreate.get("name");
-                int amountEnergyItHas = (int) localsToCreate.get("amountEnergyItHas");
-                double longitude = (double) localsToCreate.get("longitude");
-                double latitude = (double) localsToCreate.get("latitude");
-                Coordinates coordenadas = new Coordinates(longitude, latitude);
-                int maxEnergy = (int) localsToCreate.get("maxEnergy");
-                Portal portal = new Portal(maxEnergy, id, name, amountEnergyItHas, coordenadas);
-                this.pathGraph.addVertex(portal);
+                if (localsToCreate.get("localType").equals("Portal")) {
+                    long amountEnergyItHasLong = (long) localsToCreate.get("amountEnergyItHas");
+                    long idLong = (long) localsToCreate.get("id");
+                    int id = (int) idLong;
+                    String name = (String) localsToCreate.get("name");
+                    int amountEnergyItHas = (int) amountEnergyItHasLong;
+                    JSONObject coordenadasJSON = (JSONObject) localsToCreate.get("coordinates");
+                    double longitude = (double) coordenadasJSON.get("longitude");
+                    double latitude = (double) coordenadasJSON.get("latitude");
+                    Coordinates coordenadas = new Coordinates(longitude, latitude);
+                    long maxEnergyLong = (long) localsToCreate.get("maxEnergy");
+                    int maxEnergy = (int) maxEnergyLong;
+                    Portal portal = new Portal(maxEnergy, id, name, amountEnergyItHas, coordenadas);
+                    this.pathGraph.addVertex(portal);
+                }
             }
         } catch (ParseException e) {
             return "Houve um problema a fazer o import dos portais";
@@ -448,18 +496,24 @@ public class LocalsManagement implements ILocalsManagement {
         try {
             Object obj = parser.parse(new FileReader(fileName));
             JSONObject jsonObject = (JSONObject) obj;
-            JSONArray jsonArray = (JSONArray) jsonObject.get("connectors");
+            JSONArray jsonArray = (JSONArray) jsonObject.get("locals");
             for (int i = 0; i < jsonArray.size(); i++) {
                 JSONObject localsToCreate = (JSONObject) jsonArray.get(i);
-                int id = (int) localsToCreate.get("id");
-                String name = (String) localsToCreate.get("name");
-                int amountEnergyItHas = (int) localsToCreate.get("amountEnergyItHas");
-                double longitude = (double) localsToCreate.get("longitude");
-                double latitude = (double) localsToCreate.get("latitude");
-                Coordinates coordenadas = new Coordinates(longitude, latitude);
-                int cooldown = (int) localsToCreate.get("cooldown");
-                Connector connector = new Connector(cooldown, id, name, amountEnergyItHas, coordenadas);
-                this.pathGraph.addVertex(connector);
+                if (localsToCreate.get("localType").equals("Connector")) {
+                    long idLong = (long) localsToCreate.get("id");
+                    long amountEnergyItHasLong = (long) localsToCreate.get("amountEnergyItHas");
+                    int id = (int) idLong;
+                    String name = (String) localsToCreate.get("name");
+                    int amountEnergyItHas = (int) amountEnergyItHasLong;
+                    JSONObject coordenadasJSON = (JSONObject) localsToCreate.get("coordinates");
+                    double longitude = (double) coordenadasJSON.get("longitude");
+                    double latitude = (double) coordenadasJSON.get("latitude");
+                    Coordinates coordenadas = new Coordinates(longitude, latitude);
+                    long cooldownLong = (long) localsToCreate.get("cooldown");
+                    int cooldown = (int) cooldownLong;
+                    Connector connector = new Connector(cooldown, id, name, amountEnergyItHas, coordenadas);
+                    this.pathGraph.addVertex(connector);
+                }
             }
         } catch (ParseException e) {
             return "Houve um problema a fazer o import dos connectores";
@@ -475,7 +529,6 @@ public class LocalsManagement implements ILocalsManagement {
      */
     @Override
     public String importPathsFromJSON(String fileName) throws IOException {
-
         if (fileName.trim().equals("") || Files.notExists(Paths.get(fileName))) {
             throw new IOException("O ficheiro em que estava a tentar escrever nao existe");
         }
@@ -483,13 +536,23 @@ public class LocalsManagement implements ILocalsManagement {
         try {
             Object obj = parser.parse(new FileReader(fileName));
             JSONObject jsonObject = (JSONObject) obj;
-            JSONArray jsonArray = (JSONArray) jsonObject.get("routes");
-            for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject routesToCreate = (JSONObject) jsonArray.get(i);
-
-                ILocal from = (ILocal) routesToCreate.get("from");
-                ILocal to = (ILocal) routesToCreate.get("to");
-
+            JSONArray routesArray = (JSONArray) jsonObject.get("routes");
+            ILocal from = null;
+            ILocal to = null;
+            for (Object o : routesArray) {
+                JSONObject routesToCreate = (JSONObject) o;
+                long fromPortalsIdLong = (long) routesToCreate.get("from");
+                long toPortalsIdLong = (long) routesToCreate.get("to");
+                int fromPortalsId = (int) fromPortalsIdLong;
+                int toPortalsId = (int) toPortalsIdLong;
+                for (int i = 0; i < this.pathGraph.size(); i++) {
+                    if (this.pathGraph.get(i).getId() == fromPortalsId) {
+                        from = this.pathGraph.get(i);
+                    }
+                    if (this.pathGraph.get(i).getId() == toPortalsId) {
+                        to = this.pathGraph.get(i);
+                    }
+                }
                 Route route = new Route(from, to);
                 this.addPath(route);
             }

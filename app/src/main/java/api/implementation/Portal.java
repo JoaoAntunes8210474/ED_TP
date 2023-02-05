@@ -26,7 +26,6 @@ public class Portal extends Local implements IPortal{
      * @param maxEnergy Integer number that represents the maximum amount of energy that a portal has.
      * @param id Integer representing the unique identifier of each location
      * @param name Location name, the name will be the name of points of interest like statues, churches ...
-     * @param localType Location type, can be portal or connector type.
      * @param amountEnergyItHas Amount of energy the site contains.
      * @param coordinates Location coordinates
      */
@@ -99,14 +98,14 @@ public class Portal extends Local implements IPortal{
     @Override
     public JSONObject portalToJSONObject() {
         JSONObject root = new JSONObject();
-        root.put("Id", getId());
-        root.put("Name", getName());
-        root.put("Local Type", getLocalType());
-        root.put("Amount Energy It Has", getAmountEnergyItHas());
-        root.put("Cordinates", getCoordinates());
-        root.put("Maximum energy", this.maxEnergy);
-        root.put("Owner Player", this.ownerPlayer);
-        root.put("Owner Team", this.playerTeam);
+        root.put("id", getId());
+        root.put("name", getName());
+        root.put("localType", getLocalType());
+        root.put("amountEnergyItHas", getAmountEnergyItHas());
+        root.put("coordinates", getCoordinates());
+        root.put("maxEnergy", this.maxEnergy);
+        root.put("ownerPlayer", this.ownerPlayer);
+        root.put("ownerTeam", this.playerTeam);
         return root;
     }
 
@@ -117,7 +116,7 @@ public class Portal extends Local implements IPortal{
      */
     @Override
     public String toString() {
-        return "Portal{" + "maxEnergy=" + maxEnergy + ", ownerPlayer=" + ownerPlayer + ", teamPlayer=" + playerTeam + '}';
+        return super.toString() + "Portal{" + "maxEnergy=" + maxEnergy + ", ownerPlayer=" + ownerPlayer + ", teamPlayer=" + playerTeam + '}' + "\n";
     }
 
     /**

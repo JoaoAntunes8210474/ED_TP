@@ -182,11 +182,11 @@ public abstract class Local implements ILocal, Comparable<Local>{
     @Override
     public JSONObject localToJSONObject() {
         JSONObject root = new JSONObject();
-        root.put("Id", getId());
-        root.put("Name", getName());
-        root.put("Local Type", getLocalType());
-        root.put("Amount Energy It Has", getAmountEnergyItHas());
-        root.put("Cordinates", getCoordinates());
+        root.put("id", getId());
+        root.put("name", getName());
+        root.put("localType", getLocalType());
+        root.put("amountEnergyItHas", getAmountEnergyItHas());
+        root.put("coordinates", getCoordinates());
         return root;
     }
     

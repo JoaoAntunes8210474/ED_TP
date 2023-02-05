@@ -28,7 +28,6 @@ public class Connector extends Local implements IConnector{
      * @param cooldown specific time interval that the connector supplies power after interaction
      * @param id Integer representing the unique identifier of each location
      * @param name Location name, the name will be the name of points of interest like statues, churches ...
-     * @param localType Location type, can be portal or connector type.
      * @param amountEnergyItHas Amount of energy the site contains.
      * @param coordinates Location coordinates
      */
@@ -78,10 +77,9 @@ public class Connector extends Local implements IConnector{
     /**
      * Returns a list of players who interacted with the connector
      * @return the iterator with the list of players
-     * @throws EmptyCollectionException
      */
     @Override
-    public Iterator<ConnectorPlayerInteration> getListOfPlayersInteration() throws EmptyCollectionException {
+    public Iterator<ConnectorPlayerInteration> getListOfPlayersInteration() {
         return this.players.iterator();
     }
 
@@ -94,24 +92,24 @@ public class Connector extends Local implements IConnector{
      */
     @SuppressWarnings("unchecked")
     @Override
-    public JSONObject connectorToJSONObject() throws EmptyCollectionException {
+    public JSONObject connectorToJSONObject() {
         JSONObject root = new JSONObject();
-        root.put("Id", getId());
-        root.put("Name", getName());
-        root.put("Local Type", getLocalType());
-        root.put("Amount Energy It Has", getAmountEnergyItHas());
-        root.put("Cordinates", getCoordinates());
-        root.put("Cooldown time", this.cooldown);
+        root.put("id", getId());
+        root.put("name", getName());
+        root.put("localType", getLocalType());
+        root.put("amountEnergyItHas", getAmountEnergyItHas());
+        root.put("coordinates", getCoordinates());
+        root.put("cooldown", this.cooldown);
         
         if (this.players.isEmpty()) {
-            root.put("Players", "Don't have any players");
+            root.put("players", "doesnt have any players");
         } else {
             JSONArray playersOfConnector = new JSONArray();
             Iterator<ConnectorPlayerInteration> iterator = this.getListOfPlayersInteration();
             while (iterator.hasNext()) {
                 playersOfConnector.add(iterator.next());
             }
-            root.put("Players", playersOfConnector);
+            root.put("players", playersOfConnector);
         }
         return root; 
     }
@@ -123,7 +121,8 @@ public class Connector extends Local implements IConnector{
      */
     @Override
     public String toString() {
-        return "Connector{" + "cooldown=" + cooldown + ", players=" + players + '}';
+
+        return super.toString() + "Connector{" + "cooldown=" + cooldown + ", players=" + players + '}' + "\n";
     }
 
 

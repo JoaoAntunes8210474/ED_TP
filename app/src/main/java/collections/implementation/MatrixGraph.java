@@ -1,6 +1,7 @@
 package collections.implementation;
 
 
+import collections.exceptions.ElementNotFoundException;
 import collections.exceptions.EmptyCollectionException;
 import collections.exceptions.NonComparableElementException;
 import collections.exceptions.NullException;
@@ -61,32 +62,44 @@ public class MatrixGraph<T> implements GraphADT<T> {
     @Override
     public void removeVertex(T vertex) {
         for (int i = 0; i < numVertices; i++) {
-            if (vertex.equals(vertices[i])) {
+            if (vertex.toString().equals(vertices[i].toString())) {
                 removeVertex(i);
                 return;
             }
         }
+
+        throw new ElementNotFoundException("Vertex not found");
     }
 
-    public void removeVertex(int index) {
-        if (indexIsValid(index)) {
-            numVertices--;
+    /**
+     * Removes a single vertex with the given value from this graph.
+     *
+     * @param vertex the vertex to be removed from this graph
+     */
+    public void removeVertex(int vertex) {
+        if (this.indexIsValid(vertex)) {
+            this.numVertices--;
 
-            for (int i = index; i < numVertices; i++) {
-                vertices[i] = vertices[i + 1];
+            for (int i = vertex; i < this.numVertices; i++) {
+                this.vertices[i] = this.vertices[i + 1];
             }
+            this.vertices[this.numVertices] = null;
 
-            for (int i = index; i < numVertices; i++) {
-                for (int j = 0; j < numVertices; j++) {
-                    adjMatrix[i][j] = adjMatrix[i + 1][j];
+            for (int i = vertex; i < this.numVertices; i++) {
+                for (int j = 0; j < this.numVertices; j++) {
+                    this.adjMatrix[i][j] = this.adjMatrix[i + 1][j];
+                    this.adjMatrix[i + 1][j] = false;
                 }
             }
 
-            for (int i = index; i < numVertices; i++) {
-                for (int j = 0; j < numVertices; j++) {
-                    adjMatrix[i][j] = adjMatrix[i][j + 1];
+            for (int i = 0; i < this.numVertices; i++) {
+                for (int j = vertex; j < this.numVertices; j++) {
+                    this.adjMatrix[i][j] = this.adjMatrix[i][j + 1];
+                    this.adjMatrix[i][j + 1] = false;
                 }
             }
+
+            this.adjMatrix[this.numVertices][this.numVertices] = false;
         }
     }
 
