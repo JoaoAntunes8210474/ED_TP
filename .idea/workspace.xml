@@ -8,13 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/files/ExportTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/files/ExportTest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/files/Game.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/files/Game.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/ImportExportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/ImportExportFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/PlayerManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/PlayerManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPlayer.java" afterDir="false" />
     </list>
     <list id="df0a5855-ac55-406c-a03a-5db6893cf865" name="Changes by reginaneto" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,13 +69,18 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2KpCBYuc0YmYWJBQFBoq5KCjhrH" />
   <component name="ProjectLevelVcsManager">
@@ -124,7 +125,7 @@
       <recent name="C:\Users\Utilizador\Documents\NetBeansProjects\ED_TP\Projeto_ED_GRUPO14" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.LocalsManagementTest.testGetPortalsPlayerListing_WhenSentAValidPlayer">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="api.app.Main" />
       <module name="ED_TP.app.main" />
@@ -270,7 +271,8 @@
       <workItem from="1675548066531" duration="4932000" />
       <workItem from="1675553301150" duration="451000" />
       <workItem from="1675553801566" duration="8289000" />
-      <workItem from="1675773658130" duration="9675000" />
+      <workItem from="1675773658130" duration="13651000" />
+      <workItem from="1675793832569" duration="1927000" />
     </task>
     <task id="LOCAL-00001" summary="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
       <created>1675053872347</created>
@@ -314,7 +316,16 @@
           <properties class="java.util.NoSuchElementException" package="java.util" />
           <option name="timeStamp" value="8" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.StackOverflowError" package="java.lang" />
+          <option name="timeStamp" value="10" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="((PathGameGraph)localsManagement.pathGraph).adjMatrix" custom="api.implementation.PathGameGraph" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

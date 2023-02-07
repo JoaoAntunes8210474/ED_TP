@@ -94,11 +94,12 @@ public class Connector extends Local implements IConnector{
     @Override
     public JSONObject connectorToJSONObject() {
         JSONObject root = new JSONObject();
+
         root.put("id", getId());
         root.put("name", getName());
         root.put("localType", getLocalType());
         root.put("amountEnergyItHas", getAmountEnergyItHas());
-        root.put("coordinates", getCoordinates());
+        root.put("coordinates", this.getCoordinates().getCoordinatesJSON());
         root.put("cooldown", this.cooldown);
         
         if (this.players.isEmpty()) {
@@ -107,7 +108,7 @@ public class Connector extends Local implements IConnector{
             JSONArray playersOfConnector = new JSONArray();
             Iterator<ConnectorPlayerInteration> iterator = this.getListOfPlayersInteration();
             while (iterator.hasNext()) {
-                playersOfConnector.add(iterator.next());
+                playersOfConnector.add(iterator.next().getConnectorPlayerInterationJSON());
             }
             root.put("players", playersOfConnector);
         }

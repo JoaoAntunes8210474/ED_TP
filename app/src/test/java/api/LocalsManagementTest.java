@@ -52,8 +52,9 @@ public class LocalsManagementTest {
 
     @Test
     public void testRemoveLocal_ReturnSuccessfulString_WhenSentAValidPlayerFromTheList() {
-        Coordinates coordinates = new Coordinates(-31.84784746979929,193.9611348824289);
-        Connector local = new Connector(3, 1656, "Arco do Triunfo", 60, coordinates);
+        // The 4th element of the list is a Connector, so we can use it to test the method
+        // We should use a for loop to find the Connector, but we know that the 4th element is a Connector hence why we do this
+        Connector local = (Connector) this.pathGraph.getPathGraph().get(4);
 
         String expected = "O local foi removido com sucesso";
 

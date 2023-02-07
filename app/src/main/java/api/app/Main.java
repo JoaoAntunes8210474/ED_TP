@@ -6,6 +6,7 @@ import api.interfaces.*;
 import collections.implementation.ArrayUnorderedList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -122,10 +123,10 @@ public class Main {
      * Method that saves the game state to a file
      */
     @SuppressWarnings("unchecked")
-    private static void saveGameState(PlayerManagement playerManagement, LocalsManagement localsManagement) throws IOException {
+    private static void saveGameState(@NotNull PlayerManagement playerManagement, LocalsManagement localsManagement) {
         File file = new File("files/Game.json");
         String path = file.getAbsolutePath();
-        FileWriter fileWriter = new FileWriter(path);
+        FileWriter fileWriter = null;
 
         JSONObject gameSettingsJSON = new JSONObject();
         gameSettingsJSON.put("players", playerManagement.getPlayersAsJSONArray());
@@ -138,9 +139,19 @@ public class Main {
 
         Gson beautifyGson = new GsonBuilder().setPrettyPrinting().create();
         String playerTurnJson = beautifyGson.toJson(gameSettingsJSON);
-        fileWriter.write(playerTurnJson);
-        fileWriter.flush();
-        fileWriter.close();
+        try {
+            fileWriter = new FileWriter(path);
+            fileWriter.write(playerTurnJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -303,6 +314,10 @@ public class Main {
                     }
                 }
 
+                if (gameEnd) {
+                    break;
+                }
+
                 if (!playerTurnEnded) {
                     System.out.println("O turno do jogador/a " + currentPlayer.getName() + " nao terminou!");
                 } else {
@@ -313,14 +328,10 @@ public class Main {
                     Main.gameTimer = Main.gameTimer.plusMinutes(1);
                 }
 
-                if (gameEnd) {
-                    break;
-                }
-
                 // Check if the game can end
                 // If the game can end, the game ends
                 gameEnd = Main.checkIfGameCanEnd(playerManagement);
-            } catch (NotPlaceInstanceException | IOException e) {
+            } catch (NotPlaceInstanceException e) {
                 e.printStackTrace();
             }
         }
@@ -344,63 +355,21 @@ public class Main {
         Player player = new Player("Joao", "Giants");
         Player player1 = new Player("Regina", "Sparks");
 
-        //File file = new File("files/Paths.json");
+        //File file = new File("files/ExportTest.json");
         //String path = file.getAbsolutePath();
 
         JSONParser jsonParser = new JSONParser();
 
         FileWriter fileWriter = null;
-        //try {
+        try {
             //fileWriter = new FileWriter(path);
         //} catch (IOException e) {
-            //e.printStackTrace();
-        //}
+          //  e.printStackTrace();
+        } finally {
+
+        }
 
         Random random = new Random();
-
-        Coordinates coordinates = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
-        Coordinates coordinates1 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
-        Coordinates coordinates2 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
-        Coordinates coordinates3 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
-        Coordinates coordinates4 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
-        Coordinates coordinates5 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
-
-        ILocal local = new Portal(100, random.nextInt(3000), "Palacio de Monserratelo", 0, coordinates);
-        ILocal local1 = new Portal(100, random.nextInt(3000), "Palacio da Pena", 40, coordinates1);
-        ILocal local2 = new Portal(100, random.nextInt(3000), "Quinta da regaleira", 15, coordinates2);
-        ILocal local3 = new Portal(100, random.nextInt(3000), "Palacio de Monserrate", 1, coordinates3);
-        ILocal local4 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Arco do Triunfo", 60, coordinates4);
-        ILocal local5 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Torre Eifel", 80, coordinates5);
-
-        IRoute route = new Route(local, local1);
-        IRoute route1 = new Route(local1, local2);
-        IRoute route2 = new Route(local2, local3);
-        IRoute route3 = new Route(local3, local4);
-        IRoute route4 = new Route(local4, local5);
-        IRoute route5 = new Route(local5, local);
-        IRoute route6 = new Route(local4, local1);
-        IRoute route7 = new Route(local3, local2);
-        IRoute route8 = new Route(local2, local5);
-        IRoute route9 = new Route(local1, local4);
-        IRoute route10 = new Route(local, local3);
-
-        localsManagement.addLocals(local);
-        localsManagement.addLocals(local1);
-        localsManagement.addLocals(local2);
-        localsManagement.addLocals(local3);
-        localsManagement.addLocals(local4);
-        localsManagement.addLocals(local5);
-        localsManagement.addPath(route);
-        localsManagement.addPath(route1);
-        localsManagement.addPath(route2);
-        localsManagement.addPath(route3);
-        localsManagement.addPath(route4);
-        localsManagement.addPath(route5);
-        localsManagement.addPath(route6);
-        localsManagement.addPath(route7);
-        localsManagement.addPath(route8);
-        localsManagement.addPath(route9);
-        localsManagement.addPath(route10);
 
         System.out.println("Deseja continuar o jogo anterior ou comecar um jogo novo?\n (0 - Sair, 1 - Continuar, 2 - Novo jogo)");
         Scanner scanner = new Scanner(System.in);
@@ -422,6 +391,50 @@ public class Main {
                 Main.gameStart((PlayerManagement) playerManagement, (LocalsManagement) localsManagement, scanner);
                 break;
             case 2:
+                Coordinates coordinates = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
+                Coordinates coordinates1 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
+                Coordinates coordinates2 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
+                Coordinates coordinates3 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
+                Coordinates coordinates4 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
+                Coordinates coordinates5 = new Coordinates(random.nextDouble(-100, 100), random.nextDouble(-200, 200));
+
+                ILocal local = new Portal(100, random.nextInt(3000), "Palacio de Monserratelo", 0, coordinates);
+                ILocal local1 = new Portal(100, random.nextInt(3000), "Palacio da Pena", 40, coordinates1);
+                ILocal local2 = new Portal(100, random.nextInt(3000), "Quinta da regaleira", 15, coordinates2);
+                ILocal local3 = new Portal(100, random.nextInt(3000), "Palacio de Monserrate", 1, coordinates3);
+                ILocal local4 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Arco do Triunfo", 60, coordinates4);
+                ILocal local5 = new Connector(Main.COOLDOWN, random.nextInt(3000), "Torre Eifel", 80, coordinates5);
+
+                IRoute route = new Route(local, local1);
+                IRoute route1 = new Route(local1, local2);
+                IRoute route2 = new Route(local2, local3);
+                IRoute route3 = new Route(local3, local4);
+                IRoute route4 = new Route(local4, local5);
+                IRoute route5 = new Route(local5, local);
+                IRoute route6 = new Route(local4, local1);
+                IRoute route7 = new Route(local3, local2);
+                IRoute route8 = new Route(local2, local5);
+                IRoute route9 = new Route(local1, local4);
+                IRoute route10 = new Route(local, local3);
+
+                localsManagement.addLocals(local);
+                localsManagement.addLocals(local1);
+                localsManagement.addLocals(local2);
+                localsManagement.addLocals(local3);
+                localsManagement.addLocals(local4);
+                localsManagement.addLocals(local5);
+                localsManagement.addPath(route);
+                localsManagement.addPath(route1);
+                localsManagement.addPath(route2);
+                localsManagement.addPath(route3);
+                localsManagement.addPath(route4);
+                localsManagement.addPath(route5);
+                localsManagement.addPath(route6);
+                localsManagement.addPath(route7);
+                localsManagement.addPath(route8);
+                localsManagement.addPath(route9);
+                localsManagement.addPath(route10);
+
                 player.setCurrentLocation(local);
                 player1.setCurrentLocation(local4);
                 playerManagement.addPlayer(player);
@@ -454,10 +467,11 @@ public class Main {
         } catch (NotPlaceInstanceException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(importExportFiles.exportJSON(path, (PlayerManagement) playerManagement, (LocalsManagement) localsManagement, fileWriter));
-        System.out.println(importExportFiles.importJSON(path, (PlayerManagement) playerManagement, (LocalsManagement) localsManagement));
-        System.out.println(importExportFiles.exportJSON(path, (PlayerManagement) playerManagement, (LocalsManagement) localsManagement, fileWriter));
-         try {
+         **/
+        //System.out.println(importExportFiles.exportJSON(path, (PlayerManagement) playerManagement, (LocalsManagement) localsManagement, fileWriter));
+        //System.out.println(importExportFiles.importJSON(path, (PlayerManagement) playerManagement, (LocalsManagement) localsManagement));
+        /**
+        try {
             localsManagement.getPathGraph().exportShortestPathWithOnlyPortals(local, local3, path);
             //localsManagement.getPathGraph().exportShortestPathWithOnlyConnectors(local4, local5, path);
             //localsManagement.getPathGraph().exportShortestPathAtleastOneConnector(local, local3, path);
