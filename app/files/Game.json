@@ -1,12 +1,12 @@
 {
-  "playerTurn": 1,
+  "playerTurn": 0,
   "players": [
     {
-      "maxEnergy": 110,
-      "level": 2,
-      "numPortalsConquered": 2,
+      "maxEnergy": 100,
+      "level": 1,
+      "numPortalsConquered": 1,
       "name": "Joao",
-      "experiencePoints": 120,
+      "experiencePoints": 60,
       "currentEnergy": 0,
       "team": "Giants",
       "currentLocation": {
@@ -14,37 +14,41 @@
         "ownerPlayer": "Joao",
         "name": "Palacio de Monserratelo",
         "coordinates": {
-          "latitude": -139.74959085930647,
-          "longitude": 99.85906139129042
+          "latitude": -144.96468303476792,
+          "longitude": 38.33794848523871
         },
-        "id": 2819,
+        "id": 2703,
         "amountEnergyItHas": 80,
         "ownerTeam": "Giants",
         "localType": "Portal"
       }
     },
     {
-      "maxEnergy": 110,
-      "level": 2,
-      "numPortalsConquered": 2,
+      "maxEnergy": 100,
+      "level": 1,
+      "numPortalsConquered": 1,
       "name": "Regina",
-      "experiencePoints": 120,
+      "experiencePoints": 60,
       "currentEnergy": 0,
       "team": "Sparks",
       "currentLocation": {
-        "maxEnergy": 100,
-        "ownerPlayer": "Regina",
-        "name": "Palacio de Monserrate",
+        "players": [
+          {
+            "horaInteracao": "19:06:15",
+            "player": "Regina"
+          }
+        ],
+        "name": "Arco do Triunfo",
         "coordinates": {
-          "latitude": -106.86134577649567,
-          "longitude": 64.37686188103405
+          "latitude": 27.805729771411194,
+          "longitude": -41.239170556383506
         },
-        "id": 2624,
-        "amountEnergyItHas": 61,
-        "ownerTeam": "Sparks",
-        "localType": "Portal"
+        "cooldown": 3,
+        "id": 169,
+        "amountEnergyItHas": 60,
+        "localType": "Connector"
       }
     }
   ],
-  "gameTimer": "18:56:47"
+  "gameTimer": "19:13:15"
 }

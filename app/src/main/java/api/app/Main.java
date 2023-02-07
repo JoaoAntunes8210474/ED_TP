@@ -314,6 +314,10 @@ public class Main {
                     }
                 }
 
+                if (gameEnd) {
+                    break;
+                }
+
                 if (!playerTurnEnded) {
                     System.out.println("O turno do jogador/a " + currentPlayer.getName() + " nao terminou!");
                 } else {
@@ -322,10 +326,6 @@ public class Main {
                     // If the player is the last in the list, the turn goes to the first player
                     playerTurn = (playerTurn + 1) % playerManagement.getPlayerList().size();
                     Main.gameTimer = Main.gameTimer.plusMinutes(1);
-                }
-
-                if (gameEnd) {
-                    break;
                 }
 
                 // Check if the game can end
@@ -355,21 +355,22 @@ public class Main {
         Player player = new Player("Joao", "Giants");
         Player player1 = new Player("Regina", "Sparks");
 
-        File file = new File("files/ExportTest.json");
-        String path = file.getAbsolutePath();
+        //File file = new File("files/ExportTest.json");
+        //String path = file.getAbsolutePath();
 
         JSONParser jsonParser = new JSONParser();
 
         FileWriter fileWriter = null;
         try {
-            fileWriter = new FileWriter(path);
-        } catch (IOException e) {
-            e.printStackTrace();
+            //fileWriter = new FileWriter(path);
+        //} catch (IOException e) {
+          //  e.printStackTrace();
+        } finally {
+
         }
 
         Random random = new Random();
 
-        /**
         System.out.println("Deseja continuar o jogo anterior ou comecar um jogo novo?\n (0 - Sair, 1 - Continuar, 2 - Novo jogo)");
         Scanner scanner = new Scanner(System.in);
 

@@ -1,40 +1,40 @@
 {
   "routes": [
     {
-      "from": 1894,
-      "to": 2096
+      "from": 2051,
+      "to": 2934
     },
     {
-      "from": 1894,
-      "to": 1855
+      "from": 2051,
+      "to": 2545
     },
     {
-      "from": 1894,
-      "to": 1277
+      "from": 2051,
+      "to": 1422
     },
     {
-      "from": 2096,
-      "to": 1657
+      "from": 2934,
+      "to": 901
     },
     {
-      "from": 2096,
-      "to": 1012
+      "from": 2934,
+      "to": 377
     },
     {
-      "from": 1657,
-      "to": 1855
+      "from": 901,
+      "to": 2545
     },
     {
-      "from": 1657,
-      "to": 1277
+      "from": 901,
+      "to": 1422
     },
     {
-      "from": 1855,
-      "to": 1012
+      "from": 2545,
+      "to": 377
     },
     {
-      "from": 1012,
-      "to": 1277
+      "from": 377,
+      "to": 1422
     }
   ],
   "players": [
@@ -50,10 +50,10 @@
         "maxEnergy": 100,
         "name": "Palacio de Monserratelo",
         "coordinates": {
-          "latitude": 90.75176720209572,
-          "longitude": -78.58352154655755
+          "latitude": -171.99543655369308,
+          "longitude": -59.56246803912906
         },
-        "id": 1894,
+        "id": 2051,
         "amountEnergyItHas": 0,
         "ownerTeam": "NEUTRAL",
         "localType": "Portal"
@@ -71,11 +71,11 @@
         "players": "doesnt have any players",
         "name": "Arco do Triunfo",
         "coordinates": {
-          "latitude": 196.67700376029262,
-          "longitude": -59.40638145908046
+          "latitude": 109.84657855938906,
+          "longitude": 33.476476269479065
         },
         "cooldown": 3,
-        "id": 1012,
+        "id": 377,
         "amountEnergyItHas": 60,
         "localType": "Connector"
       }
@@ -86,10 +86,10 @@
       "maxEnergy": 100,
       "name": "Palacio de Monserratelo",
       "coordinates": {
-        "latitude": 90.75176720209572,
-        "longitude": -78.58352154655755
+        "latitude": -171.99543655369308,
+        "longitude": -59.56246803912906
       },
-      "id": 1894,
+      "id": 2051,
       "amountEnergyItHas": 0,
       "ownerTeam": "NEUTRAL",
       "localType": "Portal"
@@ -98,10 +98,10 @@
       "maxEnergy": 100,
       "name": "Palacio da Pena",
       "coordinates": {
-        "latitude": -79.24478350382658,
-        "longitude": -24.03491933358393
+        "latitude": 95.38809025797866,
+        "longitude": -48.51878121029563
       },
-      "id": 2096,
+      "id": 2934,
       "amountEnergyItHas": 40,
       "ownerTeam": "NEUTRAL",
       "localType": "Portal"
@@ -110,10 +110,10 @@
       "maxEnergy": 100,
       "name": "Quinta da regaleira",
       "coordinates": {
-        "latitude": -110.52717113859272,
-        "longitude": 4.988387690977248
+        "latitude": -194.8148211367252,
+        "longitude": -97.03653002480313
       },
-      "id": 1657,
+      "id": 901,
       "amountEnergyItHas": 15,
       "ownerTeam": "NEUTRAL",
       "localType": "Portal"
@@ -122,10 +122,10 @@
       "maxEnergy": 100,
       "name": "Palacio de Monserrate",
       "coordinates": {
-        "latitude": -126.04114819463229,
-        "longitude": 81.48062851874863
+        "latitude": 101.20060437006282,
+        "longitude": 7.308878001573518
       },
-      "id": 1855,
+      "id": 2545,
       "amountEnergyItHas": 1,
       "ownerTeam": "NEUTRAL",
       "localType": "Portal"
@@ -134,11 +134,11 @@
       "players": "doesnt have any players",
       "name": "Arco do Triunfo",
       "coordinates": {
-        "latitude": 196.67700376029262,
-        "longitude": -59.40638145908046
+        "latitude": 109.84657855938906,
+        "longitude": 33.476476269479065
       },
       "cooldown": 3,
-      "id": 1012,
+      "id": 377,
       "amountEnergyItHas": 60,
       "localType": "Connector"
     },
@@ -146,11 +146,11 @@
       "players": "doesnt have any players",
       "name": "Torre Eifel",
       "coordinates": {
-        "latitude": -95.54486769863414,
-        "longitude": -50.308998731460484
+        "latitude": 123.42646412436864,
+        "longitude": 0.12220644224947819
       },
       "cooldown": 3,
-      "id": 1277,
+      "id": 1422,
       "amountEnergyItHas": 80,
       "localType": "Connector"
     }
