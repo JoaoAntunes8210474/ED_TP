@@ -5,7 +5,6 @@ import api.interfaces.IConnector;
 import api.interfaces.ILocal;
 import api.interfaces.IPlayer;
 import api.interfaces.IPortal;
-import org.json.simple.JSONObject;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -118,31 +117,6 @@ public class Player implements IPlayer, Comparable<Player> {
             this.level++;
             this.maxEnergy *= (1 + (this.level * 0.05));
         }
-    }
-
-    /**
-     * Method that transforms the player into a JSONObject.
-     * @return Player as a JSONObject.
-     */
-    protected JSONObject getPlayerAsJSONObject() {
-        JSONObject playerObject = new JSONObject();
-
-        playerObject.put("name", this.getName());
-        playerObject.put("team", this.getTeam());
-        playerObject.put("level", this.getLevel());
-        playerObject.put("experiencePoints", this.getExperiencePoints());
-        playerObject.put("currentEnergy", this.getCurrentEnergy());
-        playerObject.put("numPortalsConquered", this.getNumPortals());
-        if (this.getCurrentLocation().getLocalType().equals("Portal")) {
-            Portal portal = (Portal) this.getCurrentLocation();
-            playerObject.put("currentLocation", portal.portalToJSONObject());
-        } else {
-            Connector connector = (Connector) this.getCurrentLocation();
-            playerObject.put("currentLocation", connector.connectorToJSONObject());
-        }
-        playerObject.put("maxEnergy", this.getMaxEnergy());
-
-        return playerObject;
     }
 
     /**

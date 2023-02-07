@@ -1,9 +1,6 @@
 package api.implementation;
 
-import org.json.simple.JSONObject;
-
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Class that represents the interaction of a specific player with a specific connector.
@@ -24,18 +21,6 @@ public class ConnectorPlayerInteration {
     public ConnectorPlayerInteration(Player player, LocalTime horaInteracao) {
         this.player = player;
         this.horaInteracao = horaInteracao;
-    }
-
-    protected JSONObject getConnectorPlayerInterationJSON() {
-        JSONObject connectorPlayerInterationJSON = new JSONObject();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String horaInteracao = this.horaInteracao.format(formatter);
-
-        connectorPlayerInterationJSON.put("player", this.player.getName());
-        connectorPlayerInterationJSON.put("horaInteracao", horaInteracao);
-
-        return connectorPlayerInterationJSON;
     }
 
     /**

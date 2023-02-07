@@ -1,50 +1,48 @@
 {
-  "playerTurn": 1,
+  "playerTurn": 0,
   "players": [
     {
-      "maxEnergy": 110,
-      "level": 2,
-      "numPortalsConquered": 2,
+      "maxEnergy": 100,
+      "level": 1,
+      "numPortalsConquered": 0,
       "name": "Joao",
-      "experiencePoints": 120,
-      "currentEnergy": 0,
+      "experiencePoints": 10,
+      "currentEnergy": 80,
       "team": "Giants",
       "currentLocation": {
-        "maxEnergy": 100,
-        "ownerPlayer": "Joao",
-        "name": "Palacio de Monserratelo",
-        "coordinates": {
-          "latitude": -139.74959085930647,
-          "longitude": 99.85906139129042
-        },
-        "id": 2819,
+        "cooldown": 3,
+        "players": {},
+        "id": 170,
+        "name": "Torre Eifel",
+        "localType": "Connector",
         "amountEnergyItHas": 80,
-        "ownerTeam": "Giants",
-        "localType": "Portal"
+        "coordinates": {
+          "longitude": -61.407676862798354,
+          "latitude": 104.19554987509503
+        }
       }
     },
     {
-      "maxEnergy": 110,
-      "level": 2,
-      "numPortalsConquered": 2,
+      "maxEnergy": 100,
+      "level": 1,
+      "numPortalsConquered": 0,
       "name": "Regina",
-      "experiencePoints": 120,
-      "currentEnergy": 0,
+      "experiencePoints": 10,
+      "currentEnergy": 60,
       "team": "Sparks",
       "currentLocation": {
         "maxEnergy": 100,
-        "ownerPlayer": "Regina",
+        "playerTeam": "NEUTRAL",
+        "id": 1135,
         "name": "Palacio de Monserrate",
+        "localType": "Portal",
+        "amountEnergyItHas": 1,
         "coordinates": {
-          "latitude": -106.86134577649567,
-          "longitude": 64.37686188103405
-        },
-        "id": 2624,
-        "amountEnergyItHas": 61,
-        "ownerTeam": "Sparks",
-        "localType": "Portal"
+          "longitude": -27.523370394260937,
+          "latitude": -35.14183558862052
+        }
       }
     }
   ],
-  "gameTimer": "18:56:47"
+  "gameTimer": "16:48:54"
 }

@@ -98,20 +98,14 @@ public class Portal extends Local implements IPortal{
     @Override
     public JSONObject portalToJSONObject() {
         JSONObject root = new JSONObject();
-
         root.put("id", getId());
         root.put("name", getName());
         root.put("localType", getLocalType());
         root.put("amountEnergyItHas", getAmountEnergyItHas());
-        root.put("coordinates", this.getCoordinates().getCoordinatesJSON());
+        root.put("coordinates", getCoordinates());
         root.put("maxEnergy", this.maxEnergy);
-        if (this.ownerPlayer != null) {
-            root.put("ownerPlayer", this.ownerPlayer.getName());
-        } else {
-            root.put("ownerPlayer", null);
-        }
+        root.put("ownerPlayer", this.ownerPlayer);
         root.put("ownerTeam", this.playerTeam);
-
         return root;
     }
 
