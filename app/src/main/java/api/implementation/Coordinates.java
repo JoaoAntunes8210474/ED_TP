@@ -1,6 +1,7 @@
 package api.implementation;
 
 import api.interfaces.ICoordinates;
+import org.json.simple.JSONObject;
 
 /**
  * Class that implements the coordinate contract
@@ -22,6 +23,15 @@ public class Coordinates implements ICoordinates {
     public Coordinates(double longitude, double latitude) {
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+
+    protected JSONObject getCoordinatesJSON() {
+        JSONObject coordinatesJSON = new JSONObject();
+
+        coordinatesJSON.put("longitude", this.longitude);
+        coordinatesJSON.put("latitude", this.latitude);
+
+        return coordinatesJSON;
     }
 
     /**

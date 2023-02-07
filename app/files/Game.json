@@ -1,48 +1,50 @@
 {
-  "playerTurn": 0,
+  "playerTurn": 1,
   "players": [
     {
-      "maxEnergy": 100,
-      "level": 1,
-      "numPortalsConquered": 0,
+      "maxEnergy": 110,
+      "level": 2,
+      "numPortalsConquered": 2,
       "name": "Joao",
-      "experiencePoints": 10,
-      "currentEnergy": 80,
+      "experiencePoints": 120,
+      "currentEnergy": 0,
       "team": "Giants",
       "currentLocation": {
-        "cooldown": 3,
-        "players": {},
-        "id": 170,
-        "name": "Torre Eifel",
-        "localType": "Connector",
-        "amountEnergyItHas": 80,
+        "maxEnergy": 100,
+        "ownerPlayer": "Joao",
+        "name": "Palacio de Monserratelo",
         "coordinates": {
-          "longitude": -61.407676862798354,
-          "latitude": 104.19554987509503
-        }
+          "latitude": -139.74959085930647,
+          "longitude": 99.85906139129042
+        },
+        "id": 2819,
+        "amountEnergyItHas": 80,
+        "ownerTeam": "Giants",
+        "localType": "Portal"
       }
     },
     {
-      "maxEnergy": 100,
-      "level": 1,
-      "numPortalsConquered": 0,
+      "maxEnergy": 110,
+      "level": 2,
+      "numPortalsConquered": 2,
       "name": "Regina",
-      "experiencePoints": 10,
-      "currentEnergy": 60,
+      "experiencePoints": 120,
+      "currentEnergy": 0,
       "team": "Sparks",
       "currentLocation": {
         "maxEnergy": 100,
-        "playerTeam": "NEUTRAL",
-        "id": 1135,
+        "ownerPlayer": "Regina",
         "name": "Palacio de Monserrate",
-        "localType": "Portal",
-        "amountEnergyItHas": 1,
         "coordinates": {
-          "longitude": -27.523370394260937,
-          "latitude": -35.14183558862052
-        }
+          "latitude": -106.86134577649567,
+          "longitude": 64.37686188103405
+        },
+        "id": 2624,
+        "amountEnergyItHas": 61,
+        "ownerTeam": "Sparks",
+        "localType": "Portal"
       }
     }
   ],
-  "gameTimer": "16:48:54"
+  "gameTimer": "18:56:47"
 }

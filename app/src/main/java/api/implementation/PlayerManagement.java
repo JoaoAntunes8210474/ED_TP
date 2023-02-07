@@ -261,26 +261,11 @@ public class PlayerManagement implements IPlayerManagement {
         return tempPlayersList.toString();
     }
 
-    public JSONObject getPlayersAsJSONObject(Player player) {
-        JSONObject playerObject = new JSONObject();
-
-        playerObject.put("name", player.getName());
-        playerObject.put("team", player.getTeam());
-        playerObject.put("level", player.getLevel());
-        playerObject.put("experiencePoints", player.getExperiencePoints());
-        playerObject.put("currentEnergy", player.getCurrentEnergy());
-        playerObject.put("numPortalsConquered", player.getNumPortals());
-        playerObject.put("currentLocation", player.getCurrentLocation());
-        playerObject.put("maxEnergy", player.getMaxEnergy());
-
-        return playerObject;
-    }
-
     public JSONArray getPlayersAsJSONArray() {
         JSONArray jsonArray = new JSONArray();
 
         for (Player player : this.playerList) {
-            jsonArray.add(getPlayersAsJSONObject(player));
+            jsonArray.add(player.getPlayerAsJSONObject());
         }
 
         return jsonArray;
