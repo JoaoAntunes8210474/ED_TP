@@ -64,11 +64,13 @@ public class ImportExportFiles implements IImportExportFiles {
                 long experiencePointsLong = (long) playerToCreate.get("experiencePoints");
                 long currentEnergyLong = (long) playerToCreate.get("currentEnergy");
                 long numPortalsConqueredLong = (long) playerToCreate.get("numPortalsConquered");
+                long maxEnergyLong = (long) playerToCreate.get("maxEnergy");
                 int level = (int) levelLong;
                 int experiencePoints = (int) experiencePointsLong;
                 int currentEnergy = (int) currentEnergyLong;
                 int numPortalsConquered = (int) numPortalsConqueredLong;
-                Player player = new Player(name, team, level, experiencePoints, currentEnergy, numPortalsConquered);
+                int maxEnergy = (int) maxEnergyLong;
+                Player player = new Player(name, team, level, experiencePoints, currentEnergy, numPortalsConquered, maxEnergy);
                 player.setCurrentLocation(currentLocation);
                 playerList.addPlayer(player);
             }

@@ -2,45 +2,47 @@
   "playerTurn": 0,
   "players": [
     {
-      "level": 2,
-      "numPortalsConquered": 1,
+      "maxEnergy": 100,
+      "level": 1,
+      "numPortalsConquered": 0,
       "name": "Joao",
-      "experiencePoints": 140,
-      "currentEnergy": 35,
+      "experiencePoints": 10,
+      "currentEnergy": 80,
       "team": "Giants",
-      "currentLocation": {
-        "maxEnergy": 100,
-        "playerTeam": "Giants",
-        "id": 2933,
-        "name": "Palacio de Monserratelo",
-        "localType": "Portal",
-        "amountEnergyItHas": 40,
-        "coordinates": {
-          "longitude": 93.91258128734407,
-          "latitude": 25.429966019390093
-        }
-      }
-    },
-    {
-      "level": 2,
-      "numPortalsConquered": 1,
-      "name": "Regina",
-      "experiencePoints": 130,
-      "currentEnergy": 220,
-      "team": "Sparks",
       "currentLocation": {
         "cooldown": 3,
         "players": {},
-        "id": 1414,
+        "id": 170,
         "name": "Torre Eifel",
         "localType": "Connector",
         "amountEnergyItHas": 80,
         "coordinates": {
-          "longitude": 75.10402090698665,
-          "latitude": -84.48306055667838
+          "longitude": -61.407676862798354,
+          "latitude": 104.19554987509503
+        }
+      }
+    },
+    {
+      "maxEnergy": 100,
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Regina",
+      "experiencePoints": 10,
+      "currentEnergy": 60,
+      "team": "Sparks",
+      "currentLocation": {
+        "maxEnergy": 100,
+        "playerTeam": "NEUTRAL",
+        "id": 1135,
+        "name": "Palacio de Monserrate",
+        "localType": "Portal",
+        "amountEnergyItHas": 1,
+        "coordinates": {
+          "longitude": -27.523370394260937,
+          "latitude": -35.14183558862052
         }
       }
     }
   ],
-  "gameTimer": "04:09:20"
+  "gameTimer": "16:48:54"
 }

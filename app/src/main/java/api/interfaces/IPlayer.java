@@ -55,6 +55,13 @@ public interface IPlayer {
     int getNumPortals();
 
     /**
+     * Get the maximum amount of energy the player can have.
+     *
+     * @return Maximum amount of energy the player can have.
+     */
+    int getMaxEnergy();
+
+    /**
      * @param name Player's name.
      */
     void setName(String name);
@@ -100,6 +107,12 @@ public interface IPlayer {
      * @param numPortals Number of portals conquered by the player
      */
     void setNumPortals(int numPortals);
+
+    /**
+     * Sets and changes the maximum amount of energy the player can have.
+     * @param maxEnergy Maximum amount of energy the player can have.
+     */
+    void setMaxEnergy(int maxEnergy);
 
     /**
      * Method that allows the player to attack the portal in the current location using the energy of the player.

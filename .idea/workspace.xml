@@ -8,32 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
-      <change afterPath="$PROJECT_DIR$/app/files/Paths.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/files/ExportTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/files/ExportTest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/files/Game.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/files/Game.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/ImportExportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/ImportExportFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Local.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Local.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/LocalsManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/LocalsManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Portal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Portal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Route.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IImportExportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IImportExportFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPathGameGraphADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPathGameGraphADT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/collections/implementation/MatrixGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/collections/implementation/MatrixGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/api/LocalsManagementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/api/LocalsManagementTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/api/PlayerManagementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/api/PlayerManagementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/PlayerManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/PlayerManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/IPlayer.java" afterDir="false" />
     </list>
-    <list id="df0a5855-ac55-406c-a03a-5db6893cf865" name="Changes by reginaneto" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/implementation/Portal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/implementation/Portal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/interfaces/ILocalsManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/interfaces/ILocalsManagement.java" afterDir="false" />
-    </list>
+    <list id="df0a5855-ac55-406c-a03a-5db6893cf865" name="Changes by reginaneto" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,42 +74,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/app/src/main/java/api/app/Main.java">
-      <ranges>
-        <range start1="96" end1="97" start2="96" end2="102" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="99" end1="100" start2="104" end2="104" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="339" end1="339" start2="343" end2="355" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="352" end1="357" start2="368" end2="373" changelist="df0a5855-ac55-406c-a03a-5db6893cf865" />
-        <range start1="388" end1="390" start2="404" end2="406" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="391" end1="392" start2="407" end2="408" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="398" end1="399" start2="414" end2="415" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="401" end1="402" start2="417" end2="418" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="404" end1="404" start2="420" end2="423" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="409" end1="409" start2="428" end2="430" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="414" end1="414" start2="435" end2="470" changelist="df0a5855-ac55-406c-a03a-5db6893cf865" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/app/src/main/java/api/implementation/Portal.java">
-      <ranges>
-        <range start1="28" end1="29" start2="28" end2="28" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="101" end1="109" start2="100" end2="108" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="119" end1="120" start2="118" end2="119" changelist="df0a5855-ac55-406c-a03a-5db6893cf865" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/app/src/main/java/api/implementation/Connector.java">
-      <ranges>
-        <range start1="30" end1="31" start2="30" end2="30" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="80" end1="81" start2="79" end2="79" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="83" end1="84" start2="81" end2="82" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="96" end1="97" start2="94" end2="95" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="98" end1="104" start2="96" end2="102" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="106" end1="107" start2="104" end2="105" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="113" end1="114" start2="111" end2="112" changelist="17fbdabe-80f6-4faa-860a-2d6134733658" />
-        <range start1="125" end1="126" start2="123" end2="125" changelist="df0a5855-ac55-406c-a03a-5db6893cf865" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -322,7 +269,8 @@
       <workItem from="1675525950955" duration="2837000" />
       <workItem from="1675548066531" duration="4932000" />
       <workItem from="1675553301150" duration="451000" />
-      <workItem from="1675553801566" duration="8095000" />
+      <workItem from="1675553801566" duration="8289000" />
+      <workItem from="1675773658130" duration="9675000" />
     </task>
     <task id="LOCAL-00001" summary="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
       <created>1675053872347</created>

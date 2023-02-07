@@ -91,7 +91,6 @@ public class PlayerManagement implements IPlayerManagement {
 
             System.out.println("Escreva o novo nome do jogador");
             newName = scanner.nextLine();
-            scanner.close();
 
             player.setName(newName);
 
@@ -102,12 +101,11 @@ public class PlayerManagement implements IPlayerManagement {
             System.out.println("Insira o nome da equipa que quer colocar o jogador");
             do {
                 newTeam = scanner.nextLine();
+
                 if (newTeam.equals("Giants") || newTeam.equals("Sparks")) {
                     System.out.println("[Possiveis Equipas] \n [- Giants] \n [- Sparks]");
                 }
             } while (newTeam.equals("Giants") || newTeam.equals("Sparks"));
-
-            scanner.close();
 
             return ("A equipa do jogador " + player.getName() + " foi mudada da " + oldTeam + " para a " + newTeam);
         }
@@ -273,6 +271,7 @@ public class PlayerManagement implements IPlayerManagement {
         playerObject.put("currentEnergy", player.getCurrentEnergy());
         playerObject.put("numPortalsConquered", player.getNumPortals());
         playerObject.put("currentLocation", player.getCurrentLocation());
+        playerObject.put("maxEnergy", player.getMaxEnergy());
 
         return playerObject;
     }
@@ -331,11 +330,13 @@ public class PlayerManagement implements IPlayerManagement {
                 long experiencePointsLong = (long) playerToCreate.get("experiencePoints");
                 long currentEnergyLong = (long) playerToCreate.get("currentEnergy");
                 long numPortalsConqueredLong = (long) playerToCreate.get("numPortalsConquered");
+                long maxEnergyLong = (long) playerToCreate.get("maxEnergy");
                 int level = (int) levelLong;
                 int experiencePoints = (int) experiencePointsLong;
                 int currentEnergy = (int) currentEnergyLong;
                 int numPortalsConquered = (int) numPortalsConqueredLong;
-                Player player = new Player(name, team, level, experiencePoints, currentEnergy, numPortalsConquered);
+                int maxEnergy = (int) maxEnergyLong;
+                Player player = new Player(name, team, level, experiencePoints, currentEnergy, numPortalsConquered, maxEnergy);
                 player.setCurrentLocation(currentLocation);
                 this.playerList.addToRear(player);
 

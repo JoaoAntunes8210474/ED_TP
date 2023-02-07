@@ -36,6 +36,9 @@ public class Player implements IPlayer, Comparable<Player> {
     //Number of portals conquered by the player
     private int numPortals;
 
+    //Maximum amount of energy the player can have.
+    private int maxEnergy;
+
     /**
      * Constructor method is used to instantiate objects of type player.
      * @param name Player's name
@@ -48,15 +51,27 @@ public class Player implements IPlayer, Comparable<Player> {
         this.experiencePoints = 0;
         this.currentEnergy = 0;
         this.numPortals = 0;
+        this.maxEnergy = 100;
     }
 
-    protected Player(String name, String team, int level, long experiencePoints, int currentEnergy, int numPortals) {
+    /**
+     * Constructor method is used to instantiate objects of type player. Used for importing players from a file.
+     * @param name Player's name
+     * @param team Team the player belongs to.
+     * @param level Level the player is in the game.
+     * @param experiencePoints Experience points obtained by the player during interaction with the game.
+     * @param currentEnergy Amount of energy the player has.
+     * @param numPortals Number of portals conquered by the player
+     * @param maxEnergy Maximum amount of energy the player can have.
+     */
+    protected Player(String name, String team, int level, long experiencePoints, int currentEnergy, int numPortals, int maxEnergy) {
         this.name = name;
         this.team = team;
         this.level = level;
         this.experiencePoints = experiencePoints;
         this.currentEnergy = currentEnergy;
         this.numPortals = numPortals;
+        this.maxEnergy = maxEnergy;
     }
 
     /**
@@ -100,6 +115,7 @@ public class Player implements IPlayer, Comparable<Player> {
     private void increaseLevel() {
         if (canIncreaseLevel()) {
             this.level++;
+            this.maxEnergy *= (1 + (this.level * 0.05));
         }
     }
 
@@ -174,6 +190,15 @@ public class Player implements IPlayer, Comparable<Player> {
     }
 
     /**
+     * Get maximum amount of energy the player can have.
+     *
+     * @return Maximum amount of energy the player can have.
+     */
+    public int getMaxEnergy() {
+        return maxEnergy;
+    }
+
+    /**
      * @param name Player's name.
      */
     @Override
@@ -242,6 +267,14 @@ public class Player implements IPlayer, Comparable<Player> {
     }
 
     /**
+     * Sets and changes the maximum amount of energy the player can have.
+     * @param maxEnergy Maximum amount of energy the player can have.
+     */
+    public void setMaxEnergy(int maxEnergy) {
+        this.maxEnergy = maxEnergy;
+    }
+
+    /**
      * Method that allows the player to attack the portal in the current location using the energy of the player.
      * If the player has enough energy, the player can conquer the portal.
      */
@@ -262,21 +295,29 @@ public class Player implements IPlayer, Comparable<Player> {
         // If it is, the portal is conquered by the player's team, and we set the portal's energy to the positive value of the energy that was over 25% of the portal's max energy
         // If it is not, we set the portal's energy to the positive value of the energy that was not over 25% of the portal's max energy and set the portal's player team to "NEUTRAL"
         portal.setAmountEnergyItHas(portal.getAmountEnergyItHas() - energy);
-        if (portal.getAmountEnergyItHas() > 0) {
+        if (portal.getAmountEnergyItHas() < 0) {
             if (Math.abs(portal.getAmountEnergyItHas()) > (portal.getMaxEnergy() * 0.25)) {
                 portal.setPlayerTeam(this.team);
                 portal.setAmountEnergyItHas(Math.abs(portal.getAmountEnergyItHas()));
                 portal.setOwnerPlayer(this);
-                this.currentEnergy -= energy;
                 this.numPortals++;
             } else {
                 portal.setAmountEnergyItHas(Math.abs(portal.getAmountEnergyItHas()));
                 portal.setPlayerTeam("NEUTRAL");
                 portal.getOwnerPlayer().setNumPortals(portal.getOwnerPlayer().getNumPortals() - 1);
                 portal.setOwnerPlayer(null);
-                this.currentEnergy -= energy;
+            }
+        } else {
+            if (portal.getAmountEnergyItHas() < (portal.getMaxEnergy() * 0.25)) {
+                portal.setPlayerTeam("NEUTRAL");
+                if (portal.getOwnerPlayer() != null) {
+                    portal.getOwnerPlayer().setNumPortals(portal.getOwnerPlayer().getNumPortals() - 1);
+                    portal.setOwnerPlayer(null);
+                }
             }
         }
+
+        this.currentEnergy -= energy;
 
         this.addExperiencePoints("ATTACK");
         this.increaseLevel();
@@ -302,6 +343,7 @@ public class Player implements IPlayer, Comparable<Player> {
         // If the player charges the portal with less than 25% of the portal's max energy, the portal's team remains "NEUTRAL"
         if ((portal.getAmountEnergyItHas() + energy) >= (portal.getMaxEnergy() * 0.25)) {
             portal.setPlayerTeam(this.team);
+            portal.setOwnerPlayer(this);
             portal.setAmountEnergyItHas(portal.getAmountEnergyItHas() + energy);
             this.currentEnergy -= energy;
             this.numPortals++;
@@ -360,7 +402,6 @@ public class Player implements IPlayer, Comparable<Player> {
 
         Connector connector = (Connector) this.currentLocation;
 
-        // If the player is in a connector, we check if the player has already interacted with the connector in the last 3 minutes
         Iterator<ConnectorPlayerInteration> iterator = connector.getPlayers().iterator();
         LocalTime horaJogo = Main.getGameTimer();
         LocalTime horaInteracao;
@@ -377,15 +418,23 @@ public class Player implements IPlayer, Comparable<Player> {
             horaInteracao = connectorPlayerInterationIterator.getHoraInteracao();
             tempoDesdeInteracao = Duration.between(horaInteracao, horaJogo);
             if (connectorPlayerInterationIterator.getPlayer().toString().equals(this.toString()) && (tempoDesdeInteracao.compareTo(cooldown) >= 0)) {
+                // If the player hasn't interacted with the connector in the last 3 mins, when he interacts with the connector, we swap the player's interaction time with the current time
                 connectorPlayerInterationIterator.setHoraInteracao(horaJogo);
                 this.currentEnergy += connector.getAmountEnergyItHas();
+
+                // If the player's energy is over the player's max energy, we set the player's energy to the player's max energy
+                if (this.currentEnergy > this.maxEnergy) {
+                    this.currentEnergy = this.maxEnergy;
+                }
+
                 jaInteragiu = true;
                 break;
             } else if (connectorPlayerInterationIterator.getPlayer().toString().equals(this.toString()) && (tempoDesdeInteracao.compareTo(cooldown) < 0)){
-                return "You can't recharge your energy yet.";
+                return "You can t recharge your energy yet.";
             }
         }
 
+        // If the player hasn't interacted with the connector, we add him to the connector's list of players
         if (!jaInteragiu) {
             connector.getPlayers().addToRear(new ConnectorPlayerInteration(this, horaJogo));
             this.currentEnergy += connector.getAmountEnergyItHas();
