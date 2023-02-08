@@ -1,0 +1,158 @@
+{
+  "routes": [
+    {
+      "from": 2051,
+      "to": 2934
+    },
+    {
+      "from": 2051,
+      "to": 2545
+    },
+    {
+      "from": 2051,
+      "to": 1422
+    },
+    {
+      "from": 2934,
+      "to": 901
+    },
+    {
+      "from": 2934,
+      "to": 377
+    },
+    {
+      "from": 901,
+      "to": 2545
+    },
+    {
+      "from": 901,
+      "to": 1422
+    },
+    {
+      "from": 2545,
+      "to": 377
+    },
+    {
+      "from": 377,
+      "to": 1422
+    }
+  ],
+  "players": [
+    {
+      "maxEnergy": 100,
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Joao",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Giants",
+      "currentLocation": {
+        "maxEnergy": 100,
+        "name": "Palacio de Monserratelo",
+        "coordinates": {
+          "latitude": -171.99543655369308,
+          "longitude": -59.56246803912906
+        },
+        "id": 2051,
+        "amountEnergyItHas": 0,
+        "ownerTeam": "NEUTRAL",
+        "localType": "Portal"
+      }
+    },
+    {
+      "maxEnergy": 100,
+      "level": 1,
+      "numPortalsConquered": 0,
+      "name": "Regina",
+      "experiencePoints": 0,
+      "currentEnergy": 0,
+      "team": "Sparks",
+      "currentLocation": {
+        "players": "doesnt have any players",
+        "name": "Arco do Triunfo",
+        "coordinates": {
+          "latitude": 109.84657855938906,
+          "longitude": 33.476476269479065
+        },
+        "cooldown": 3,
+        "id": 377,
+        "amountEnergyItHas": 60,
+        "localType": "Connector"
+      }
+    }
+  ],
+  "locals": [
+    {
+      "maxEnergy": 100,
+      "name": "Palacio de Monserratelo",
+      "coordinates": {
+        "latitude": -171.99543655369308,
+        "longitude": -59.56246803912906
+      },
+      "id": 2051,
+      "amountEnergyItHas": 0,
+      "ownerTeam": "NEUTRAL",
+      "localType": "Portal"
+    },
+    {
+      "maxEnergy": 100,
+      "name": "Palacio da Pena",
+      "coordinates": {
+        "latitude": 95.38809025797866,
+        "longitude": -48.51878121029563
+      },
+      "id": 2934,
+      "amountEnergyItHas": 40,
+      "ownerTeam": "NEUTRAL",
+      "localType": "Portal"
+    },
+    {
+      "maxEnergy": 100,
+      "name": "Quinta da regaleira",
+      "coordinates": {
+        "latitude": -194.8148211367252,
+        "longitude": -97.03653002480313
+      },
+      "id": 901,
+      "amountEnergyItHas": 15,
+      "ownerTeam": "NEUTRAL",
+      "localType": "Portal"
+    },
+    {
+      "maxEnergy": 100,
+      "name": "Palacio de Monserrate",
+      "coordinates": {
+        "latitude": 101.20060437006282,
+        "longitude": 7.308878001573518
+      },
+      "id": 2545,
+      "amountEnergyItHas": 1,
+      "ownerTeam": "NEUTRAL",
+      "localType": "Portal"
+    },
+    {
+      "players": "doesnt have any players",
+      "name": "Arco do Triunfo",
+      "coordinates": {
+        "latitude": 109.84657855938906,
+        "longitude": 33.476476269479065
+      },
+      "cooldown": 3,
+      "id": 377,
+      "amountEnergyItHas": 60,
+      "localType": "Connector"
+    },
+    {
+      "players": "doesnt have any players",
+      "name": "Torre Eifel",
+      "coordinates": {
+        "latitude": 123.42646412436864,
+        "longitude": 0.12220644224947819
+      },
+      "cooldown": 3,
+      "id": 1422,
+      "amountEnergyItHas": 80,
+      "localType": "Connector"
+    }
+  ]
+}
