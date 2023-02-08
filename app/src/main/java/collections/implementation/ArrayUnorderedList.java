@@ -4,14 +4,21 @@ import collections.exceptions.EmptyCollectionException;
 import collections.interfaces.UnorderedListADT;
 
 /**
- * @param <T>
+ * @param <T> Generic type
  */
 public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedListADT<T> {
 
+    /**
+     * Constructor
+     */
     public ArrayUnorderedList() {
         super();
     }
 
+    /**
+     * Adds the specified element to the front of this list.
+     * @param element the element to be added to this list
+     */
     @Override
     public void addToFront(T element) {
         T[] unorderedList = list;
@@ -26,6 +33,9 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
         modCount++;
     }
 
+    /**
+     * Expands the capacity of the list by one
+     */
     private void expandCapacity() {
         T[] unorderedList = list;
         int tam = unorderedList.length + 1;
@@ -36,6 +46,10 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
         unorderedList = temp;
     }
 
+    /**
+     * Adds the specified element to the rear of this list.
+     * @param element the element to be added to this list
+     */
     @Override
     public void addToRear(T element) {
         T[] unorderedList = list;
@@ -47,6 +61,12 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
         modCount++;
     }
 
+    /**
+     * Adds the specified element after the specified target element.
+     * @param element the element to be added after the target element
+     * @param target the target that the element is to be added after
+     * @throws EmptyCollectionException if the list is empty
+     */
     @Override
     public void addAfter(T element, T target) throws EmptyCollectionException {
         T[] unorderedList = list;

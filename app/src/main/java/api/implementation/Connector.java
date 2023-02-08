@@ -88,7 +88,6 @@ public class Connector extends Local implements IConnector{
     /**
      * Transforms the connector into a JSONObject representation
      * @return the JSONObject with all the details of the Connector
-     * @throws EmptyCollectionException
      */
     @SuppressWarnings("unchecked")
     @Override

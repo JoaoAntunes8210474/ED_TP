@@ -2,6 +2,11 @@ package collections.implementation;
 
 import collections.exceptions.EmptyCollectionException;
 
+/**
+ * A PriorityQueue represents a priority queue implemented using a heap.
+ *
+ * @param <T> the type of element held in this collection
+ */
 public class PriorityQueue<T> extends LinkedHeap<PriorityQueueNode<T>> {
 
     /**
@@ -27,6 +32,7 @@ public class PriorityQueue<T> extends LinkedHeap<PriorityQueueNode<T>> {
      * returns a reference to it.
      *
      * @return a reference to the next highest priority element in this queue
+     * @throws EmptyCollectionException if the priority queue is empty
      */
     public T removeNext() throws EmptyCollectionException {
         PriorityQueueNode<T> temp = super.removeMin();

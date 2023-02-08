@@ -11,7 +11,7 @@ public class ArraySortingAndSearching {
     /**
      * Searches the specified array of objects using a linear search algorithm.
      *
-     * @param <T>
+     * @param <T>   the type of objects in the array
      * @param data   the array to be sorted
      * @param min    the integer representation of the min value
      * @param max    the integer representation of the max value
@@ -35,6 +35,7 @@ public class ArraySortingAndSearching {
      * Searches the specified array of objects using a
      * binary search algorithm.
      *
+     * @param <T>   the type of objects in the array
      * @param data   the array to be sorted
      * @param min    the integer representation of the minimum value
      * @param max    the integer representation of the maximum value
@@ -62,6 +63,7 @@ public class ArraySortingAndSearching {
      * Sorts the specified array of integers using the selection
      * sort algorithm.
      *
+     * @param <T> the type of objects in the array
      * @param data the array to be sorted
      */
     public static <T extends Comparable<? super T>> void
@@ -86,6 +88,7 @@ public class ArraySortingAndSearching {
      * Sorts the specified array of objects using an insertion
      * sort algorithm.
      *
+     * @param <T> the type of objects in the array
      * @param data the array to be sorted
      */
     public static <T extends Comparable<? super T>> void
@@ -107,6 +110,7 @@ public class ArraySortingAndSearching {
      * Sorts the specified array of objects using a bubble sort
      * algorithm.
      *
+     * @param <T> the type of objects in the array
      * @param data the array to be sorted
      */
     public static <T extends Comparable<? super T>> void bubbleSort(T[] data) {
@@ -129,6 +133,7 @@ public class ArraySortingAndSearching {
      * algorithm.
      * Recursive algorithm
      *
+     * @param <T> the type of objects in the array
      * @param data the array to be sorted
      * @param min  the integer representation of the minimum value
      * @param max  the integer representation of the maximum value
@@ -152,6 +157,7 @@ public class ArraySortingAndSearching {
     /**
      * Used by the quick sort algorithm to find the partition.
      *
+     * @param <T> the type of objects in the array
      * @param data the array to be sorted
      * @param min  the integer representation of the minimum value
      * @param max  the integer representation of the maximum value
@@ -199,6 +205,7 @@ public class ArraySortingAndSearching {
      * algorithm.
      * Recursive algorithm
      *
+     * @param <T> the type of objects in the array
      * @param data the array to be sorted
      * @param min  the integer representation of the minimum value
      * @param max  the integer representation of the maximum value

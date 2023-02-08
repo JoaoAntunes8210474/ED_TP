@@ -18,6 +18,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * Class for importing and exporting files
+ */
 public class ImportExportFiles implements IImportExportFiles {
 
     /**

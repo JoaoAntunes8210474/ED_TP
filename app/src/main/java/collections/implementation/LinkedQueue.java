@@ -3,10 +3,25 @@ package collections.implementation;
 import collections.interfaces.QueueADT;
 import collections.exceptions.EmptyCollectionException;
 
+/**
+ * A linked implementation of a queue.
+ *
+ * @param <T> the type of elements in this queue
+ */
 public class LinkedQueue<T> implements QueueADT<T> {
+    /**
+     * The first node in the queue.
+     */
     private int count;
+
+    /**
+     * The front and rear of the queue.
+     */
     private LinkedNode<T> front, rear;
 
+    /**
+     * Creates an empty queue.
+     */
     public LinkedQueue() {
         this.count = 0;
         this.front = null;
@@ -14,7 +29,9 @@ public class LinkedQueue<T> implements QueueADT<T> {
     }
 
     /**
-     * {@inheritDoc}
+     * Inserts the specified element into the rear of this queue.
+     *
+     * @param element the element to be added to the rear of this queue
      */
     @Override
     public void enqueue(T element) {

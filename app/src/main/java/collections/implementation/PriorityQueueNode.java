@@ -1,10 +1,30 @@
 package collections.implementation;
 
+/**
+ * A PriorityQueueNode represents a node in a priority queue.
+ *
+ * @param <T> the type of element held in this collection
+ */
 public class PriorityQueueNode<T> implements Comparable<PriorityQueueNode> {
 
+    /**
+     * The order of the next node to be created.
+     */
     private static int nextorder = 0;
+
+    /**
+     * The priority of this node.
+     */
     private int priority;
+
+    /**
+     * The order of this node.
+     */
     private int order;
+
+    /**
+     * The element of this node.
+     */
     private T element;
 
     /**

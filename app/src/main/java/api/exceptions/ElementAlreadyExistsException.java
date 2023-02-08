@@ -2,7 +2,7 @@ package api.exceptions;
 
 
 /**
- * Exception that is thrown when a {@link Headquarter headquarter} already exists in a company graph.
+ * Exception that is thrown when an element already exists.
  */
 public class ElementAlreadyExistsException extends Exception{
 

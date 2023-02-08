@@ -158,9 +158,9 @@ public abstract class Local implements ILocal, Comparable<Local>{
     }
     
     /**
-     * 
-     * @param local
-     * @return
+     * Compares the amount of energy that the local has with the amount of energy that the local that calls the method has
+     * @param local The local to be compared
+     * @return Returns 1 if the local that calls the method has more energy, 0 if they have the same amount of energy and -1 if the local that calls the method has less energy
      */
     @Override
     public int compareTo(Local local) {

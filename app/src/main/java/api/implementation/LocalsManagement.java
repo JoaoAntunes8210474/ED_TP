@@ -23,6 +23,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+/**
+ * Class that implements the LocalsManagement interface.
+ */
 public class LocalsManagement implements ILocalsManagement {
 
     /**
@@ -73,25 +76,6 @@ public class LocalsManagement implements ILocalsManagement {
         this.pathGraph.removeVertex(local);
 
         return "O local foi removido com sucesso";
-    }
-
-    /**
-     * Add a new interaction of a player to the connector and remove the first one from the queue if the cooldown time has already passed
-     *
-     * @param connector connector where there was interaction
-     * @param iteration information about the interaction to be added to the connector
-     */
-    @Override
-    public String addInterationConnector(IConnector connector, ConnectorPlayerInteration iteration) {
-        if (connector == null) {
-            throw new IllegalArgumentException("Place cannot be null!");
-        }
-        if (connector == iteration) {
-            throw new IllegalArgumentException("Place cannot be null!");
-        }
-
-
-        return " Interação adicionada com sucesso com sucesso";
     }
 
     /**
@@ -169,7 +153,7 @@ public class LocalsManagement implements ILocalsManagement {
     /**
      * Get a textual list of Portals conquered by a specific player.
      * @param player owner of the portals.
-     * @return
+     * @return string with all locations belonging to the player.
      */
     @Override
     public String getPortalsPlayerListing(IPlayer player) {
@@ -321,7 +305,7 @@ public class LocalsManagement implements ILocalsManagement {
      * @return the JSONArray with all the locals present on the graph
      */
     @SuppressWarnings("unchecked")
-    protected JSONArray getPortalsJSONArray() {
+    public JSONArray getPortalsJSONArray() {
         JSONArray portalsArray = new JSONArray();
         Iterator<IPortal> iteratorPortal = this.pathGraph.getPortals();
         while (iteratorPortal.hasNext()) {
@@ -337,7 +321,7 @@ public class LocalsManagement implements ILocalsManagement {
      * @return the JSONArray with all the locals present on the graph
      */
     @SuppressWarnings("unchecked")
-    protected JSONArray getConnectorsJSONArray() {
+    public JSONArray getConnectorsJSONArray() {
         JSONArray connectorsArray = new JSONArray();
         Iterator<IConnector> iteratorConnectors = this.pathGraph.getConnectores();
         while (iteratorConnectors.hasNext()) {
@@ -352,7 +336,7 @@ public class LocalsManagement implements ILocalsManagement {
      * @return the JSONArray with all the locals present on the graph
      */
     @SuppressWarnings("unchecked")
-    protected JSONArray getRoutesJSONArray() {
+    public JSONArray getRoutesJSONArray() {
         JSONArray routesArray = new JSONArray();
         Iterator<IRoute<ILocal>> iteratorRoute = this.pathGraph.getRoutes();
         while (iteratorRoute.hasNext()) {
@@ -461,6 +445,7 @@ public class LocalsManagement implements ILocalsManagement {
             for (int i = 0; i < jsonArray.size(); i++) {
                 JSONObject localsToCreate = (JSONObject) jsonArray.get(i);
                 if (localsToCreate.get("localType").equals("Portal")) {
+                    Portal portal;
                     long amountEnergyItHasLong = (long) localsToCreate.get("amountEnergyItHas");
                     long idLong = (long) localsToCreate.get("id");
                     int id = (int) idLong;
@@ -472,7 +457,32 @@ public class LocalsManagement implements ILocalsManagement {
                     Coordinates coordenadas = new Coordinates(longitude, latitude);
                     long maxEnergyLong = (long) localsToCreate.get("maxEnergy");
                     int maxEnergy = (int) maxEnergyLong;
-                    Portal portal = new Portal(maxEnergy, id, name, amountEnergyItHas, coordenadas);
+                    String ownerTeam = (String) localsToCreate.get("ownerTeam");
+                    if (!(ownerTeam.equals("NEUTRAL"))) {
+                        JSONArray playerArrayJSON = (JSONArray) jsonObject.get("players");
+                        Player player = null;
+                        for (int j = 0; j < playerArrayJSON.size(); j++) {
+                            JSONObject playerJSON = (JSONObject) playerArrayJSON.get(j);
+                            if (playerJSON.get("name").equals(localsToCreate.get("ownerPlayer"))) {
+                                long energyLong = (long) playerJSON.get("currentEnergy");
+                                long levelLong = (long) playerJSON.get("level");
+                                long numPortalsConqueredLong = (long) playerJSON.get("numPortalsConquered");
+                                long maxEnergyPlayerLong = (long) playerJSON.get("maxEnergy");
+                                int energy = (int) energyLong;
+                                int level = (int) levelLong;
+                                int numPortalsConquered = (int) numPortalsConqueredLong;
+                                int maxEnergyPlayer = (int) maxEnergyPlayerLong;
+                                long experiencePoints = (long) playerJSON.get("experiencePoints");
+                                String namePlayer = (String) playerJSON.get("name");
+                                String team = (String) playerJSON.get("team");
+                                player = new Player(namePlayer, team, level, experiencePoints, energy, numPortalsConquered, maxEnergyPlayer);
+                            }
+                        }
+                        portal = new Portal(maxEnergy, id, name, amountEnergyItHas, coordenadas, player, ownerTeam);
+                    } else {
+                        portal = new Portal(maxEnergy, id, name, amountEnergyItHas, coordenadas);
+                    }
+
                     this.pathGraph.addVertex(portal);
                 }
             }

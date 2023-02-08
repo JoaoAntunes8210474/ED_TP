@@ -1,5 +1,9 @@
 package collections.implementation;
 
+/**
+ * Sorting and searching algorithms for a single linked list
+ * @param <T> the type of data stored in the list
+ */
 public class LinkedListSortingAndSearching<T> {
 
     //------------------------Algoritmos de pesquisa----------------------------
@@ -8,7 +12,7 @@ public class LinkedListSortingAndSearching<T> {
      * Searches a specified element on a single linked list
      * using a linear search algorithm.
      *
-     * @param <T>
+     * @param <T> the type of data stored in the list
      * @param head   beginning of single linked list
      * @param target the element being searched for
      * @return true if the desired element is found
@@ -26,6 +30,15 @@ public class LinkedListSortingAndSearching<T> {
         return found;
     }
 
+/**
+     * Searches a specified element on a single linked list
+     * using a recursive linear search algorithm.
+     *
+     * @param <T> the type of data stored in the list
+     * @param head   beginning of single linked list
+     * @param target the element being searched for
+     * @return true if the desired element is found
+     */
     public static <T extends Comparable<? super T>> boolean RecursivelinearSearch(LinkedNode<T> head, T target) {
         if (head != null) {
             return false;
@@ -41,7 +54,7 @@ public class LinkedListSortingAndSearching<T> {
      *
      * @param head beginning of single linked list
      * @param tail ending of single linked list
-     * @return
+     * @return middle element
      */
     public static LinkedNode<Integer> getMiddleNode(LinkedNode<Integer> head, LinkedNode<Integer> tail) {
         if (head == null) {
@@ -64,9 +77,9 @@ public class LinkedListSortingAndSearching<T> {
     /**
      * function to insert a node at the beginning of the Singly Linked List
      *
-     * @param head
-     * @param value
-     * @return
+     * @param head beginning of single linked list
+     * @param value value to be inserted
+     * @return head of the list
      */
     public static LinkedNode<Integer> binarySearch(LinkedNode<Integer> head, int value) {
         LinkedNode<Integer> start = head;
@@ -104,6 +117,7 @@ public class LinkedListSortingAndSearching<T> {
      * Sorts the specified element on a single linked list using the selection
      * sort algorithm.
      *
+     * @param <T> the type of data stored in the list
      * @param data element to be sorted
      */
     public static <T extends Comparable<? super T>> void
@@ -111,6 +125,13 @@ public class LinkedListSortingAndSearching<T> {
 
     }
 
+    /**
+     * Sorts the specified array of objects using an insertion sort
+     * algorithm.
+     *
+     * @param <T> the type of data stored in the list
+     * @param data the array to be sorted
+     */
     public static <T extends Comparable<? super T>> void
     insertionSort(T data) {
 
@@ -120,12 +141,20 @@ public class LinkedListSortingAndSearching<T> {
      * Sorts the specified array of objects using a bubble sort
      * algorithm.
      *
+     * @param <T> the type of data stored in the list
      * @param data the array to be sorted
      */
     public static <T extends Comparable<? super T>> void bubbleSort(T data) {
 
     }
 
+    /**
+     * Helper function for quickSort
+     *
+     * @param start beginning of single linked list
+     * @param end ending of single linked list
+     * @Return node previous to pivot
+     */
     private static LinkedNode<Integer> paritionLast(LinkedNode<Integer> start, LinkedNode<Integer> end) {
         if (start == end || start == null || end == null)
             return start;
@@ -160,6 +189,14 @@ public class LinkedListSortingAndSearching<T> {
         return pivot_prev;
     }
 
+    /**
+     * Sorts the specified array of objects using a quick sort
+     * algorithm.
+     *
+     * @param <T> the type of data stored in the list
+     * @param start beginning of single linked list
+     * @param end ending of single linked list
+     */
     public static <T extends Comparable<? super T>> void quickSort(LinkedNode<Integer> start, LinkedNode<Integer> end) {
         if (start == end)
             return;
@@ -182,6 +219,13 @@ public class LinkedListSortingAndSearching<T> {
             quickSort(prev.getNext().getNext(), end);
     }
 
+    /**
+     * Sorts the specified array of objects using a merge sort
+     * algorithm.
+     *
+     * @param a first linked node of the list
+     * @param b second linked node of the list
+     */
     private static LinkedNode<Integer> sortedMerge(LinkedNode<Integer> a, LinkedNode<Integer> b) {
         LinkedNode<Integer> result = null;
         /* Base cases */
@@ -201,6 +245,11 @@ public class LinkedListSortingAndSearching<T> {
         return result;
     }
 
+    /**
+     * Get the middle of the linked list
+     * @param head of the linked list
+     * @return middle of the linked list
+     */
     public static LinkedNode getMiddle(LinkedNode head) {
         if (head == null)
             return head;
@@ -214,6 +263,14 @@ public class LinkedListSortingAndSearching<T> {
         return slow;
     }
 
+    /**
+     * Sorts the specified array of objects using a merge sort
+     * algorithm.
+     *
+     * @param <T> the type of data stored in the list
+     * @param h head of the linked list
+     * @return head of the linked list
+     */
     public static <T extends Comparable<? super T>> LinkedNode mergeSort(LinkedNode h) {
         // Base case : if head is null
         if (h == null || h.getNext() == null) {

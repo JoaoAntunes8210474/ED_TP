@@ -4,10 +4,13 @@ import collections.exceptions.EmptyCollectionException;
 import collections.interfaces.UnorderedListADT;
 
 /**
- * @param <T>
+ * @param <T> Generic type
  */
 public class DoubleLinkedUnorderedList<T> extends DoubleLinkedList<T> implements UnorderedListADT<T> {
 
+    /**
+     * Constructor
+     */
     public DoubleLinkedUnorderedList() {
         super();
     }

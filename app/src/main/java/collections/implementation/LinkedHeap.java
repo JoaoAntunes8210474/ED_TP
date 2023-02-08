@@ -6,16 +6,25 @@ import collections.interfaces.HeapADT;
 /**
  * Heap implements a heap.
  *
- * @param <T>
+ * @param <T> the generic type
  */
 public class LinkedHeap<T> extends LinkedBinaryTree<T> implements HeapADT<T> {
 
+    /** The root of the heap. */
     public HeapNode<T> lastNode;
 
+    /**
+     * Creates an empty heap.
+     */
     public LinkedHeap() {
         super();
     }
 
+    /**
+     * Creates a heap with the specified element at its root.
+     *
+     * @param obj the element that will become the root of the new heap
+     */
     @Override
     public void addElement(T obj) {
         HeapNode<T> node = new HeapNode<>(obj);
@@ -38,6 +47,9 @@ public class LinkedHeap<T> extends LinkedBinaryTree<T> implements HeapADT<T> {
         }
     }
 
+    /**
+     * Reorders this heap after adding a new element.
+     */
     private void heapifyAdd() {
         T temp;
         HeapNode<T> next = this.lastNode;
@@ -51,6 +63,11 @@ public class LinkedHeap<T> extends LinkedBinaryTree<T> implements HeapADT<T> {
         next.setElement(temp);
     }
 
+    /**
+     * Returns the next parent to be used in the add operation.
+     *
+     * @return the next parent to be used in the add operation
+     */
     private HeapNode<T> getNextParentAdd() {
         HeapNode<T> result = lastNode;
 
@@ -75,6 +92,12 @@ public class LinkedHeap<T> extends LinkedBinaryTree<T> implements HeapADT<T> {
         return result;
     }
 
+    /**
+     * Removes element with the lowest value from this heap.
+     *
+     * @return the element with the lowest value from this heap
+     * @throws EmptyCollectionException if the heap is empty
+     */
     @Override
     public T removeMin() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -170,6 +193,12 @@ public class LinkedHeap<T> extends LinkedBinaryTree<T> implements HeapADT<T> {
         node.setElement(temp);
     }
 
+    /**
+     * Returns a reference to the element with the lowest value in this heap.
+     *
+     * @return a reference to the element with the lowest value in this heap
+     * @throws EmptyCollectionException if the heap is empty
+     */
     @Override
     public T findMin() throws EmptyCollectionException {
         if (isEmpty()) {

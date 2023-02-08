@@ -5,18 +5,33 @@ import collections.exceptions.NullException;
 import java.util.Objects;
 
 /**
- *
+ * LinkedList
+ * @param <T> Generic Type
  */
 public class LinkedList<T> {
+    /**
+     * Number of elements in the list
+     */
     int count;
+
+    /**
+     * Head and tail of the list
+     */
     LinkedNode<T> head, tail;
 
+    /**
+     * Constructor
+     */
     public LinkedList() {
         this.count = 0;
         this.head = null;
         this.tail = null;
     }
 
+    /**
+     * Add element to the list
+     * @param element element to be added
+     */
     public void add(T element) {
         //1º Definir LinkedNode
         LinkedNode<T> newNode = new LinkedNode<T>(element);
@@ -31,7 +46,11 @@ public class LinkedList<T> {
         this.count++;
     }
 
-
+    /**
+     * Remove element from the list
+     * @param element element to be removed
+     * @throws NullException throws exception if the list is empty
+     */
     public void remove(T element) throws NullException {
         // Armazenar início da lista ligada
         LinkedNode<T> temp = this.head;
@@ -70,6 +89,10 @@ public class LinkedList<T> {
         this.count--;
     }
 
+    /**
+     * Returns a string representation of the list.
+     * @return a string representation of the list.
+     */
     @Override
     public String toString() {
         LinkedNode<T> current = head;
@@ -81,6 +104,11 @@ public class LinkedList<T> {
         return s;
     }
 
+    /**
+     * Compares the specified object with another object in terms of equality.
+     * @param obj the object to be compared for equality with this object.
+     * @return true if the specified object is equal to this object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

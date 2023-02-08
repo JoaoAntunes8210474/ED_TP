@@ -11,13 +11,35 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * MatrixGraph implements the GraphADT interface using an adjacency matrix.
+ * @param <T> the type of elements in this graph
+ */
 public class MatrixGraph<T> implements GraphADT<T> {
 
+    /**
+     * The default capacity of the graph
+     */
     protected final int DEFAULT_CAPACITY = 10;
-    protected int numVertices; // number of vertices in the graph
-    protected boolean[][] adjMatrix; // adjacency matrix
-    protected T[] vertices; // values of vertices
 
+    /**
+     * The number of vertices in the graph
+     */
+    protected int numVertices;
+
+    /**
+     * The adjacency matrix
+     */
+    protected boolean[][] adjMatrix;
+
+    /**
+     * The array of values of the vertices
+     */
+    protected T[] vertices;
+
+    /**
+     * Creates an empty graph.
+     */
     @SuppressWarnings("unchecked")
     public MatrixGraph() {
         this.numVertices = 0;
@@ -25,10 +47,18 @@ public class MatrixGraph<T> implements GraphADT<T> {
         this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
     }
 
+    /**
+     * Returns a reference to the vertex array.
+     * @return a reference to the vertex array
+     */
     public T[] getVertices() {
         return this.vertices;
     }
 
+    /**
+     * Adds the specified vertex to this graph.
+     * @param vertex the vertex to be added to this graph
+     */
     @Override
     public void addVertex(T vertex) {
         if (numVertices == vertices.length) {
@@ -43,6 +73,10 @@ public class MatrixGraph<T> implements GraphADT<T> {
         numVertices++;
     }
 
+    /**
+     * Expands the capacity of the graph by creating a larger array and copying the contents of the old array to the new one.
+     * Copies the contents of the old adjacency matrix to the new one with the new capacity.
+     */
     @SuppressWarnings("unchecked")
     private void expandCapacity() {
         T[] largerVertices = (T[]) (new Object[vertices.length * 2]);
@@ -59,6 +93,11 @@ public class MatrixGraph<T> implements GraphADT<T> {
         adjMatrix = largerAdjMatrix;
     }
 
+    /**
+     * Removes a single vertex with the given value from this graph.
+     *
+     * @param vertex the vertex to be removed from this graph
+     */
     @Override
     public void removeVertex(T vertex) {
         for (int i = 0; i < numVertices; i++) {
@@ -103,20 +142,35 @@ public class MatrixGraph<T> implements GraphADT<T> {
         }
     }
 
+    /**
+     * Adds an edge between two vertices of this graph.
+     * @param vertex1 the first vertex
+     * @param vertex2 the second vertex
+     */
     @Override
     public void addEdge(T vertex1, T vertex2) {
         addEdge(getIndex(vertex1), getIndex(vertex2));
     }
 
+    /**
+     * Returns the index of the vertex in the vertices array.
+     * @param vertex the vertex to be found
+     * @return the index of the vertex in the vertices array
+     */
     public int getIndex(T vertex) {
         for (int i = 0; i < numVertices; i++) {
-            if (vertices[i].equals(vertex)) {
+            if (vertices[i].toString().equals(vertex.toString())) {
                 return i;
             }
         }
         return -1;
     }
 
+    /**
+     * Adds an edge between two vertices of this graph.
+     * @param index1 the index of the first vertex
+     * @param index2 the index of the second vertex
+     */
     private void addEdge(int index1, int index2) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = true;
@@ -124,15 +178,30 @@ public class MatrixGraph<T> implements GraphADT<T> {
         }
     }
 
+    /**
+     * Checks if the index is valid. The index is valid if it is greater than or equal to 0 and less than the number of vertices.
+     * @param index the index to be checked
+     * @return true if the index is valid, false otherwise
+     */
     public boolean indexIsValid(int index) {
-        return ((index < numVertices) && index >= 0);
+        return ((index >= 0) && (index < numVertices));
     }
 
+    /**
+     * Removes an edge between two vertices of this graph.
+     * @param vertex1 the first vertex
+     * @param vertex2 the second vertex
+     */
     @Override
     public void removeEdge(T vertex1, T vertex2) {
         removeEdge(getIndex(vertex1), getIndex(vertex2));
     }
 
+    /**
+     * Removes an edge between two vertices of this graph.
+     * @param index1 the index of the first vertex
+     * @param index2 the index of the second vertex
+     */
     public void removeEdge(int index1, int index2) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = false;
@@ -140,11 +209,21 @@ public class MatrixGraph<T> implements GraphADT<T> {
         }
     }
 
+    /**
+     * Returns an iterator that performs a breadth-first traversal starting at the given index.
+     * @param startVertex the starting vertex
+     * @return an iterator that performs a breadth-first traversal
+     */
     @Override
     public Iterator<T> iteratorBFS(T startVertex) {
         return iteratorBFS(getIndex(startVertex));
     }
 
+    /**
+     * Returns an iterator that performs a breadth-first traversal starting at the given index.
+     * @param startIndex the index of the starting vertex
+     * @return an iterator that performs a breadth-first traversal
+     */
     private Iterator<T> iteratorBFS(int startIndex) {
         Integer x;
         LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
@@ -181,6 +260,13 @@ public class MatrixGraph<T> implements GraphADT<T> {
         return resultList.iterator();
     }
 
+    /**
+     * Returns an iterator that checks for the immediate neighbours of a vertex.
+     * @param vertex the vertex to be checked
+     * @return an iterator that checks for the immediate neighbours of a vertex
+     * @throws EmptyCollectionException if the graph is empty
+     * @throws NonComparableElementException if the vertex is not comparable
+     */
     @SuppressWarnings("unchecked")
     public ArrayOrderedList<T> getNeighbours(Comparable<T> vertex) throws EmptyCollectionException, NonComparableElementException {
         if (this.isEmpty()) {
@@ -206,11 +292,21 @@ public class MatrixGraph<T> implements GraphADT<T> {
         }
     }
 
+    /**
+     * Returns an iterator that performs a depth-first traversal starting at the given index.
+     * @param startVertex the index of the starting vertex
+     * @return an iterator that performs a depth-first traversal
+     */
     @Override
     public Iterator<T> iteratorDFS(T startVertex) {
         return iteratorDFS(getIndex(startVertex));
     }
 
+    /**
+     * Returns an iterator that performs a depth-first traversal starting at the given index.
+     * @param startIndex the index of the starting vertex
+     * @return an iterator that performs a depth-first traversal
+     */
     private Iterator<T> iteratorDFS(int startIndex) {
         Integer x;
         boolean found;
@@ -254,11 +350,23 @@ public class MatrixGraph<T> implements GraphADT<T> {
 
     }
 
+    /**
+     * Returns an iterator that returns the shortest path between two vertices.
+     * @param startVertex  the starting vertex
+     * @param targetVertex the ending vertex
+     * @return an iterator that returns the shortest path between two vertices
+     */
     @Override
     public Iterator<T> iteratorShortestPath(T startVertex, T targetVertex) {
         return iteratorShortestPath(getIndex(startVertex), getIndex(targetVertex));
     }
 
+    /**
+     * Returns an iterator that returns the shortest path between two vertices.
+     * @param startIndex  the starting vertex
+     * @param targetIndex the ending vertex
+     * @return an iterator that returns the shortest path between two vertices
+     */
     private Iterator<T> iteratorShortestPath(int startIndex, int targetIndex) {
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
         if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)) {
@@ -280,6 +388,12 @@ public class MatrixGraph<T> implements GraphADT<T> {
         return resultList.iterator();
     }
 
+    /**
+     * Returns an iterator that returns the shortest path between two vertices as indices.
+     * @param startIndex  the starting vertex
+     * @param targetIndex the ending vertex
+     * @return an iterator that returns the shortest path between two vertices as indices
+     */
     private Iterator<Integer> iteratorShortestPathIndices(int startIndex, int targetIndex) throws EmptyCollectionException, NullException {
         int index = startIndex;
         int[] pathLength = new int[numVertices];
@@ -335,11 +449,19 @@ public class MatrixGraph<T> implements GraphADT<T> {
         return resultList.iterator();
     }
 
+    /**
+     * Checks if the graph is empty.
+     * @return true if the graph is empty, false otherwise
+     */
     @Override
     public boolean isEmpty() {
         return (this.numVertices == 0);
     }
 
+    /**
+     * Checks if the graph is connected.
+     * @return true if the graph is connected, false otherwise
+     */
     @Override
     public boolean isConnected() {
         if (isEmpty()) {
@@ -356,12 +478,19 @@ public class MatrixGraph<T> implements GraphADT<T> {
         return (count == numVertices);
     }
 
+    /**
+     * Returns the number of vertices in the graph.
+     * @return the number of vertices in the graph
+     */
     @Override
     public int size() {
         return this.numVertices;
     }
 
-
+    /**
+     * Returns a summary of the iteratorBFS method.
+     * @return a summary of the iteratorBFS method
+     */
     public String summaryBFS() {
         T startVertex = this.vertices[0];
         Iterator<T> itr = iteratorBFS(startVertex);
@@ -373,6 +502,10 @@ public class MatrixGraph<T> implements GraphADT<T> {
         return s;
     }
 
+    /**
+     * Returns a string representation of the graph.
+     * @return a string representation of the graph
+     */
     @Override
     public String toString() {
         if (numVertices == 0)

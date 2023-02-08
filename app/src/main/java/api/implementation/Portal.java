@@ -37,6 +37,23 @@ public class Portal extends Local implements IPortal{
     }
 
     /**
+     * Constructor method for importing portals from a JSON file.
+     * @param maxEnergy Integer number that represents the maximum amount of energy that a portal has.
+     * @param id Integer representing the unique identifier of each location
+     * @param name Location name, the name will be the name of points of interest like statues, churches ...
+     * @param amountEnergyItHas Amount of energy the site contains.
+     * @param coordinates Location coordinates
+     * @param ownerPlayer Player who conquered the portal
+     * @param playerTeam Team to whom the portal belongs.
+     */
+    protected Portal(int maxEnergy, int id, String name, int amountEnergyItHas, Coordinates coordinates, Player ownerPlayer, String playerTeam) {
+        super(id, name, "Portal", amountEnergyItHas, coordinates);
+        this.maxEnergy = maxEnergy;
+        this.ownerPlayer = ownerPlayer;
+        this.playerTeam = playerTeam;
+    }
+
+    /**
      * Get the maximum amount of energy the portal has.
      * @return maximum amount of energy the portal has.
      */

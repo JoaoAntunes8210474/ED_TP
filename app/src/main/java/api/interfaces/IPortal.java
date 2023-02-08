@@ -4,9 +4,8 @@ import org.json.simple.JSONObject;
 
 import api.implementation.Player;
 
-/*
- *
- * Contract of a Portal Class.
+/**
+ * Interface that defines the methods that a portal must have.
  */
 public interface IPortal extends ILocal {
 

@@ -25,6 +25,10 @@ public class Coordinates implements ICoordinates {
         this.latitude = latitude;
     }
 
+    /**
+     * This method aims to return a JSONObject representing the coordinates related to a location.
+     * @return JSONObject representing the coordinates related to a location
+     */
     protected JSONObject getCoordinatesJSON() {
         JSONObject coordinatesJSON = new JSONObject();
 

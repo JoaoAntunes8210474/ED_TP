@@ -7,11 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto">
-      <change beforePath="$PROJECT_DIR$/app/files/ExportTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/files/ExportTest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/files/Game.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/files/Game.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/api/app/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="17fbdabe-80f6-4faa-860a-2d6134733658" name="Changes" comment="Coloquei os ifs para verificar se era instância de ILocal antes de calcular o caminho mais curto" />
     <list id="df0a5855-ac55-406c-a03a-5db6893cf865" name="Changes by reginaneto" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -320,6 +316,11 @@
           <properties class="java.lang.StackOverflowError" package="java.lang" />
           <option name="timeStamp" value="10" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/api/implementation/PathGameGraph.java</url>
+          <line>392</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

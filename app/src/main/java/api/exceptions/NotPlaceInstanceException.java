@@ -3,7 +3,7 @@ package api.exceptions;
 
     
 /**
- * Throws exception when element in question must be instanced of {@link IPlace place} but isn't.
+ * Exception that is thrown when an element is not a place instance.
  */
 public class NotPlaceInstanceException extends Exception {
 
