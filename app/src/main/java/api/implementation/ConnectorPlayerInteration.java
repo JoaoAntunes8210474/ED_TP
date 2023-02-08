@@ -26,6 +26,10 @@ public class ConnectorPlayerInteration {
         this.horaInteracao = horaInteracao;
     }
 
+    /**
+     * Get the player interaction with the connector in JSON format.
+     * @return Date and time the player interacted with the connector.
+     */
     protected JSONObject getConnectorPlayerInterationJSON() {
         JSONObject connectorPlayerInterationJSON = new JSONObject();
 

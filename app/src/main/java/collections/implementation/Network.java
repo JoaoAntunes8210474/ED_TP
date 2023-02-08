@@ -7,15 +7,33 @@ import collections.interfaces.UnorderedListADT;
 
 import java.util.Iterator;
 
+/**
+ * Network class that implements the NetWorkADT interface.
+ * @param <T> The type of the elements in the network.
+ */
 public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
+    /**
+     * The default capacity of the network.
+     */
     protected final int DEFAULT_CAPACITY = 10;
+
+    /**
+     * The adjacency matrix of the network.
+     */
     private double[][] adjMatrix;
 
+    /**
+     * Creates an empty network.
+     */
     public Network() {
         super();
         this.adjMatrix = new double[this.DEFAULT_CAPACITY][this.DEFAULT_CAPACITY];
     }
 
+    /**
+     * Adds the specified vertex to this graph, expanding the capacity of the graph if necessary.
+     * @param vertex the vertex to be added to this graph
+     */
     @Override
     public void addVertex(T vertex) {
         if (this.numVertices + 1 >= this.adjMatrix.length) {
@@ -25,6 +43,12 @@ public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
         super.addVertex(vertex);
     }
 
+    /**
+     * Adds an edge between the two specified vertices of this graph.
+     * @param vertex1 the first vertex
+     * @param vertex2 the second vertex
+     * @param weight the weight of the edge
+     */
     @Override
     public void addEdge(T vertex1, T vertex2, double weight) {
         if (weight < 0.0D) {
@@ -35,6 +59,12 @@ public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
         }
     }
 
+    /**
+     * Return an array containing the vertices with the specified weight.
+     * @param weight the weight of the edge
+     * @param visited the array used to mark the visited vertices
+     * @return an array containing the vertices with the specified weight
+     */
     protected int[] getEdgeWithWeightOf(double weight, boolean[] visited) {
         int[] edge = new int[2];
         for (int i = 0; i < numVertices; i++)
@@ -51,6 +81,12 @@ public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
         return edge;
     }
 
+    /**
+     * Sets the weight of the edge between the two specified vertices.
+     * @param firstVertex the first vertex
+     * @param secondVertex the second vertex
+     * @param weight the weight of the edge
+     */
     public void setEdgeWeight(T firstVertex, T secondVertex, double weight) {
         if (weight < 0.0D) {
             throw new IllegalArgumentException("The weight cannot be under the default.");
@@ -68,6 +104,12 @@ public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
 
     }
 
+    /**
+     * Returns the weight of the edge between the two specified vertices.
+     * @param firstVertex the first vertex
+     * @param secondVertex the second vertex
+     * @return the weight of the edge between the two specified vertices
+     */
     public double getEdgeWeight(T firstVertex, T secondVertex) {
         int first = this.getIndex(firstVertex);
         int second = this.getIndex(secondVertex);
@@ -75,6 +117,9 @@ public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
         return this.adjMatrix[first][second];
     }
 
+    /**
+     * Expands the capacity of the matrix by creating a new matrix and copying the contents of the old matrix to it.
+     */
     private void expandMatrix() {
         double[][] tempMatrix = new double[this.numVertices * 2][this.numVertices * 2];
 
@@ -87,10 +132,26 @@ public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
         this.adjMatrix = tempMatrix;
     }
 
+    /**
+     * Returns an iterator that returns the shortest path between the two specified vertices.
+     * @param startVertex the starting vertex
+     * @param targetVertex the ending vertex
+     * @return an iterator that returns the shortest path between the two specified vertices
+     * @throws UnknownPathException the exception thrown when the path is unknown
+     * @throws EmptyCollectionException the exception thrown when the collection is empty
+     */
     public Iterator<T> iteratorShortestWeight(T startVertex, T targetVertex) throws UnknownPathException, EmptyCollectionException {
         return shortestPathWeight(startVertex, targetVertex).iterator();
     }
 
+    /**
+     * Returns the shortest path between the two specified vertices.
+     * @param vertex1 the starting vertex
+     * @param vertex2 the ending vertex
+     * @return the shortest path between the two specified vertices
+     * @throws UnknownPathException the exception thrown when the path is unknown
+     * @throws EmptyCollectionException the exception thrown when the collection is empty
+     */
     @Override
     public ArrayUnorderedList<T> shortestPathWeight(T vertex1, T vertex2) throws EmptyCollectionException, UnknownPathException {
         PriorityQueue<Pair<T>> priorityQueue = new PriorityQueue<>();
@@ -130,6 +191,10 @@ public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
         throw new UnknownPathException("Path doesn't exist");
     }
 
+    /**
+     * Returns the minimum spanning tree of the network.
+     * @return the minimum spanning tree of the network
+     */
     @SuppressWarnings("unchecked")
     public Network<T> mstNetwork() {
         int x, y;
@@ -192,6 +257,10 @@ public class Network<T> extends MatrixGraph<T> implements NetWorkADT<T> {
         return resultGraph;
     }
 
+    /**
+     * Returns the string representation of the network.
+     * @return the string representation of the network
+     */
     public String toString() {
         if (numVertices == 0)
             return "Graph is empty";

@@ -5,10 +5,22 @@ import collections.exceptions.EmptyCollectionException;
 import collections.interfaces.BinaryTreeADT;
 import java.util.Iterator;
 
-
+/**
+ * ArrayBinaryTree represents an array implementation of a binary tree.
+ * @param <T> the generic type of data to be stored in the tree
+ */
 public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
+    /**
+     * The number of elements in the tree.
+     */
     protected int count;
+    /**
+     * The array that holds the elements of the tree.
+     */
     protected T[] tree;
+    /**
+     * The default capacity of the tree.
+     */
     private final int CAPACITY = 50;
 
     /**
@@ -84,6 +96,10 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         return temp;
     }
 
+    /**
+     * Inorder traversal of the binary tree.
+     * @return the inorder traversal of the binary tree
+     */
     @Override
     public Iterator<T> iteratorInOrder() {
         ArrayUnorderedList<T> tempList = new ArrayUnorderedList<>();
@@ -91,6 +107,11 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         return tempList.iterator();
     }
 
+    /**
+     * Inorder traversal of the binary tree.
+     * @param node the node to be used as the root
+     * @param tempList the temporary list to store the result
+     */
     protected void inorder(int node, ArrayUnorderedList<T> tempList) {
         if (node < count) {
             if (tree[node] != null) {
@@ -101,6 +122,10 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         }
     }
 
+    /**
+     * Preorder traversal of the binary tree.
+     * @return the preorder traversal of the binary tree
+     */
     @Override
     public Iterator<T> iteratorPreOrder() {
         ArrayUnorderedList<T> templist = new ArrayUnorderedList<>();
@@ -108,6 +133,11 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         return templist.iterator();
     }
 
+    /**
+     * Preorder traversal of the binary tree.
+     * @param node the node to be used as the root
+     * @param templist the temporary list to store the result
+     */
     protected void preorder(int node, ArrayUnorderedList<T> templist) {
         if (node < count) {
             if (tree[node] != null) {
@@ -118,6 +148,10 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         }
     }
 
+    /**
+     * Postorder traversal of the binary tree.
+     * @return the postorder traversal of the binary tree
+     */
     @Override
     public Iterator<T> iteratorPostOrder() {
         ArrayUnorderedList<T> templist = new ArrayUnorderedList<>();
@@ -125,6 +159,11 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         return templist.iterator();
     }
 
+    /**
+     * Postorder traversal of the binary tree.
+     * @param node the node to be used as the root
+     * @param templist the temporary list to store the result
+     */
     protected void postorder(int node, ArrayUnorderedList<T> templist) {
         if (node < count) {
             if (tree[node] != null) {
@@ -135,6 +174,10 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         }
     }
 
+    /**
+     * Levelorder traversal of the binary tree.
+     * @return the levelorder traversal of the binary tree
+     */
     @Override
     public Iterator<T> iteratorLevelOrder() {
         ArrayUnorderedList<T> tempList = new ArrayUnorderedList<>();
@@ -143,6 +186,11 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         return tempList.iterator();
     }
 
+    /**
+     * Levelorder traversal of the binary tree.
+     * @param root the node to be used as the root
+     * @param results the temporary list to store the result
+     */
     protected void levelorder(int root, ArrayUnorderedList<T> results) {
         // Queue de índices da árvore
         CircularArrayQueue<Integer> nodes = new CircularArrayQueue<>();
@@ -171,6 +219,10 @@ public class ArrayBinaryTree<T> implements BinaryTreeADT<T> {
         }
     }
 
+    /**
+     * Returns a string representation of this binary tree.
+     * @return a string representation of this binary tree
+     */
     @Override
     public String toString() {
         String s = "Iterator LevelOrder:";

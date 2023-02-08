@@ -4,7 +4,7 @@ import collections.exceptions.ElementNotFoundException;
 import collections.interfaces.BinarySearchTreeADT;
 
 /**
- * @param <T>
+ * @param <T> the generic type of elements in this tree
  */
 public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T>
         implements BinarySearchTreeADT<T> {
@@ -26,6 +26,13 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T>
         super(element);
     }
 
+    /**
+     * Adds the specified object to the binary search tree in the appropriate
+     * position according to its key value. Note that equal elements are added
+     * to the right.
+     *
+     * @param element the element to be added to the binary search tree
+     */
     @Override
     public void addElement(T element) {
         BinaryTreeNode<T> temp = new BinaryTreeNode<T>(element);
@@ -57,6 +64,17 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T>
         count++;
     }
 
+    /**
+     * Removes the first element that matches the specified target element
+     * from the binary search tree and returns a reference to it. Throws a
+     * ElementNotFoundException if the specified target element is not
+     * found in the binary search tree.
+     *
+     * @param targetElement the element being sought in the binary search tree
+     * @return a reference to the first element in the binary search tree
+     * that matches the specified target element
+     * @throws ElementNotFoundException if an element not found exception occurs
+     */
     @Override
     public T removeElement(T targetElement) throws ElementNotFoundException {
         T result = null;
@@ -101,6 +119,11 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T>
         return result;
     }
 
+    /**
+     * Returns the node replaced by the node sent as parameter
+     * @param node the node to be replaced
+     * @return the node that was replaced
+     */
     protected BinaryTreeNode<T> replacement(BinaryTreeNode<T> node) {
         BinaryTreeNode<T> result = null;
 
@@ -130,6 +153,14 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T>
         return result;
     }
 
+    /**
+     * Removes elements that match the specified target element from the
+     * binary search tree. Throws a ElementNotFoundException if the
+     * specified target element is not found in this tree.
+     *
+     * @param targetElement the element being sought in this tree
+     * @throws ElementNotFoundException if an element not found exception occurs
+     */
     @Override
     public void removeAllOccurrences(T targetElement) throws ElementNotFoundException {
         try {
@@ -141,6 +172,10 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T>
         }
     }
 
+    /**
+     * Removes the node with the smallest element from the binary search tree
+     * @return the element of the removed node
+     */
     @Override
     public T removeMin() {
         T result = null;
@@ -150,6 +185,10 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T>
         return result;
     }
 
+    /**
+     * Removes the node with the largest element from the binary search tree
+     * @return the element of the removed node
+     */
     @Override
     public T removeMax() {
         T result = null;
@@ -159,6 +198,14 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T>
         return result;
     }
 
+    /**
+     * Returns a reference to the element with the smallest value in the binary
+     * search tree. Throws a ElementNotFoundException if the binary search tree
+     * is empty.
+     *
+     * @return a reference to the smallest element in the binary search tree
+     * @throws ElementNotFoundException if an element not found exception occurs
+     */
     @Override
     public T findMin() {
         if (isEmpty()) throw new ElementNotFoundException("árvore vazia");
@@ -176,6 +223,14 @@ public class LinkedBinarySearchTree<T> extends LinkedBinaryTree<T>
         return current.getElement();
     }
 
+    /**
+     * Returns a reference to the element with the largest value in the binary
+     * search tree. Throws a ElementNotFoundException if the binary search tree
+     * is empty.
+     *
+     * @return a reference to the largest element in the binary search tree
+     * @throws ElementNotFoundException if an element not found exception occurs
+     */
     @Override
     public T findMax() {
         if (isEmpty()) throw new ElementNotFoundException("árvore vazia");

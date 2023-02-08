@@ -5,9 +5,18 @@ import collections.exceptions.EmptyCollectionException;
 import collections.interfaces.BinarySearchTreeADT;
 import java.util.Iterator;
 
-
+/**
+ * ArrayBinarySearchTree represents a binary search tree implemented using a generic type array.
+ * @param <T> the generic type of the elements in this tree
+ */
 public class ArrayBinarySearchTree<T> extends ArrayBinaryTree<T> implements BinarySearchTreeADT<T> {
+    /**
+     * The height of the tree
+     */
     protected int height;
+    /**
+     * The index of the last element in the array
+     */
     protected int maxIndex;
 
     /**
@@ -122,6 +131,11 @@ public class ArrayBinarySearchTree<T> extends ArrayBinaryTree<T> implements Bina
         return result;
     }
 
+    /**
+     * Replaces the element at the specified index with the element at the last index
+     * @param targetIndex the index of the element to be replaced
+     * @throws EmptyCollectionException if the tree is empty
+     */
     protected void replace(int targetIndex) throws EmptyCollectionException {
         int currentIndex, oldIndex, newIndex;
         ArrayUnorderedList<Integer> oldList = new ArrayUnorderedList<>();

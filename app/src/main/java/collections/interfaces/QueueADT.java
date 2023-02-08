@@ -2,6 +2,11 @@ package collections.interfaces;
 
 import collections.exceptions.EmptyCollectionException;
 
+/**
+ * A QueueADT represents a first-in-first-out (FIFO) queue of objects.
+ *
+ * @param <T> the type of element held in this collection
+ */
 public interface QueueADT<T> {
 
     /**
@@ -15,6 +20,7 @@ public interface QueueADT<T> {
      * Removes and returns the element at the front of this queue.
      *
      * @return the element at the front of this queue
+     * @throws EmptyCollectionException if the queue is empty
      */
     public T dequeue() throws EmptyCollectionException;
 
@@ -22,6 +28,7 @@ public interface QueueADT<T> {
      * Returns without removing the element at the front of this queue.
      *
      * @return the first element in this queue
+     * @throws EmptyCollectionException if the queue is empty
      */
     public T first() throws EmptyCollectionException;
 

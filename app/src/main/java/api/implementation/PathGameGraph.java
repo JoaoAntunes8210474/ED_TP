@@ -20,8 +20,16 @@ import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * PathGameGraph class.
+ *
+ * @param <T> type of the graph.
+ */
 public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphADT <T> {
 
+    /**
+     * Enum to represent the type of search.
+     */
     private enum SearchType {
         CONNECTOR_REQUIRED,
         PORTAL_ONLY,
@@ -52,6 +60,15 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
         return count;
     }
 
+    /**
+     * Returns the iterator of the shortest path between two vertices determined by the type of search.
+     * @param typeOfSearch type of search.
+     * @param startIndex start index.
+     * @param targetIndex target index.
+     * @return iterator of the shortest path.
+     * @throws EmptyCollectionException if the collection is empty.
+     * @throws NullException if the object is null.
+     */
     private Iterator<Integer> iteratorShortestPathIndices(SearchType typeOfSearch, int startIndex, int targetIndex) throws EmptyCollectionException, NullException {
         int index = startIndex;
         int[] pathLength = new int[this.numVertices];
@@ -105,7 +122,8 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
                 }
             }
         } else if (typeOfSearch == SearchType.CONNECTOR_REQUIRED) {
-            while (!traversalQueue.isEmpty() && (index != targetIndex)) {
+            int numberOfTimesStartIndexIsVisited = 0;
+            while (!traversalQueue.isEmpty()) {
                 index = (traversalQueue.dequeue());
 
                 // Update the pathLength for each unvisited vertex adjacent to the vertex at the current index
@@ -116,8 +134,10 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
                         traversalQueue.enqueue(i);
                         visited[i] = true;
 
+                        Local local = (Local) this.vertices[i];
+
                         // if the vertex is a connector, mark it as visited
-                        if (this.vertices[i] instanceof IConnector) {
+                        if (local.getLocalType().equals("Connector")) {
                             visitedConnectors.addToRear(i);
                         }
                     }
@@ -320,6 +340,13 @@ public class PathGameGraph<T> extends MatrixGraph<T> implements IPathGameGraphAD
         return resultList.iterator();
     }
 
+    /**
+     * Shortest path between two points, crossing through at least one connector.
+     * @param source starting point, starting point
+     * @param destiny Point of arrival, place where you want to go
+     * @return iterator with the path.
+     * @throws NotPlaceInstanceException if start point is not {@link ILocal local} instance.
+     */
     @Override
     public Iterator<ILocal> shortestPathAtleastOneConnector(T source, T destiny) throws NotPlaceInstanceException {
         if (!(source instanceof ILocal) || !(destiny instanceof ILocal)) {

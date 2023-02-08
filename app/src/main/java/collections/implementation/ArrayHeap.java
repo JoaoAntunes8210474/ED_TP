@@ -4,10 +4,13 @@ import collections.exceptions.EmptyCollectionException;
 import collections.interfaces.HeapADT;
 
 /**
- * @param <T>
+ * @param <T> Generic type
  */
 public class ArrayHeap<T> extends ArrayBinaryTree<T> implements HeapADT<T> {
 
+    /**
+     * Creates an empty heap.
+     */
     public ArrayHeap() {
         super();
     }
@@ -33,6 +36,10 @@ public class ArrayHeap<T> extends ArrayBinaryTree<T> implements HeapADT<T> {
         }
     }
 
+    /**
+     * Creates a new array to store the contents of this heap with twice the
+     * capacity of the old one.
+     */
     private void expandCapacity() {
         T[] temp = (T[]) new Object[tree.length * 2];
         for (int ct = 0; ct < tree.length; ct++) {
@@ -132,6 +139,14 @@ public class ArrayHeap<T> extends ArrayBinaryTree<T> implements HeapADT<T> {
         }
     }
 
+    /**
+     * Returns a reference to the element with the lowest value in this heap.
+     * The element is not removed from the heap. Throws an
+     * EmptyCollectionException if the heap is empty.
+     *
+     * @return a reference to the element with the lowest value in this heap
+     * @throws EmptyCollectionException if an empty collection exception occurs
+     */
     @Override
     public T findMin() throws EmptyCollectionException {
         if (isEmpty()) throw new EmptyCollectionException("A lista está vazia");

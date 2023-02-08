@@ -14,40 +14,39 @@ public interface ILocalsManagement {
     
     /**
      * Adds a new location to the graph
+     *
      * @param local to be added.
-     * @return true if is the place was added, false if is not
-     * @throws ElementAlreadyExistsException if the location already exists.
+     * @return String with the result of the operation
      */
     public String addLocals (ILocal local);
 
     /**
      * Remove a location from the graph
+     *
      * @param local to be deleted
+     * @return String with the result of the operation
      */
     public String removeLocals (ILocal local);
 
     /**
-     * Add a new interaction of a player to the connector and remove the first one from the queue if the cooldown time has already passed
-     * @param connector connector where there was interaction
-     * @param interation information about the interaction to be added to the connector
-     */
-    public String addInterationConnector(IConnector connector, ConnectorPlayerInteration iteration);
-
-    /**
      * Add new path between two points on graph.
-     * @param local1 first location
-     * @param local2 segundo local
+     *
+     * @param route path to be added
+     * @return String with the result of the operation
      */
     public String addPath(IRoute route);
 
     /**
      * Remove a path between two points on graph.
+     *
      * @param route path to be removed
+     * @return String with the result of the operation
      */
     public String removePath (IRoute route);
 
     /**
      * Gets the textual listing of all Portals
+     *
      * @return string with portals listing
      */
     public String getAllPortalsListing();
@@ -93,6 +92,8 @@ public interface ILocalsManagement {
 
     /**
      * Export all portals from a graph to a Json file
+     *
+     * @param fileName fileName to use for the export
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
@@ -100,13 +101,18 @@ public interface ILocalsManagement {
 
     /**
      * Export all Connectors from a graph to a Json file
+     *
+     * @param fileName fileName to use for the export
      * @throws IOException if occurs an error trying to write the file.
+     * @throws EmptyCollectionException if the collection is empty.
      * @return A string indicating whether the operation was successful or something went wrong.
      */
     public String  exportConnectorsToJson(String fileName) throws IOException, EmptyCollectionException;
 
     /**
      * Export all paths from a graph to a Json file
+     *
+     * @param fileName fileName to use for the export
      * @throws IOException if occurs an error trying to write the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
@@ -115,6 +121,7 @@ public interface ILocalsManagement {
     /**
      * Import portals from Json file to graph
      * @param fileName fileName to use for the import
+     * @throws IOException if occurs an error trying to read the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
     public String importPortalsFromJSON(String fileName) throws IOException;
@@ -122,13 +129,15 @@ public interface ILocalsManagement {
     /**
      * Import connectors from Json file to graph
      * @param fileName fileName to use for the import
+     * @throws IOException if occurs an error trying to read the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
     public String importConnectorsFromJSON(String fileName) throws IOException;
 
     /**
      * Import paths from a Json file into a graph
-     * @param fileName fileName fileName to use for the import
+     * @param fileName fileName to use for the import
+     * @throws IOException if occurs an error trying to read the file.
      * @return A string indicating whether the operation was successful or something went wrong
      */
     public String importPathsFromJSON(String fileName) throws IOException;

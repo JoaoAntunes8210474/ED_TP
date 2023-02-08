@@ -3,11 +3,17 @@ package collections.interfaces;
 import collections.exceptions.EmptyCollectionException;
 import java.util.Iterator;
 
+/**
+ * An interface for a list collection.
+ *
+ * @param <T> the type of elements in this list
+ */
 public interface ListADT<T> extends Iterable<T> {
     /**
      * Removes and returns the first element from this list.
      *
      * @return the first element from this list
+     * @throws EmptyCollectionException if the list is empty
      */
     public T removeFirst() throws EmptyCollectionException;
 
@@ -15,6 +21,7 @@ public interface ListADT<T> extends Iterable<T> {
      * Removes and returns the last element from this list.
      *
      * @return the last element from this list
+     * @throws EmptyCollectionException if the list is empty
      */
     public T removeLast() throws EmptyCollectionException;
 
@@ -22,6 +29,8 @@ public interface ListADT<T> extends Iterable<T> {
      * Removes and returns the specified element from this list.
      *
      * @param element the element to be removed from the list
+     * @return the removed element
+     * @throws EmptyCollectionException if the list is empty
      */
     public T remove(T element) throws EmptyCollectionException;
 
@@ -29,6 +38,7 @@ public interface ListADT<T> extends Iterable<T> {
      * Returns a reference to the first element in this list.
      *
      * @return a reference to the first element in this list
+     * @throws EmptyCollectionException if the list is empty
      */
     public T first() throws EmptyCollectionException;
 
@@ -36,6 +46,7 @@ public interface ListADT<T> extends Iterable<T> {
      * Returns a reference to the last element in this list.
      *
      * @return a reference to the last element in this list
+     * @throws EmptyCollectionException if the list is empty
      */
     public T last() throws EmptyCollectionException;
 

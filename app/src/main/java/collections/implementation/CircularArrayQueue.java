@@ -9,14 +9,29 @@ import collections.exceptions.EmptyCollectionException;
 import collections.interfaces.QueueADT;
 
 /**
- * @param <T>
+ * @param <T> Generic type
  */
 public class CircularArrayQueue<T> implements QueueADT<T> {
+    /**
+     * The default size of the queue
+     */
     private final int SIZE = 100;
+    /**
+     * The array that holds the queue
+     */
     private T[] queue;
+    /**
+     * The number of elements in the queue
+     */
     private int currentSize;
+    /**
+     * The index of the front and rear of the queue
+     */
     private int front, rear;
 
+    /**
+     * Creates an empty queue using the default size.
+     */
     public CircularArrayQueue() {
         this.currentSize = 0;
         this.front = this.rear = -1;
@@ -40,6 +55,9 @@ public class CircularArrayQueue<T> implements QueueADT<T> {
         }
     }
 
+    /**
+     * Expands the capacity of the queue
+     */
     private void expandCapacity() {
         int tam = SIZE + 1;
         T[] temp = (T[]) (new Object[tam]);

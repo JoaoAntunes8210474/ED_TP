@@ -4,10 +4,13 @@ import collections.exceptions.NonComparableElementException;
 import collections.interfaces.OrderedListADT;
 
 /**
- * @param <T>
+ * @param <T> Generic type
  */
 public class DoubleLinkedOrderedList<T extends Comparable> extends DoubleLinkedList<T> implements OrderedListADT<T> {
 
+    /**
+     * Creates an empty list.
+     */
     public DoubleLinkedOrderedList() {
         super();
     }

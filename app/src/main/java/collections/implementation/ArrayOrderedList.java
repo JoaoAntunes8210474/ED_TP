@@ -4,14 +4,22 @@ import collections.exceptions.NonComparableElementException;
 import collections.interfaces.OrderedListADT;
 
 /**
- * @param <T>
+ * @param <T> Generic type
  */
 public class ArrayOrderedList<T> extends ArrayList<T> implements OrderedListADT<T> {
 
+    /**
+     * Construtor padrão
+     */
     public ArrayOrderedList() {
         super();
     }
 
+    /**
+     * Add the specified element to this list at the proper location
+     * @param element the element to be added to this list
+     * @throws NonComparableElementException if the element is not comparable
+     */
     @Override
     public void add(T element) throws NonComparableElementException {
         if (!(element instanceof Comparable))
@@ -35,6 +43,9 @@ public class ArrayOrderedList<T> extends ArrayList<T> implements OrderedListADT<
         modCount++;
     }
 
+    /**
+     * Expand the capacity of the list
+     */
     private void expandCapacity() {
         int tam = list.length + 1;
         T[] temp = (T[]) (new Object[tam]);

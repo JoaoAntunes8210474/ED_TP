@@ -4,11 +4,17 @@ import collections.exceptions.ElementNotFoundException;
 import collections.exceptions.EmptyCollectionException;
 import java.util.Iterator;
 
+/**
+ * This interface defines the methods to implement a binary tree.
+ *
+ * @param <T> the generic type of an element in this tree
+ */
 public interface BinaryTreeADT<T> {
     /**
      * Returns a reference to the root element
      *
      * @return a reference to the root
+     * @throws EmptyCollectionException if an empty collection exception occurs
      */
     public T getRoot() throws EmptyCollectionException;
 

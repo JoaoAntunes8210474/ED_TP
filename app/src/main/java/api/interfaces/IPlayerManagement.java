@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  *
@@ -31,9 +32,10 @@ public interface IPlayerManagement {
      * Updates a player from the list of players
      *
      * @param player the player to be updated
+     * @param scanner the scanner to use for the update
      * @return A string indicating whether the operation was successful or something went wrong
      */
-    public String updatePlayer(Player player);
+    public String updatePlayer(Player player, Scanner scanner);
 
     /**
      * Removes and returns a player from the list of players
@@ -85,6 +87,8 @@ public interface IPlayerManagement {
      * Import the content of the JSON given through reference into an instance of this class
      *
      * @param fileName to use for the import
+     * @param parser to use for the import
+     * @throws IOException if the file is not found
      * @return A string indicating whether the operation was successful or something went wrong
      */
     public String importJSON(String fileName, JSONParser parser) throws IOException;
@@ -93,6 +97,8 @@ public interface IPlayerManagement {
      * Exports the content of this class into a specified JSON file with the name given through reference
      *
      * @param fileName to use for the export
+     * @param fileWriter to use for the export
+     * @throws IOException if the file is not found
      * @return A string indicating whether the operation was successful or something went wrong
      */
     public String exportJSON(String fileName, FileWriter fileWriter) throws IOException;

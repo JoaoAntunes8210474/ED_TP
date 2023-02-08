@@ -22,15 +22,25 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
- * @author reginaneto
+ * Class that implements the IPlayerManagement interface
  */
 public class PlayerManagement implements IPlayerManagement {
+    /**
+     * List of players
+     */
     private ArrayUnorderedList<Player> playerList;
 
+    /**
+     * Constructor for the PlayerManagement class
+     */
     public PlayerManagement() {
         this.playerList = new ArrayUnorderedList<>();
     }
 
+    /**
+     * Returns the list of players
+     * @return the list of players
+     */
     public ArrayUnorderedList<Player> getPlayerList() {
         return this.playerList;
     }
@@ -59,7 +69,7 @@ public class PlayerManagement implements IPlayerManagement {
      * @return A string indicating whether the operation was successful or something went wrong
      */
     @Override
-    public String updatePlayer(Player player) {
+    public String updatePlayer(Player player, Scanner scanner) {
         if (player == null) {
             throw new NullPointerException("Foi enviado uma referência nula");
         }
@@ -69,7 +79,6 @@ public class PlayerManagement implements IPlayerManagement {
         }
 
         int option;
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("[Selecione um dos campos para alterar]");
         System.out.println("[1 - Nome]");
@@ -83,7 +92,7 @@ public class PlayerManagement implements IPlayerManagement {
             }
         } while (option < 1 || option > 2);
 
-        scanner.reset();
+        scanner = scanner.reset();
 
         if (option == 1) {
             String oldName = player.getName();
@@ -91,6 +100,7 @@ public class PlayerManagement implements IPlayerManagement {
 
             System.out.println("Escreva o novo nome do jogador");
             newName = scanner.nextLine();
+            scanner = scanner.reset();
 
             player.setName(newName);
 
@@ -101,6 +111,7 @@ public class PlayerManagement implements IPlayerManagement {
             System.out.println("Insira o nome da equipa que quer colocar o jogador");
             do {
                 newTeam = scanner.nextLine();
+                scanner = scanner.reset();
 
                 if (newTeam.equals("Giants") || newTeam.equals("Sparks")) {
                     System.out.println("[Possiveis Equipas] \n [- Giants] \n [- Sparks]");
@@ -261,6 +272,10 @@ public class PlayerManagement implements IPlayerManagement {
         return tempPlayersList.toString();
     }
 
+    /**
+     * Return a JSONArray with the content of the playerList
+     * @return a JSONArray with the content of the playerList
+     */
     public JSONArray getPlayersAsJSONArray() {
         JSONArray jsonArray = new JSONArray();
 
